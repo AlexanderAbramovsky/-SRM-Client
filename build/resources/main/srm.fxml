@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -20,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="755.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sahan.abr.controllers.SRM">
+<AnchorPane prefHeight="755.0" prefWidth="825.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sahan.abr.controllers.SRM">
    <children>
       <Pane prefHeight="50.0" prefWidth="600.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -33,7 +34,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <TitledPane animated="false" expanded="false" prefHeight="24.0" prefWidth="836.0" text="Добавить Клиента" textOverrun="CLIP">
                                 <content>
@@ -43,199 +44,102 @@
                                     <Insets />
                                  </VBox.margin>
                               </TitledPane>
-                              <HBox prefHeight="6.0" prefWidth="600.0" spacing="10.0">
+                              <HBox prefWidth="826.0" spacing="10.0">
                                  <children>
                                     <TextField fx:id="searchEmployeesField1" />
-                                    <Button fx:id="searchEmployeesButton1" mnemonicParsing="false" onAction="#searchEmployees" prefHeight="26.0" prefWidth="80.0" text="Найти" />
-                                    <Button fx:id="resetEmployeesButton1" mnemonicParsing="false" onAction="#resetEmployees" prefHeight="26.0" prefWidth="80.0" text="Сбросить" />
-                                    <Button fx:id="deleteEmployee1" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="26.0" prefWidth="80.0" text="Удалить" />
+                                    <Button fx:id="searchEmployeesButton1" mnemonicParsing="false" onAction="#searchEmployees" text="Найти" />
+                                    <Button fx:id="resetEmployeesButton1" mnemonicParsing="false" onAction="#resetEmployees" text="Сбросить" />
+                                    <Button fx:id="deleteEmployee1" mnemonicParsing="false" onAction="#deleteEmployee" text="Удалить" />
                                     <Button fx:id="removeEmployeeButton1" mnemonicParsing="false" onAction="#removeEmployee" prefHeight="26.0" prefWidth="0.0" text="X" visible="false">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Button>
+                                    <Button mnemonicParsing="false" onAction="#addUserTest" text="Добавить ТЕСТ" />
                                  </children>
                                  <padding>
-                                    <Insets bottom="5.0" left="10.0" top="10.0" />
+                                    <Insets bottom="5.0" left="10.0" />
                                  </padding>
                               </HBox>
-                              <VBox prefHeight="356.0" prefWidth="590.0">
-                                 <children>
-                                    <Label text="Родитель:">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <HBox alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="600.0" spacing="10.0">
+                              <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <content>
+                                    <VBox fx:id="mainVBoxUser" alignment="TOP_CENTER" spacing="10.0">
                                        <children>
-                                          <TextField>
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <Label text="Ф.И.О">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField>
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <Label text="Номер телефона для связи">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <TitledPane animated="false" text="Паспортные данные и договор">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <VBox style="-fx-background-color: 808080;">
                                              <children>
-                                                <VBox layoutX="-18.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <Label text="Родитель:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="600.0" spacing="10.0">
                                                    <children>
-                                                      <HBox alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="600.0" spacing="10.0">
-                                                         <children>
-                                                            <TextField alignment="CENTER" prefHeight="30.0" prefWidth="50.0">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </TextField>
-                                                            <Label text="Серия">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <TextField alignment="CENTER" prefHeight="30.0" prefWidth="70.0">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </TextField>
-                                                            <Label text="Номер">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <TextField alignment="CENTER" prefHeight="30.0" prefWidth="90.0">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </TextField>
-                                                            <Label text="Дата выдачи">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                         </children>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="600.0" spacing="10.0">
-                                                         <children>
-                                                            <TextField alignment="CENTER" prefHeight="30.0" prefWidth="500.0">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </TextField>
-                                                            <Label text="Кем выдан">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <TextField alignment="CENTER" prefHeight="30.0" prefWidth="80.0">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </TextField>
-                                                            <Label text="Код подразделения">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                         </children>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="600.0" spacing="10.0">
-                                                         <children>
-                                                            <TextField alignment="CENTER" prefHeight="30.0" prefWidth="90.0">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </TextField>
-                                                            <Label text="Дата заключения договора">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <TextField alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </TextField>
-                                                            <Label text="Номер договора">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                         </children>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="600.0" spacing="10.0">
-                                                         <children>
-                                                            <TextField>
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </TextField>
-                                                            <Label text="Номер телефона">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                         </children>
-                                                      </HBox>
+                                                      <TextField>
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <Label text="Ф.И.О">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField>
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <Label text="Номер телефона для связи">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Button mnemonicParsing="false" text="Дополнительная информация" />
                                                    </children>
-                                                </VBox>
+                                                </HBox>
+                                                <Label text="Ребенок:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets top="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <HBox alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="600.0" spacing="10.0">
+                                                   <children>
+                                                      <TextField>
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <Label text="Ф.И.О">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField alignment="CENTER" prefHeight="30.0" prefWidth="50.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <Label text="Возраст">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox prefWidth="150.0" promptText="Тренер" />
+                                                      <Button mnemonicParsing="false" text="Дополнительная информация" />
+                                                   </children>
+                                                </HBox>
                                              </children>
-                                          </AnchorPane>
-                                      </content>
-                                    </TitledPane>
-                                    <Label text="Ребенок:">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets top="5.0" />
-                                       </padding>
-                                    </Label>
-                                    <HBox alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="600.0" spacing="10.0">
-                                       <children>
-                                          <TextField>
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <Label text="Ф.И.О">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="50.0">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <Label text="Возраст">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox prefWidth="150.0" promptText="Тренер" />
+                                          </VBox>
                                        </children>
-                                    </HBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="15.0" />
-                                 </VBox.margin>
-                              </VBox>
+                                       <padding>
+                                          <Insets bottom="20.0" left="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
                            </children>
                         </VBox>
                      </children></AnchorPane>
@@ -245,7 +149,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox layoutY="6.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox layoutY="6.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <TitledPane animated="false" expanded="false" text="Добавить">
                                 <content>
@@ -276,12 +180,12 @@
                                     </AnchorPane>
                                 </content>
                               </TitledPane>
-                              <HBox prefHeight="6.0" prefWidth="600.0" spacing="10.0">
+                              <HBox spacing="10.0">
                                  <children>
                                     <TextField fx:id="searchEmployeesField" />
-                                    <Button fx:id="searchEmployeesButton" mnemonicParsing="false" onAction="#searchEmployees" prefHeight="26.0" prefWidth="80.0" text="Найти" />
-                                    <Button fx:id="resetEmployeesButton" mnemonicParsing="false" onAction="#resetEmployees" prefHeight="26.0" prefWidth="80.0" text="Сбросить" />
-                                    <Button fx:id="deleteEmployee" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="26.0" prefWidth="80.0" text="Удалить" />
+                                    <Button fx:id="searchEmployeesButton" mnemonicParsing="false" onAction="#searchEmployees" text="Найти" />
+                                    <Button fx:id="resetEmployeesButton" mnemonicParsing="false" onAction="#resetEmployees" text="Сбросить" />
+                                    <Button fx:id="deleteEmployee" mnemonicParsing="false" onAction="#deleteEmployee" text="Удалить" />
                                     <Button fx:id="removeEmployeeButton" mnemonicParsing="false" onAction="#removeEmployee" prefHeight="26.0" prefWidth="0.0" text="X" visible="false">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
@@ -289,10 +193,10 @@
                                     </Button>
                                  </children>
                                  <padding>
-                                    <Insets bottom="5.0" left="10.0" top="5.0" />
+                                    <Insets bottom="5.0" left="10.0" />
                                  </padding>
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </HBox>
                               <TableView fx:id="employeesTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">

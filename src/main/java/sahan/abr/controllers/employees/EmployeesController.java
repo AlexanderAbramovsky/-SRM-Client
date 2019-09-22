@@ -40,7 +40,7 @@ public class EmployeesController {
         deleteColumn.setVisible(false);
         deleteColumn.setCellFactory( tc -> new CheckBoxTableCell<Employee, Boolean>());
 
-        // РџСЂРё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРё РІ СЏС‡РµР№РєРµ (РґР»СЏ СЃС‚РѕР»Р±С†Р° РЈРґР°Р»РёС‚СЊ)
+        // При редактировании в ячейке (для столбца Удалить)
         deleteColumn.setCellValueFactory(param -> {
             Employee person = param.getValue();
 
@@ -67,7 +67,7 @@ public class EmployeesController {
         positionColumn.setCellFactory(TextFieldTableCell.<Employee> forTableColumn());
         phoneNumberColumn.setCellFactory(TextFieldTableCell.<Employee> forTableColumn());
 
-        // РџСЂРё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРё РІ СЏС‡РµР№РєРµ (РґР»СЏ СЃС‚РѕР»Р±С†Р° РРЅРёС†РёР°Р»С‹)
+        // При редактировании в ячейке (для столбца Инициалы)
         initialsColumn.setOnEditCommit((TableColumn.CellEditEvent<Employee, String> event) -> {
             TablePosition<Employee, String> position = event.getTablePosition();
 
@@ -81,7 +81,7 @@ public class EmployeesController {
             connection.updateEmployee(employee);
         });
 
-        // РџСЂРё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРё РІ СЏС‡РµР№РєРµ (РґР»СЏ СЃС‚РѕР»Р±С†Р° Р”РѕР»Р¶РЅРѕСЃС‚СЊ)
+        // При редактировании в ячейке (для столбца Должность)
         positionColumn.setOnEditCommit((TableColumn.CellEditEvent<Employee, String> event) -> {
             TablePosition<Employee, String> position = event.getTablePosition();
 
@@ -95,7 +95,7 @@ public class EmployeesController {
             connection.updateEmployee(employee);
         });
 
-        // РџСЂРё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРё РІ СЏС‡РµР№РєРµ (РґР»СЏ СЃС‚РѕР»Р±С†Р° РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°)
+        // При редактировании в ячейке (для столбца Номер телефона)
         phoneNumberColumn.setOnEditCommit((TableColumn.CellEditEvent<Employee, String> event) -> {
             TablePosition<Employee, String> position = event.getTablePosition();
 

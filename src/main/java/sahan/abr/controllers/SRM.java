@@ -1,11 +1,20 @@
 package sahan.abr.controllers;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import sahan.abr.controllers.Users.AddUserTest;
 import sahan.abr.controllers.employees.EmployeesController;
 import sahan.abr.entities.Employee;
+import sahan.abr.entities.Parent;
+
+import java.util.ArrayList;
+
+import static sahan.abr.Main.connectionParent;
 
 public class SRM {
 
@@ -34,6 +43,24 @@ public class SRM {
     private Button removeEmployeeButton;
 
 
+
+    // Объекты вкладки клиенты
+    @FXML
+    private VBox mainVBoxUser;
+
+    @FXML
+    void addUserTest(ActionEvent event) {
+
+        ArrayList<Parent> arrayList = new ArrayList<>();
+
+        connectionParent.getAllParents(arrayList);
+        for (Parent parent : arrayList) {
+
+            mainVBoxUser.getChildren().add(AddUserTest.getUser(parent));
+
+        }
+
+    }
 
     @FXML
     private void initialize() {

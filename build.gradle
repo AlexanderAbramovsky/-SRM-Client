@@ -11,6 +11,8 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+
+    jcenter()
 }
 
 javafx {
@@ -19,6 +21,9 @@ javafx {
 }
 
 dependencies {
+
+    compile 'org.kordamp.bootstrapfx:bootstrapfx-core:0.2.4'
+
     // Для запросов к удалённому серверу
     compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.9'
     // Для чтения json
