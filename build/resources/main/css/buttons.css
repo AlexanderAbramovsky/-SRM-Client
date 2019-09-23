@@ -1,0 +1,43 @@
+.toggle-button-delete {
+  -fx-background-image: url("../image/delete.png");
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  -fx-background-color: transparent;
+}
+.toggle-button-delete:selected {
+   -fx-background-color: transparent;
+  -fx-background-image: url("../image/delete.png");
+}
+
+
+
+.toggle-button-journal {
+  -fx-background-image: url("../image/journal.png");
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  -fx-background-color: transparent;
+}
+.toggle-button-journal:selected {
+   -fx-background-color: transparent;
+  -fx-background-image: url("../image/journal.png");
+}
+
+
+
+.toggle-button-pencil {
+  -fx-background-image: url("../image/pencil.png");
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+
+  -fx-background-color: transparent;
+}
+.toggle-button-pencil:selected {
+   -fx-background-color: transparent;
+  -fx-background-image: url("../image/pencil.png");
+}
+
+
+
+
+
+

@@ -61,8 +61,6 @@ public class ClientConnection {
         } catch (IOException exception) {
             System.out.println("ERROR : " + exception.getMessage());
         }
-
-
     }
 
     public void removeEmployee(int id){
