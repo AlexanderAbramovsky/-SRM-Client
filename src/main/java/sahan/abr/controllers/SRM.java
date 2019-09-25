@@ -65,36 +65,36 @@ public class SRM {
     @FXML
     private void initialize() {
 
-        employees = new EmployeesController(employeesTable, deleteColumn,
-                fioColumn, positionColumn, phoneNumberColumn, removeEmployeeButton);
+      //  employees = new EmployeesController(employeesTable, deleteColumn,
+        //        fioColumn, positionColumn, phoneNumberColumn, removeEmployeeButton);
     }
 
     // Слушатели для управления вкладки сотрудники
     @FXML
     void deleteEmployee(ActionEvent event) {
-        employees.deleteEmployees();
+        //employees.deleteEmployees();
     }
 
     @FXML
     void addEmployee(ActionEvent event) {
-        employees.addEmployee(fioField.getText(), positionField.getText(), phoneNumberField.getText());
-        employees.resetEmployees();
+        //employees.addEmployee(fioField.getText(), positionField.getText(), phoneNumberField.getText());
+        //employees.resetEmployees();
     }
 
     @FXML
     void resetEmployees(ActionEvent event) {
-       employees.resetEmployees();
+       //employees.resetEmployees();
        searchEmployeesField.setText("");
     }
 
     @FXML
     void searchEmployees(ActionEvent event) {
-        employees.searchEmployees(searchEmployeesField.getText());
+       // employees.searchEmployees(searchEmployeesField.getText());
     }
 
     @FXML
     void removeEmployee(ActionEvent event) {
-        employees.removeEmployees();
+        //employees.removeEmployees();
     }
 
 }

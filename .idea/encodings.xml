@@ -2,11 +2,12 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/Main.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/controllers/EmployeesController.java" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/controllers/SubscriptionController.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/controllers/Users/AddUserTest.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/controllers/Users/UserParent.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/controllers/employees/EmployeesController.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/controllers/employees/EmployeesController.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/controllers/subscription/SubscriptionController.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/entities/Parent.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/main/java/sahan/abr/network/ParentConnection.java" charset="UTF-8" />
   </component>
 </project>

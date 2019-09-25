@@ -3,28 +3,22 @@ package sahan.abr.entities;
 public class Employee {
 
     private int id;
-    private String fio;
+    private String surname;
+    private String name;
+    private String middleName;
     private String position;
     private String phoneNumber;
-
-    private boolean deleteEmployee;
 
     public Employee() {
     }
 
-    public Employee(int id, String fio, String position, String phoneNumber) {
+    public Employee(int id, String surname, String name, String middleName, String position, String phoneNumber) {
         this.id = id;
-        this.fio = fio;
+        this.surname = surname;
+        this.name = name;
+        this.middleName = middleName;
         this.position = position;
         this.phoneNumber = phoneNumber;
-    }
-
-    public boolean getDeleteEmployee() {
-        return deleteEmployee;
-    }
-
-    public void setDeleteEmployee(boolean deleteEmployee) {
-        this.deleteEmployee = deleteEmployee;
     }
 
     public int getId() {
@@ -35,12 +29,28 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFio() {
-        return fio;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setFio(String fio) {
-        this.fio = fio;
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getPosition() {

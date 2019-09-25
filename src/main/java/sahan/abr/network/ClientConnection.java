@@ -18,7 +18,7 @@ import static sahan.abr.Main.urlAddress;
 
 
 public class ClientConnection {
-
+/*
     public void updateEmployee(Employee employee){
         try {
             Collection<NameValuePair> params = new ArrayList<>();
@@ -94,7 +94,7 @@ public class ClientConnection {
             // Получаем ответ и вытаскиваем id нового сотрудника
             JSONObject json = new JSONObject(postResultForm.asString());
             int id = json.getInt("id");
-            employee = new Employee(id, fio, position, phoneNumber);
+            employee = new Employee();
 
             return employee;
 
@@ -104,4 +104,7 @@ public class ClientConnection {
 
         return employee;
     }
+
+
+ */
 }

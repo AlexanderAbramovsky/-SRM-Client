@@ -2,55 +2,55 @@ package sahan.abr.entities;
 
 public class Parent {
 
-    /** Id СЂРѕРґРёС‚РµР»СЏ */
+    /** Id родителя */
     private Integer id;
 
-    /** Р¤Р°РјРёР»РёСЏ */
+    /** Фамилия */
     private String surname;
 
-    /** РРјСЏ */
+    /** Имя */
     private String name;
 
-    /** РћС‚С‡РµСЃС‚РІРѕ */
+    /** Отчество */
     private String middleName;
 
-    /** РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° */
+    /** Номер телефона */
     private String phoneNumber;
 
-    /** РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° РґР»СЏ СЃРІСЏР·Рё */
+    /** Номер телефона для связи */
     private String contactPhoneNumber;
 
 
-    // РџРђРЎРџРћР Рў
+    // ПАСПОРТ
 
-    /** РЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р° */
+    /** Серия паспорта */
     private String passportSeries;
 
-    /** РќРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р° */
+    /** Номер паспорта */
     private String passportID;
 
-    /** РљРµРј РІС‹РґР°РЅ РїР°СЃРїРѕСЂС‚ */
+    /** Кем выдан паспорт */
     private String passportIssuedBy;
 
-    /** Р”Р°С‚Р° РІС‹РґР°С‡Рё РїР°СЃРїРѕСЂС‚Р° */
+    /** Дата выдачи паспорта */
     private String passportIssueDate;
 
-    /** РљРѕРґ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ РІС‹РґР°С‡Рё РїР°СЃРїРѕСЂС‚Р° */
+    /** Код подразделения выдачи паспорта */
     private String unitCode;
 
 
-    // Р”РћР“РћР’РћР 
+    // ДОГОВОР
 
-    /** Р”Р°С‚Р° Р·Р°РєР»СЋС‡РµРЅРёСЏ РґРѕРіРѕРІРѕСЂР° */
+    /** Дата заключения договора */
     private String dateContract;
 
-    /** РќРѕРјРµСЂ РґРѕРіРѕРІРѕСЂР° */
+    /** Номер договора */
     private String contractNumber;
 
 
-    // Р”Р•РўР
+    // ДЕТИ
 
-    /** ID РґРµС‚РµР№ */
+    /** ID детей */
     private String childrenId;
 
     public Parent() {

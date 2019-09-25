@@ -1,168 +1,162 @@
 package sahan.abr.controllers.employees;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.util.Callback;
+import sahan.abr.controllers.Navigator;
 import sahan.abr.entities.Employee;
-
-import static sahan.abr.Main.connection;
 
 public class EmployeesController {
 
-    private TableView<Employee> employeesTable;
-    private ObservableList<Employee> employeesData;
+    @FXML
+    private StackPane employees;
 
-    private TableColumn<Employee, Boolean> deleteColumn;
+    @FXML
+    private TextField textFieldSearchSurname;
 
-    private Button removeEmployeeButton;
+    @FXML
+    private TableView<Employee> tableViewEmployees;
 
-    private boolean deleteColumnFlag = true;
+    @FXML
+    private TableColumn<Employee, String> tableColumnSurnameEmployee;
 
-    public EmployeesController(TableView<Employee> employeesTable,
-                               TableColumn<Employee, Boolean> deleteColumn,
-                               TableColumn<Employee, String> initialsColumn,
-                               TableColumn<Employee, String> positionColumn,
-                               TableColumn<Employee, String> phoneNumberColumn,
-                               Button removeEmployeeButton){
+    @FXML
+    private TableColumn<Employee, String> tableColumnNameEmployee;
 
-        this.employeesData = employeesTable.getItems();
-        this.employeesTable = employeesTable;
-        this.deleteColumn = deleteColumn;
-        this.removeEmployeeButton = removeEmployeeButton;
+    @FXML
+    private TableColumn<Employee, String> tableColumnMiddleNameEmployee;
 
-        deleteColumn.setVisible(false);
-        deleteColumn.setCellFactory( tc -> new CheckBoxTableCell<Employee, Boolean>());
+    @FXML
+    private TableColumn<Employee, String> tableColumnPositionEmployee;
 
-        // При редактировании в ячейке (для столбца Удалить)
-        deleteColumn.setCellValueFactory(param -> {
-            Employee person = param.getValue();
+    @FXML
+    private TableColumn<Employee, String> tableColumnPhoneNumberEmployee;
 
-            SimpleBooleanProperty booleanProp = new SimpleBooleanProperty(person.getDeleteEmployee());
+    public static ObservableList<Employee> observableListEmployees;
 
-            booleanProp.addListener((observable, oldValue, newValue) -> {
-                person.setDeleteEmployee(newValue);
-            });
-            return booleanProp;
-        });
-        //_______________
+    private EmployeesController employeesController = this;
+    
+    @FXML
+    private void initialize() {
+        observableListEmployees = tableViewEmployees.getItems();
 
-        connection.getEmployees(employeesData);
-        employeesTable.setItems(employeesData);
-
-        employeesTable.setEditable(true);
+        tableColumnSurnameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("surname"));
+        tableColumnNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
+        tableColumnMiddleNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("middleName"));
+        tableColumnPositionEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("position"));
+        tableColumnPhoneNumberEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("phoneNumber"));
 
 
-        initialsColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("fio"));
-        positionColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("position"));
-        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("phoneNumber"));
 
-        initialsColumn.setCellFactory(TextFieldTableCell.<Employee> forTableColumn());
-        positionColumn.setCellFactory(TextFieldTableCell.<Employee> forTableColumn());
-        phoneNumberColumn.setCellFactory(TextFieldTableCell.<Employee> forTableColumn());
+        addButtonsToTableEmployees();
 
-        // При редактировании в ячейке (для столбца Инициалы)
-        initialsColumn.setOnEditCommit((TableColumn.CellEditEvent<Employee, String> event) -> {
-            TablePosition<Employee, String> position = event.getTablePosition();
-
-            String newFullName = event.getNewValue();
-
-            int row = position.getRow();
-            Employee employee = event.getTableView().getItems().get(row);
-
-            employee.setFio(newFullName);
-
-            connection.updateEmployee(employee);
-        });
-
-        // При редактировании в ячейке (для столбца Должность)
-        positionColumn.setOnEditCommit((TableColumn.CellEditEvent<Employee, String> event) -> {
-            TablePosition<Employee, String> position = event.getTablePosition();
-
-            String newPosition = event.getNewValue();
-
-            int row = position.getRow();
-            Employee employee = event.getTableView().getItems().get(row);
-
-            employee.setPosition(newPosition);
-
-            connection.updateEmployee(employee);
-        });
-
-        // При редактировании в ячейке (для столбца Номер телефона)
-        phoneNumberColumn.setOnEditCommit((TableColumn.CellEditEvent<Employee, String> event) -> {
-            TablePosition<Employee, String> position = event.getTablePosition();
-
-            String newPhoneNumber = event.getNewValue();
-
-            int row = position.getRow();
-            Employee employee = event.getTableView().getItems().get(row);
-
-            employee.setPhoneNumber(newPhoneNumber);
-
-            connection.updateEmployee(employee);
-        });
+        tableViewEmployees.setVisible(true);
+        tableViewEmployees.setEditable(true);
     }
 
-    public void resetEmployees(){
-        employeesTable.setItems(employeesData);
+    @FXML
+    void addEmployee(ActionEvent event) {
+        Navigator.getModalWindow("SRM", Navigator.MODAL_ADD_EMPLOYEE);
     }
 
-    public void searchEmployees(String value) {
+    @FXML
+    void clearFilterSearchEmployees(ActionEvent event) {
+        textFieldSearchSurname.setText("");
+        tableViewEmployees.setItems(observableListEmployees);
+    }
 
-        if (value==null || value.isEmpty()){
-            employeesTable.setItems(employeesData);
+    @FXML
+    void searchEmployees(ActionEvent event) {
+        String valueSurname = textFieldSearchSurname.getText();
+
+        if (valueSurname == null || valueSurname.isEmpty()){
+            tableViewEmployees.setItems(observableListEmployees);
         } else {
-            ObservableList<Employee> employeesSearch = FXCollections.observableArrayList();
+            ObservableList<Employee> observableListEmployeesTMP = FXCollections.observableArrayList();
 
-            for (Employee employee : employeesData) {
-                if (employee.getFio().equals(value)){
-                    employeesSearch.add(employee);
+            for (Employee subscription : observableListEmployees) {
+                if (subscription.getSurname().equals(valueSurname)){
+                    observableListEmployeesTMP.add(subscription);
                 }
             }
 
-            employeesTable.setItems(employeesSearch);
-        }
-
-    }
-
-    public void deleteEmployees() {
-        if (deleteColumnFlag) {
-            deleteColumn.setVisible(true);
-            removeEmployeeButton.setVisible(true);
-            deleteColumnFlag = false;
-        } else {
-            deleteColumn.setVisible(false);
-            removeEmployeeButton.setVisible(false);
-            deleteColumnFlag = true;
+            tableViewEmployees.setItems(observableListEmployeesTMP);
         }
     }
 
-    public void removeEmployees(){
-        ObservableList<Employee> newEmployeesData = FXCollections.observableArrayList();
-
-        for (Employee employee : employeesData) {
-            if (employee.getDeleteEmployee()){
-                connection.removeEmployee(employee.getId());
-            } else {
-                newEmployeesData.add(employee);
-            }
-        }
-
-        employeesData = newEmployeesData;
-
-        employeesTable.setItems(employeesData);
-        deleteEmployees();
+    public TableView<Employee> getTableViewEmployees() {
+        return tableViewEmployees;
     }
 
-    public void addEmployee( String fio, String position, String phoneNumber){
-        Employee employee = connection.addEmployee(fio, position, phoneNumber);
-        employeesData.add(employee);
+    public EmployeesController getEmployeesController() {
+        return employeesController;
     }
+
+    private void addButtonsToTableEmployees() {
+        TableColumn colBtn = new TableColumn("Действия");
+
+        Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>> cellFactory =
+                new Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>>() {
+                    @Override
+                    public TableCell<Employee, Void> call(final TableColumn<Employee, Void> param) {
+                        final TableCell<Employee, Void> cell = new TableCell<Employee, Void>() {
+
+                            private final HBox hBox = new HBox();
+                            {
+                                hBox.setSpacing(10);
+                                hBox.setAlignment(Pos.CENTER);
+
+                                Button buttonDelete = new Button("Удалить");
+                                buttonDelete.setPrefWidth(85);
+                                buttonDelete.setAlignment(Pos.CENTER_RIGHT);
+                                buttonDelete.getStyleClass().add("toggle-button-delete-left");
+
+                                buttonDelete.setOnAction((ActionEvent event) -> {
+                                    Employee data = getTableView().getItems().get(getIndex());
+                                    observableListEmployees.remove(data);
+                                });
+
+                                Button buttonUpdate = new Button("Обновить");
+                                buttonUpdate.setPrefWidth(97);
+                                buttonUpdate.setAlignment(Pos.CENTER_RIGHT);
+                                buttonUpdate.getStyleClass().add("toggle-button-update-left");
+
+                                buttonUpdate.setOnAction((ActionEvent event) -> {
+                                    Employee data = getTableView().getItems().get(getIndex());
+                                    ModalUpdateEmployeeController controller = new ModalUpdateEmployeeController(data, employeesController);
+                                    Navigator.getModalWindow("SRM", Navigator.MODAL_UPDATE_EMPLOYEE, controller);
+                                });
+
+                                hBox.getChildren().add(buttonDelete);
+                                hBox.getChildren().add(buttonUpdate);
+                            }
+
+
+                            @Override
+                            public void updateItem(Void item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                } else {
+                                    setGraphic(hBox);
+                                }
+                            }
+                        };
+                        return cell;
+                    }
+                };
+
+        colBtn.setCellFactory(cellFactory);
+
+        tableViewEmployees.getColumns().add(colBtn);
+
+    }
+
 }

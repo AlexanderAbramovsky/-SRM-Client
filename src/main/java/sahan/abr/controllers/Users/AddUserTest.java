@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -56,7 +54,7 @@ public class AddUserTest {
                 newWindow.setTitle("Second Stage");
 
                 try {
-                    loader = new FXMLLoader(getClass().getResource("/userParent.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/fxml/userParent.fxml"));
 
                     loader.setController(new UserParent(parent));
 
@@ -115,7 +113,7 @@ public class AddUserTest {
                 newWindow.setTitle("Second Stage");
 
                 try {
-                    loader = new FXMLLoader(getClass().getResource("/userChild.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/fxml/userChild.fxml"));
 
                    // loader.setController(new UserParent(1));
 

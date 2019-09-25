@@ -2,12 +2,11 @@ package sahan.abr;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import sahan.abr.TEST.MainController;
-import sahan.abr.TEST.VistaNavigator;
+import sahan.abr.controllers.MainController;
+import sahan.abr.controllers.Navigator;
 import sahan.abr.local.WriteLocalData;
 import sahan.abr.network.ClientConnection;
 import sahan.abr.network.ParentConnection;
@@ -35,19 +34,20 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
 
         Pane mainPane = (Pane) loader.load(
-                getClass().getResourceAsStream(VistaNavigator.MAIN)
+                getClass().getResourceAsStream(Navigator.MAIN)
         );
 
         MainController mainController = loader.getController();
 
-        VistaNavigator.setMainController(mainController);
-        VistaNavigator.loadVista(VistaNavigator.VISTA2);
+        Navigator.setMainController(mainController);
+        Navigator.loadVista(Navigator.SUBSCRIPTION);
 
         return mainPane;
     }
 
     private Scene createScene(Pane mainPane) {
         Scene scene = new Scene(mainPane);
+        scene.getStylesheets().add("./css/bootstrap3.css");
         return scene;
     }
 
