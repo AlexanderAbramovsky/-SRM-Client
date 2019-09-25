@@ -11,28 +11,32 @@
   <children>
       <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: steelblue;">
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionTimeTable" text="Расписание">
-               <styleClass>
-                  <String fx:value="primary" />
-                  <String fx:value="middle" />
-               </styleClass>
+            <Button fx:id="buttonTimeTable" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionTimeTable" prefHeight="30.0" prefWidth="200.0" text="Расписание">
                <VBox.margin>
                   <Insets top="5.0" />
-               </VBox.margin></Button>
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="lg" />
+                  <String fx:value="primary" />
+                  <String fx:value="toggle-button-menu-calendar-right" />
+               </styleClass></Button>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionVista2" text="Посетители">
                <styleClass>
+                  <String fx:value="lg" />
                   <String fx:value="primary" />
-                  <String fx:value="middle" />
+                  <String fx:value="toggle-button-menu-family-right" />
                </styleClass></Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionSubscription" text="Абонементы">
+            <Button fx:id="buttonSubscription" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionSubscription" text="Абонементы">
                <styleClass>
+                  <String fx:value="lg" />
                   <String fx:value="primary" />
-                  <String fx:value="middle" />
+                  <String fx:value="toggle-button-menu-subscription-right" />
                </styleClass></Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionEmployees" prefHeight="16.0" prefWidth="194.0" text="Сотрудники">
+            <Button fx:id="buttonEmployees" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionEmployees" prefHeight="16.0" prefWidth="194.0" text="Сотрудники">
                <styleClass>
+                  <String fx:value="lg" />
                   <String fx:value="primary" />
-                  <String fx:value="middle" />
+                  <String fx:value="toggle-button-menu-employees-right" />
                </styleClass></Button>
          </children>
          <HBox.margin>

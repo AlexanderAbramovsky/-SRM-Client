@@ -48,6 +48,7 @@ public class Main extends Application {
     private Scene createScene(Pane mainPane) {
         Scene scene = new Scene(mainPane);
         scene.getStylesheets().add("./css/bootstrap3.css");
+        scene.getStylesheets().add("./css/buttons.css");
         return scene;
     }
 

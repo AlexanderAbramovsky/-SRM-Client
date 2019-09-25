@@ -56,6 +56,7 @@
   -fx-text-fill:  #4682b2;
 }
 
+
 .toggle-button-clear-left {
   -fx-font-size: 14px;
   -fx-border-color: #59a7ff;
@@ -74,6 +75,7 @@
   -fx-background-position: 5,0,0,0;
   -fx-text-fill:  #4682b2;
 }
+
 
 .toggle-button-delete-left {
   -fx-border-color: #59a7ff;
@@ -94,6 +96,48 @@
 }
 
 
+.toggle-button-menu-calendar-right {
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/calendar.png");
+  -fx-background-size: 40 40;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 95%;
+  -fx-text-fill:  #4682b2;
+}
+
+.toggle-button-menu-family-right {
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/family.png");
+  -fx-background-size: 40 40;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 95%;
+  -fx-text-fill:  #4682b2;
+}
+
+
+.toggle-button-menu-subscription-right {
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/subscription.png");
+  -fx-background-size: 35 35;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 95%;
+  -fx-text-fill:  #4682b2;
+}
+
+
+.toggle-button-menu-employees-right {
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/employees.png");
+  -fx-background-size: 38 38;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 95%;
+  -fx-text-fill:  #4682b2;
+}
+
+.test {
+    -fx-border-color: aliceblue;
+    -fx-border-width : 3px
+}
 
 
 

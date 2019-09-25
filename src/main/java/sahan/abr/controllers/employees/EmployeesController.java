@@ -42,7 +42,7 @@ public class EmployeesController {
     public static ObservableList<Employee> observableListEmployees;
 
     private EmployeesController employeesController = this;
-    
+
     @FXML
     private void initialize() {
         observableListEmployees = tableViewEmployees.getItems();
@@ -52,8 +52,6 @@ public class EmployeesController {
         tableColumnMiddleNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("middleName"));
         tableColumnPositionEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("position"));
         tableColumnPhoneNumberEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("phoneNumber"));
-
-
 
         addButtonsToTableEmployees();
 

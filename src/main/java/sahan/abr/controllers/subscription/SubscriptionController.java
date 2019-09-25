@@ -125,7 +125,6 @@ public class SubscriptionController {
                         hBox.getChildren().add(buttonUpdate);
                     }
 
-
                     @Override
                     public void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
