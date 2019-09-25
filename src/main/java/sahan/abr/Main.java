@@ -27,6 +27,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception{
         stage.setTitle("SRM");
         stage.setScene(createScene(loadMainPane()));
+        MAIN_STAGE = stage;
         stage.show();
     }
 

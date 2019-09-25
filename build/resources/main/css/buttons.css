@@ -37,6 +37,64 @@
 }
 
 
+.toggle-button-save-left {
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/save.png");
+  -fx-background-size: 25 25;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 5,0,0,0;
+  -fx-text-fill:  #4682b2;
+}
+
+.toggle-button-search-left {
+  -fx-font-size: 14px;
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/search.png");
+  -fx-background-size: 20 20;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 5,0,0,0;
+  -fx-text-fill:  #4682b2;
+}
+
+.toggle-button-clear-left {
+  -fx-font-size: 14px;
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/clear.png");
+  -fx-background-size: 20 20;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 5,0,0,0;
+  -fx-text-fill:  #4682b2;
+}
+
+.toggle-button-add-left {
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/add.png");
+  -fx-background-size: 25 25;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 5,0,0,0;
+  -fx-text-fill:  #4682b2;
+}
+
+.toggle-button-delete-left {
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/delete.png");
+  -fx-background-size: 15 15;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 5,0,0,0;
+  -fx-text-fill:  #4682b2;
+}
+
+.toggle-button-update-left {
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/pencil.png");
+  -fx-background-size: 15 15;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 5,0,0,0;
+  -fx-text-fill:  #4682b2;
+}
+
+
+
 
 
 

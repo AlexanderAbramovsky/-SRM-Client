@@ -20,6 +20,12 @@ public class MainController {
     }
 
     @FXML
+    void actionSubscription(ActionEvent event) {
+        VistaNavigator.loadVista(VistaNavigator.SUBSCRIPTION);
+    }
+
+
+    @FXML
     void actionEmployees(ActionEvent event) {
         VistaNavigator.loadVista(VistaNavigator.EMPLOYEES);
     }

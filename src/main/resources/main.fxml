@@ -25,7 +25,7 @@
                   <String fx:value="primary" />
                   <String fx:value="middle" />
                </styleClass></Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Абонементы">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionSubscription" text="Абонементы">
                <styleClass>
                   <String fx:value="primary" />
                   <String fx:value="middle" />
@@ -40,6 +40,12 @@
             <Insets />
          </HBox.margin>
       </VBox>
-    <StackPane fx:id="vistaHolder" style="-fx-background-color: aliceblue;" stylesheets="@css/vista.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+    <StackPane fx:id="vistaHolder" style="-fx-background-color: white;" stylesheets="@css/vista.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin></StackPane>
   </children>
 </HBox>
