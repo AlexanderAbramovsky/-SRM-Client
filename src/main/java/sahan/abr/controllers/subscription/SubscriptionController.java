@@ -101,7 +101,7 @@ public class SubscriptionController {
                         hBox.setAlignment(Pos.CENTER);
 
                         Button buttonDelete = new Button("Удалить");
-                        buttonDelete.setPrefWidth(85);
+                        buttonDelete.setPrefWidth(93);
                         buttonDelete.setAlignment(Pos.CENTER_RIGHT);
                         buttonDelete.getStyleClass().add("toggle-button-delete-left");
 
@@ -111,7 +111,7 @@ public class SubscriptionController {
                         });
 
                         Button buttonUpdate = new Button("Обновить");
-                        buttonUpdate.setPrefWidth(97);
+                        buttonUpdate.setPrefWidth(103);
                         buttonUpdate.setAlignment(Pos.CENTER_RIGHT);
                         buttonUpdate.getStyleClass().add("toggle-button-update-left");
 

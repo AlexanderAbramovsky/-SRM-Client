@@ -80,7 +80,7 @@
 .toggle-button-delete-left {
   -fx-border-color: #59a7ff;
   -fx-background-image: url("../image/delete.png");
-  -fx-background-size: 15 15;
+  -fx-background-size: 20 20;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 5,0,0,0;
   -fx-text-fill:  #4682b2;
@@ -89,7 +89,16 @@
 .toggle-button-update-left {
   -fx-border-color: #59a7ff;
   -fx-background-image: url("../image/pencil.png");
-  -fx-background-size: 15 15;
+  -fx-background-size: 20 20;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 5,0,0,0;
+  -fx-text-fill:  #4682b2;
+}
+
+.toggle-button-information-left {
+  -fx-border-color: #59a7ff;
+  -fx-background-image: url("../image/journal.png");
+  -fx-background-size: 23 23;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 5,0,0,0;
   -fx-text-fill:  #4682b2;
@@ -133,6 +142,10 @@
   -fx-background-position: 95%;
   -fx-text-fill:  #4682b2;
 }
+
+
+
+
 
 .test {
     -fx-border-color: aliceblue;

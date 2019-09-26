@@ -2,6 +2,12 @@
    -fx-background-color: transparent;
 }
 
+.table-view .scroll-bar {
+    -fx-min-width: 20px;
+    -fx-pref-width: 20px;
+    -fx-max-width: 20px;
+}
+
 .table-view:focused{
     -fx-background-color: transparent;
 }

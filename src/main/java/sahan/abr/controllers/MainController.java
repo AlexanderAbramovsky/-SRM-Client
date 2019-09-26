@@ -17,6 +17,8 @@ public class MainController {
     @FXML
     private Button buttonEmployees;
 
+    @FXML
+    private Button buttonCustomers;
 
     @FXML
     private StackPane vistaHolder;
@@ -29,6 +31,7 @@ public class MainController {
     void actionTimeTable(ActionEvent event) {
         Navigator.loadVista(Navigator.TIMETABLE);
         buttonTimeTable.setStyle("-fx-border-color: aliceblue; -fx-border-width : 3px");
+        buttonCustomers.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonSubscription.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonEmployees.setStyle("-fx-border-color: none; -fx-border-width : 3px");
     }
@@ -37,6 +40,7 @@ public class MainController {
     void actionSubscription(ActionEvent event) {
         Navigator.loadVista(Navigator.SUBSCRIPTION);
         buttonTimeTable.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonCustomers.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonSubscription.setStyle("-fx-border-color: aliceblue; -fx-border-width : 3px");
         buttonEmployees.setStyle("-fx-border-color: none; -fx-border-width : 3px");
     }
@@ -45,13 +49,18 @@ public class MainController {
     void actionEmployees(ActionEvent event) {
         Navigator.loadVista(Navigator.EMPLOYEE);
         buttonTimeTable.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonCustomers.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonSubscription.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonEmployees.setStyle("-fx-border-color: aliceblue; -fx-border-width : 3px");
     }
 
     @FXML
-    void actionVista2(ActionEvent event) {
-        Navigator.loadVista(Navigator.VISTA2);
+    void actionCustomers(ActionEvent event) {
+        Navigator.loadVista(Navigator.CUSTOMERS);
+        buttonTimeTable.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonCustomers.setStyle("-fx-border-color: aliceblue; -fx-border-width : 3px");
+        buttonSubscription.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonEmployees.setStyle("-fx-border-color: none; -fx-border-width : 3px");
     }
 
 }

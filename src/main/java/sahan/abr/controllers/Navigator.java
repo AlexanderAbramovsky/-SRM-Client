@@ -18,6 +18,7 @@ public class Navigator {
     public static final String TIMETABLE = "/fxml/timetable.fxml";
     public static final String EMPLOYEE = "/fxml/employee/employee.fxml";
     public static final String VISTA2 = "/fxml/t2.fxml";
+    public static final String CUSTOMERS = "/fxml/customers.fxml";
 
     public static final String MODAL_ADD_SUBSCRIPTION = "/fxml/subscription/add-subscription.fxml";
     public static final String MODAL_UPDATE_SUBSCRIPTION = "/fxml/subscription/update-subscription.fxml";

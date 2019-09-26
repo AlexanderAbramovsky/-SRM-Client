@@ -30,7 +30,7 @@
                   </Label>
                   <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addSubscription" prefHeight="46.0" prefWidth="151.0" stylesheets="@../../css/buttons.css" text="Добавить">
+                        <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#addSubscription" prefHeight="46.0" prefWidth="130.0" stylesheets="@../../css/buttons.css" text="Добавить">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>

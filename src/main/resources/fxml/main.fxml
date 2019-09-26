@@ -20,7 +20,7 @@
                   <String fx:value="primary" />
                   <String fx:value="toggle-button-menu-calendar-right" />
                </styleClass></Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionVista2" text="Посетители">
+            <Button fx:id="buttonCustomers" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionCustomers" text="Посетители">
                <styleClass>
                   <String fx:value="lg" />
                   <String fx:value="primary" />

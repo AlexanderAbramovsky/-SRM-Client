@@ -645,6 +645,9 @@
                            </padding>
                         </GridPane>
                      </content>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </ScrollPane>
                </children>
             </VBox>
