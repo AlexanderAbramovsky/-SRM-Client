@@ -11,7 +11,7 @@
 
 <VBox prefHeight="300.0" prefWidth="780.0" style="-fx-background-color: aliceblue; -fx-border-color: steelblue;" stylesheets="@../../css/bootstrap3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label prefHeight="46.0" prefWidth="362.0" text="Обновление сотрудника" textFill="#59a7ff">
+      <Label fx:id="labelEmployee" text="Обновление сотрудника" textFill="#59a7ff">
          <VBox.margin>
             <Insets bottom="20.0" left="10.0" />
          </VBox.margin>

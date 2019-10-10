@@ -21,6 +21,9 @@ public class MainController {
     private Button buttonCustomers;
 
     @FXML
+    private Button buttonEmployeesTimeTable;
+
+    @FXML
     private StackPane vistaHolder;
 
     public void setVista(Node node) {
@@ -34,6 +37,7 @@ public class MainController {
         buttonCustomers.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonSubscription.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonEmployees.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonEmployeesTimeTable.setStyle("-fx-border-color: none; -fx-border-width : 3px");
     }
 
     @FXML
@@ -43,6 +47,7 @@ public class MainController {
         buttonCustomers.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonSubscription.setStyle("-fx-border-color: aliceblue; -fx-border-width : 3px");
         buttonEmployees.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonEmployeesTimeTable.setStyle("-fx-border-color: none; -fx-border-width : 3px");
     }
 
     @FXML
@@ -52,6 +57,7 @@ public class MainController {
         buttonCustomers.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonSubscription.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonEmployees.setStyle("-fx-border-color: aliceblue; -fx-border-width : 3px");
+        buttonEmployeesTimeTable.setStyle("-fx-border-color: none; -fx-border-width : 3px");
     }
 
     @FXML
@@ -61,6 +67,17 @@ public class MainController {
         buttonCustomers.setStyle("-fx-border-color: aliceblue; -fx-border-width : 3px");
         buttonSubscription.setStyle("-fx-border-color: none; -fx-border-width : 3px");
         buttonEmployees.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonEmployeesTimeTable.setStyle("-fx-border-color: none; -fx-border-width : 3px");
     }
 
+    @FXML
+    void actionEmployeesTimeTable(ActionEvent event) {
+        Navigator.loadVista(Navigator.EMPLOYEE_TIME_TABLE);
+        buttonTimeTable.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonCustomers.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonSubscription.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonEmployees.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonEmployeesTimeTable.setStyle("-fx-border-color: none; -fx-border-width : 3px");
+        buttonEmployeesTimeTable.setStyle("-fx-border-color: aliceblue; -fx-border-width : 3px");
+    }
 }

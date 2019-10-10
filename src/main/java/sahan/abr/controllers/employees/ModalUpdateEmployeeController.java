@@ -3,11 +3,15 @@ package sahan.abr.controllers.employees;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sahan.abr.entities.Employee;
 
 public class ModalUpdateEmployeeController {
+
+    @FXML
+    private Label labelEmployee;
 
     @FXML
     private TextField textFieldSurname;
@@ -28,12 +32,17 @@ public class ModalUpdateEmployeeController {
     private Button updateButton;
 
     private Employee employee;
-
     private EmployeesController employeesController;
+    private boolean information;
 
     public ModalUpdateEmployeeController(Employee employee, EmployeesController employeesController) {
         this.employee = employee;
         this.employeesController = employeesController;
+    }
+
+    public ModalUpdateEmployeeController(Employee employee, boolean information) {
+        this.employee = employee;
+        this.information = information;
     }
 
     @FXML
@@ -43,6 +52,11 @@ public class ModalUpdateEmployeeController {
         textFieldMiddleName.setText(employee.getMiddleName());
         textFieldPosition.setText(employee.getPosition());
         textFieldPhoneNumber.setText(employee.getPhoneNumber());
+
+        if (information) {
+            updateButton.setVisible(false);
+            labelEmployee.setText("Информация о сотруднике");
+        }
     }
 
     @FXML

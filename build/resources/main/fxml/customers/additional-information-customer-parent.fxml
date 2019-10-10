@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Добавление клиента" textFill="#4682b2">
+      <Label text="Дополнительная информация о клиенте" textFill="#4682b2">
          <font>
             <Font size="40.0" />
          </font>
@@ -53,7 +53,7 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <TextField prefHeight="46.0" prefWidth="266.0" />
+                              <TextField fx:id="textFieldSurname" editable="false" prefHeight="46.0" prefWidth="266.0" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -72,7 +72,7 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <TextField prefHeight="46.0" prefWidth="266.0" />
+                              <TextField fx:id="textFieldName" editable="false" prefHeight="46.0" prefWidth="266.0" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -91,7 +91,7 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <TextField prefHeight="46.0" prefWidth="266.0" />
+                              <TextField fx:id="textFieldMiddleName" editable="false" prefHeight="46.0" prefWidth="266.0" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -112,7 +112,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <TextArea VBox.vgrow="ALWAYS" />
+                        <TextArea fx:id="textFieldPassport" editable="false" VBox.vgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -145,7 +145,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField prefHeight="46.0" prefWidth="266.0" />
+                  <TextField fx:id="textFieldPhoneNumber" editable="false" prefHeight="46.0" prefWidth="266.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
@@ -161,7 +161,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField prefHeight="46.0" prefWidth="266.0" />
+                  <TextField fx:id="textFieldContactPhoneNumber" editable="false" prefHeight="46.0" prefWidth="266.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
@@ -169,7 +169,7 @@
             </HBox>
             <HBox prefHeight="10.0" prefWidth="555.0" styleClass="border-top-bottom">
                <children>
-                  <Label prefHeight="30.0" prefWidth="300.0" text="Номер телефона для связи" textFill="#4682b2">
+                  <Label prefHeight="30.0" prefWidth="300.0" text="E-mail" textFill="#4682b2">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -177,26 +177,43 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField prefHeight="46.0" prefWidth="266.0" />
+                  <TextField fx:id="textFieldEmail" editable="false" prefHeight="46.0" prefWidth="266.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </HBox>
-            <Label text="Основная информация" textFill="#59a7ff">
-               <font>
-                  <Font size="30.0" />
-               </font>
+            <HBox styleClass="border-top-bottom">
+               <children>
+                  <Label text="Дети" textFill="#59a7ff">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
                <padding>
-                  <Insets left="10.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </padding>
-            </Label>
+            </HBox>
+            <HBox prefHeight="10.0" prefWidth="555.0" styleClass="border-top-bottom">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
          </children>
       </VBox>
    </children>
    <stylesheets>
-      <URL value="@../css/bootstrap3.css" />
-      <URL value="@../css/border.css" />
-      <URL value="@../css/buttons.css" />
+      <URL value="@../../css/bootstrap3.css" />
+      <URL value="@../../css/border.css" />
+      <URL value="@../../css/buttons.css" />
    </stylesheets>
 </VBox>

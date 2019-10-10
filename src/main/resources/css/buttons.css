@@ -3,6 +3,7 @@
   -fx-background-repeat: no-repeat;
   -fx-background-position: center;
   -fx-background-color: transparent;
+  -fx-border-color: #59a7ff;
 }
 .toggle-button-delete:selected {
    -fx-background-color: transparent;
@@ -16,6 +17,7 @@
   -fx-background-repeat: no-repeat;
   -fx-background-position: center;
   -fx-background-color: transparent;
+  -fx-border-color: #59a7ff;
 }
 .toggle-button-journal:selected {
    -fx-background-color: transparent;
@@ -28,14 +30,31 @@
   -fx-background-image: url("../image/pencil.png");
   -fx-background-repeat: no-repeat;
   -fx-background-position: center;
-
   -fx-background-color: transparent;
+  -fx-border-color: #59a7ff;
 }
 .toggle-button-pencil:selected {
    -fx-background-color: transparent;
   -fx-background-image: url("../image/pencil.png");
 }
 
+
+.toggle-button {
+  -fx-border-color: #59a7ff;
+  -fx-text-fill:  #4682b2;
+}
+
+.toggle-button-add-round {
+    -fx-border-color: #59a7ff;
+    -fx-text-fill:  #4682b2;
+
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+
+    -fx-background-image: url("../image/add.png");
+    -fx-background-size: 30 32;
+    -fx-background-repeat: no-repeat;
+}
 
 .toggle-button-save-left {
   -fx-border-color: #59a7ff;
@@ -141,15 +160,6 @@
   -fx-background-repeat: no-repeat;
   -fx-background-position: 95%;
   -fx-text-fill:  #4682b2;
-}
-
-
-
-
-
-.test {
-    -fx-border-color: aliceblue;
-    -fx-border-width : 3px
 }
 
 

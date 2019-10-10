@@ -15,3 +15,27 @@
     -fx-border-color: #59a7ff;
     -fx-border-width: 0 0 1 0;
 }
+
+.border-add-customers-parent {
+    -fx-border-color:  #59a7ff;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+}
+
+.border-bottom {
+    -fx-border-color:  #59a7ff;
+    -fx-border-width: 0 0 1 0;
+}
+
+.border-top-bottom {
+    -fx-border-color:  #59a7ff;
+    -fx-border-width: 1 0 0 0;
+}
+
+.border {
+    -fx-border-color:  #59a7ff;
+}
+
+.border-grid {
+   -fx-background-color:white;
+}

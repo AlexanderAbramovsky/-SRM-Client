@@ -14,7 +14,7 @@ import static sahan.abr.Main.urlAddress;
 
 public class ParentConnection {
 
-    public void getAllParents(ArrayList<Parent> parentsArrayList){
+   /* public void getAllParents(ArrayList<Parent> parentsArrayList){
 
         try {
 
@@ -55,5 +55,5 @@ public class ParentConnection {
             System.out.println("ERROR : " + exception.getMessage());
         }
     }
-
+    */
 }

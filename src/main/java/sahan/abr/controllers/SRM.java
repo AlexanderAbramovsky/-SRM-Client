@@ -53,7 +53,7 @@ public class SRM {
 
         ArrayList<Parent> arrayList = new ArrayList<>();
 
-        connectionParent.getAllParents(arrayList);
+        //connectionParent.getAllParents(arrayList);
         for (Parent parent : arrayList) {
 
             mainVBoxUser.getChildren().add(AddUserTest.getUser(parent));

@@ -31,6 +31,7 @@
 }
 
 .table-row-cell{
+
     -fx-font-size: 25px;
     -fx-background-color: #9cd3ff;
     -fx-table-cell-border-color: #4682b2;
@@ -39,6 +40,7 @@
 }
 
 .table-row-cell:odd{
+
     -fx-font-size: 25px;
     -fx-background-color: #e6f3fc;
     -fx-table-cell-border-color: #4682b2;

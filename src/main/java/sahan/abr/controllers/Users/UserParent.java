@@ -59,13 +59,13 @@ public class UserParent {
         textFieldMiddleName.setText(parent.getMiddleName());
         textFieldPhoneNumber.setText(parent.getPhoneNumber());
         textFieldContactPhoneNumber.setText(parent.getContactPhoneNumber());
-        textFieldPassportSeries.setText(parent.getPassportSeries());
-        textFieldPassportID.setText(parent.getPassportID());
-        textFieldPassportIssuedBy.setText(parent.getPassportIssuedBy());
-        textFieldPassportIssueDate.setText(parent.getPassportIssueDate());
-        textFieldUnitCode.setText(parent.getUnitCode());
-        textFieldDateContract.setText(parent.getDateContract());
-        textFieldContractNumber.setText(parent.getContractNumber());
+       // textFieldPassportSeries.setText(parent.getPassportSeries());
+       // textFieldPassportID.setText(parent.getPassportID());
+       // textFieldPassportIssuedBy.setText(parent.getPassportIssuedBy());
+       // textFieldPassportIssueDate.setText(parent.getPassportIssueDate());
+       // textFieldUnitCode.setText(parent.getUnitCode());
+       // textFieldDateContract.setText(parent.getDateContract());
+       // textFieldContractNumber.setText(parent.getContractNumber());
     }
 
     @FXML

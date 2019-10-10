@@ -13,6 +13,8 @@ import javafx.util.Callback;
 import sahan.abr.controllers.Navigator;
 import sahan.abr.entities.Employee;
 
+import static sahan.abr.Main.observableListEmployees;
+
 public class EmployeesController {
 
     @FXML
@@ -39,13 +41,12 @@ public class EmployeesController {
     @FXML
     private TableColumn<Employee, String> tableColumnPhoneNumberEmployee;
 
-    public static ObservableList<Employee> observableListEmployees;
-
     private EmployeesController employeesController = this;
 
     @FXML
     private void initialize() {
-        observableListEmployees = tableViewEmployees.getItems();
+
+        tableViewEmployees.setItems(observableListEmployees);
 
         tableColumnSurnameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("surname"));
         tableColumnNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
@@ -135,7 +136,6 @@ public class EmployeesController {
                                 hBox.getChildren().add(buttonDelete);
                                 hBox.getChildren().add(buttonUpdate);
                             }
-
 
                             @Override
                             public void updateItem(Void item, boolean empty) {

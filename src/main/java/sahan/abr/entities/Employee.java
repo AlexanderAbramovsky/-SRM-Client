@@ -1,5 +1,9 @@
 package sahan.abr.entities;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 public class Employee {
 
     private int id;
@@ -8,8 +12,20 @@ public class Employee {
     private String middleName;
     private String position;
     private String phoneNumber;
+    private HashMap<Integer, DateJobEmployee> timetable;
 
     public Employee() {
+
+        timetable = new HashMap<Integer, DateJobEmployee>();
+
+        timetable.put(1, null);
+        timetable.put(2, null);
+        timetable.put(3, null);
+        timetable.put(4, null);
+        timetable.put(5, null);
+        timetable.put(6, null);
+        timetable.put(7, null);
+
     }
 
     public Employee(int id, String surname, String name, String middleName, String position, String phoneNumber) {
@@ -19,6 +35,16 @@ public class Employee {
         this.middleName = middleName;
         this.position = position;
         this.phoneNumber = phoneNumber;
+
+        timetable = new HashMap<Integer, DateJobEmployee>();
+
+        timetable.put(1, null);
+        timetable.put(2, null);
+        timetable.put(3, null);
+        timetable.put(4, null);
+        timetable.put(5, null);
+        timetable.put(6, null);
+        timetable.put(7, null);
     }
 
     public int getId() {
@@ -67,5 +93,13 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public HashMap<Integer, DateJobEmployee> getTimetable() {
+        return timetable;
+    }
+
+    public void setTimetable(HashMap<Integer, DateJobEmployee> timetable) {
+        this.timetable = timetable;
     }
 }

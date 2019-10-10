@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
@@ -89,11 +90,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
-                        <TextField fx:id="textFieldPosition" prefHeight="30.0" prefWidth="190.0" style="-fx-text-fill: #4682b2;">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
+                        <ComboBox fx:id="comboBoxPosition" prefWidth="190.0" style="-fx-background-color: white;" />
                         <Label text="Должность" textFill="#4682b2">
                            <font>
                               <Font size="18.0" />

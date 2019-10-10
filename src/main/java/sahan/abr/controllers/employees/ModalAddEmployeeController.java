@@ -1,16 +1,20 @@
 package sahan.abr.controllers.employees;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sahan.abr.entities.Employee;
 
-import static sahan.abr.controllers.employees.EmployeesController.observableListEmployees;
+import static sahan.abr.Main.observableListEmployees;
+import static sahan.abr.Main.observableListPosition;
 
 public class ModalAddEmployeeController {
-
 
     @FXML
     private TextField textFieldSurname;
@@ -22,7 +26,7 @@ public class ModalAddEmployeeController {
     private TextField textFieldMiddleName;
 
     @FXML
-    private TextField textFieldPosition;
+    private ComboBox<String> comboBoxPosition;
 
     @FXML
     private TextField textFieldPhoneNumber;
@@ -31,10 +35,15 @@ public class ModalAddEmployeeController {
     private Button saveButton;
 
     @FXML
+    private void initialize() {
+        comboBoxPosition.setItems(observableListPosition);
+    }
+
+    @FXML
     void saveEmployee(ActionEvent event) {
 
         observableListEmployees.add(new Employee(0, textFieldSurname.getText(), textFieldName.getText(), textFieldMiddleName.getText(),
-                textFieldPosition.getText(), textFieldPhoneNumber.getText()));
+                comboBoxPosition.getValue(), textFieldPhoneNumber.getText()));
 
         // get a handle to the stage
         Stage stage = (Stage) saveButton.getScene().getWindow();
