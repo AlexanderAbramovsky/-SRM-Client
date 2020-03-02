@@ -1,6 +1,7 @@
 package sahan.abr.entities;
 
 import javafx.scene.image.Image;
+import sahan.abr.lib.LibSRM;
 
 public class Subscription {
 
@@ -59,5 +60,10 @@ public class Subscription {
 
     public void setNumberClasses(int numberClasses) {
         this.numberClasses = numberClasses;
+    }
+
+    @Override
+    public String toString()  {
+        return titleSubscription;
     }
 }

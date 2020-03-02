@@ -12,6 +12,8 @@ import javafx.util.Callback;
 import sahan.abr.controllers.Navigator;
 import sahan.abr.entities.Subscription;
 
+import static sahan.abr.Main.observableListSubscriptions;
+
 public class SubscriptionController {
 
     @FXML
@@ -32,13 +34,12 @@ public class SubscriptionController {
     @FXML
     private TextField textFieldSearchTitle;
 
-    static ObservableList<Subscription> subscriptions;
-
     private SubscriptionController subscriptionController = this;
 
     @FXML
     private void initialize() {
-        subscriptions = tableViewSubscriptions.getItems();
+
+        tableViewSubscriptions.setItems(observableListSubscriptions);
 
         tableColumnTitleSubscription.setCellValueFactory(new PropertyValueFactory<Subscription, String>("titleSubscription"));
         tableColumnPriceSubscription.setCellValueFactory(new PropertyValueFactory<Subscription, Double>("priceSubscription"));
@@ -62,11 +63,11 @@ public class SubscriptionController {
         String valueTitle = textFieldSearchTitle.getText();
 
         if (valueTitle == null || valueTitle.isEmpty()){
-            tableViewSubscriptions.setItems(subscriptions);
+            tableViewSubscriptions.setItems(observableListSubscriptions);
         } else {
             ObservableList<Subscription> subscriptionsTMP = FXCollections.observableArrayList();
 
-            for (Subscription subscription : subscriptions) {
+            for (Subscription subscription : observableListSubscriptions) {
                 if (subscription.getTitleSubscription().equals(valueTitle)){
                     subscriptionsTMP.add(subscription);
                 }
@@ -79,7 +80,7 @@ public class SubscriptionController {
     @FXML
     void clearFilterSearchSubscriptions(ActionEvent event) {
         textFieldSearchTitle.setText("");
-        tableViewSubscriptions.setItems(subscriptions);
+        tableViewSubscriptions.setItems(observableListSubscriptions);
     }
 
     public TableView<Subscription> getTableViewSubscriptions() {
@@ -107,7 +108,7 @@ public class SubscriptionController {
 
                         buttonDelete.setOnAction((ActionEvent event) -> {
                             Subscription data = getTableView().getItems().get(getIndex());
-                            subscriptions.remove(data);
+                            observableListSubscriptions.remove(data);
                         });
 
                         Button buttonUpdate = new Button("Обновить");

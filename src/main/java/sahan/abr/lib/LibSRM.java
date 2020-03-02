@@ -1,6 +1,7 @@
 package sahan.abr.lib;
 
 import sahan.abr.entities.Employee;
+import sahan.abr.entities.Parent;
 
 import java.util.Calendar;
 
@@ -20,4 +21,8 @@ public class LibSRM {
                 + "." + employee.getMiddleName().split("")[0];
     }
 
+    public static String getFIO(Parent parent) {
+        return parent.getSurname() + " " + parent.getName().split("")[0]
+                + "." + parent.getMiddleName().split("")[0] + ".";
+    }
 }

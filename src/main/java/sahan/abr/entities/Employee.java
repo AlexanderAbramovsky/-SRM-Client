@@ -1,5 +1,7 @@
 package sahan.abr.entities;
 
+import sahan.abr.lib.LibSRM;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -101,5 +103,10 @@ public class Employee {
 
     public void setTimetable(HashMap<Integer, DateJobEmployee> timetable) {
         this.timetable = timetable;
+    }
+
+    @Override
+    public String toString()  {
+        return LibSRM.getFIO(this);
     }
 }

@@ -9,14 +9,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sahan.abr.controllers.MainController;
 import sahan.abr.controllers.Navigator;
-import sahan.abr.entities.DateJobEmployee;
-import sahan.abr.entities.Employee;
+import sahan.abr.entities.*;
 import sahan.abr.local.WriteLocalData;
 import sahan.abr.network.ClientConnection;
 import sahan.abr.network.ParentConnection;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -24,6 +22,8 @@ public class Main extends Application {
     public static ObservableList<String> observableListPoll = FXCollections.observableArrayList();
 
     public static ObservableList<Employee> observableListEmployees = FXCollections.observableArrayList();
+    public static ObservableList<Subscription> observableListSubscriptions = FXCollections.observableArrayList();
+    public static ObservableList<Customer> observableListCustomers = FXCollections.observableArrayList();
 
     public static ClientConnection connection = new ClientConnection();
     public static ParentConnection connectionParent = new ParentConnection();
@@ -41,17 +41,25 @@ public class Main extends Application {
         //observableListPoll.add("Маленький");
         //observableListPoll.add("Маленький");
 
+        // Добавляем для теста
         observableListPosition.add("Тренер");
-
         Employee employee = new Employee(0, "Абрамовский", "Александр",
                 "Владимирович", "Тренер", "89237795552");
-
         DateJobEmployee dateJobEmployee = new DateJobEmployee("11:00",
                 "19:00", "10.10.19", "Большой");
-
         employee.getTimetable().put(4, dateJobEmployee);
-
         observableListEmployees.add(employee);
+
+        Subscription subscription = new Subscription(0, "Премиум", 1000,
+                30, 12);
+        observableListSubscriptions.add(subscription);
+
+        Parent parent = new Parent(0, "Абрамовский", "Александр",
+                "Владимирович", "НЕТ", "123123", "22.10.19", "89237795552", "89237795552",
+                "sahan.abr@yandex.ru", "НЕТ", true, true, true, "0");
+
+        Customer customer = new Customer(parent);
+        observableListCustomers.add(customer);
 
         stage.setTitle("SRM");
         stage.setScene(createScene(loadMainPane()));

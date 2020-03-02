@@ -4,15 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import sahan.abr.controllers.Navigator;
-import sahan.abr.controllers.employees.ModalUpdateEmployeeController;
-import sahan.abr.entities.Client;
-import sahan.abr.entities.Parent;
+import sahan.abr.controllers.customer.modal.ModalAdditionalInformationParentController;
+import sahan.abr.controllers.customer.modal.ModalUpdateParentController;
+import sahan.abr.entities.Customer;
 
-import static sahan.abr.controllers.customer.CustomerController.observableListCustomer;
+import static sahan.abr.Main.observableListCustomers;
 
 public class CustomerInformationParentController {
 
-    private Client client;
+    private Customer customer;
 
     @FXML
     private Label labelInitials;
@@ -22,34 +22,33 @@ public class CustomerInformationParentController {
 
     @FXML
     private void initialize() {
-        labelInitials.setText(client.getParent().getSurname() + " " + client.getParent().getName() + " " + client.getParent().getMiddleName());
-        labelContactPhoneNumber.setText(client.getParent().getContactPhoneNumber());
+        labelInitials.setText(customer.getParent().getSurname() + " " + customer.getParent().getName() + " " + customer.getParent().getMiddleName());
+        labelContactPhoneNumber.setText(customer.getParent().getContactPhoneNumber());
     }
 
-    public CustomerInformationParentController(Client client) {
-        this.client = client;
+    public CustomerInformationParentController(Customer customer) {
+        this.customer = customer;
     }
 
     @FXML
     void updateCustomer(ActionEvent event) {
-        ModalUpdateParentController controller = new ModalUpdateParentController(client);
+        ModalUpdateParentController controller = new ModalUpdateParentController(customer);
         Navigator.getModalWindow("SRM", Navigator.MODAL_UPDATE_CUSTOMER, controller);
     }
 
     @FXML
     void deleteCustomer(ActionEvent event) {
-        observableListCustomer.remove(client);
-        CustomerController.getvBoxStaticCustomers().getChildren().remove(client.getvBoxClient());
+
     }
 
     @FXML
     void additionalInformationParent(ActionEvent event) {
-        ModalAdditionalInformationParentController controller = new ModalAdditionalInformationParentController(client);
+        ModalAdditionalInformationParentController controller = new ModalAdditionalInformationParentController(customer);
         Navigator.getModalWindow("SRM", Navigator.MODAL_ADDITIONAL_INFORMATION_PARENT_CUSTOMER, controller);
     }
 
     @FXML
     void addChild(ActionEvent event) {
-        client.addvBoxChildren(Navigator.getVBox("SRM", Navigator.CUSTOMER_INFORMATION_CHILD));
+
     }
 }

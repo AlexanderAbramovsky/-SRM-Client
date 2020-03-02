@@ -113,7 +113,7 @@
                   <Insets bottom="10.0" left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <TableView fx:id="tableViewEmployees" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../css/tables.css" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tableViewEmployees" stylesheets="@../../css/tables.css" VBox.vgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="tableColumnSurnameEmployee" prefWidth="75.0" text="Фамилия" />
                   <TableColumn fx:id="tableColumnNameEmployee" prefWidth="75.0" text="Имя" />

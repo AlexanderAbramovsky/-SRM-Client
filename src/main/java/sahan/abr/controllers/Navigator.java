@@ -1,6 +1,7 @@
 package sahan.abr.controllers;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -20,6 +21,7 @@ public class Navigator {
     public static final String VISTA2 = "/fxml/t2.fxml";
 
     public static final String CUSTOMERS = "/fxml/customers/customers.fxml";
+    public static final String ADD_CUSTOMERS = "/fxml/customers/add-customers.fxml";
     public static final String MODAL_ADDITIONAL_INFORMATION_PARENT_CUSTOMER = "/fxml/customers/additional-information-customer-parent.fxml";
     public static final String MODAL_ADD_CUSTOMER = "/fxml/customers/add-customers-parent.fxml";
     public static final String MODAL_ADD_CHILD = "/fxml/customers/add-customers-child.fxml";
@@ -104,6 +106,18 @@ public class Navigator {
     public static void loadVista(String fxml) {
         try {
             mainController.setVista(FXMLLoader.load(Navigator.class.getResource(fxml)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadVista(String fxml, Object controller) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(fxml));
+            loader.setController(controller);
+
+            mainController.setVista(loader.load());
         } catch (IOException e) {
             e.printStackTrace();
         }

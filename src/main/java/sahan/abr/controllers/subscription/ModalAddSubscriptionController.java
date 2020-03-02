@@ -9,7 +9,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import sahan.abr.entities.Subscription;
 
-import static sahan.abr.controllers.subscription.SubscriptionController.subscriptions;
+import static sahan.abr.Main.observableListSubscriptions;
 
 public class ModalAddSubscriptionController {
 
@@ -69,7 +69,7 @@ public class ModalAddSubscriptionController {
     @FXML
     void saveSubscription(ActionEvent event) {
 
-        subscriptions.add(new Subscription(0, textFieldTitleSubscription.getText(),
+        observableListSubscriptions.add(new Subscription(0, textFieldTitleSubscription.getText(),
                 Double.parseDouble(textFieldPriceSubscription.getText()),
                 Integer.parseInt(textFieldValidity.getText()), Integer.parseInt(textFieldNumberClasses.getText())));
 
