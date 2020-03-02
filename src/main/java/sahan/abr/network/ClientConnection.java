@@ -1,18 +1,18 @@
 package sahan.abr.network;
 
-import javafx.collections.ObservableList;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.fluent.Content;
-import org.apache.http.client.fluent.Request;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import sahan.abr.entities.Employee;
-
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collection;
+//import javafx.collections.ObservableList;
+//import org.apache.http.NameValuePair;
+//import org.apache.http.client.fluent.Content;
+//import org.apache.http.client.fluent.Request;
+//import org.apache.http.message.BasicNameValuePair;
+//import org.json.JSONArray;
+//import org.json.JSONObject;
+//import sahan.abr.entities.Employee;
+//
+//import java.io.IOException;
+//import java.nio.charset.Charset;
+//import java.util.ArrayList;
+//import java.util.Collection;
 
 import static sahan.abr.Main.urlAddress;
 

@@ -1,11 +1,11 @@
 package sahan.abr.network;
 
-import org.apache.http.client.fluent.Content;
-import org.apache.http.client.fluent.Request;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import sahan.abr.entities.Employee;
-import sahan.abr.entities.Parent;
+//import org.apache.http.client.fluent.Content;
+//import org.apache.http.client.fluent.Request;
+//import org.json.JSONArray;
+//import org.json.JSONObject;
+//import sahan.abr.entities.Employee;
+//import sahan.abr.entities.Parent;
 
 import java.io.IOException;
 import java.util.ArrayList;
