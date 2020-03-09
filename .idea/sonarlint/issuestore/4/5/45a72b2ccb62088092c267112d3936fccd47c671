@@ -1,17 +1,12 @@
 
-Psquid:S1444"4Make this "public static writeLocalData" field final(ÏûÕÄıÿÿÿÿ
-Ysquid:S1444"=Make this "public static observableListEmployees" field final(éï½›ıÿÿÿÿ
-Tsquid:S1444"=Make this "public static observableListCustomers" field final(•¨§ò
-9squid:S2386"Make this member "protected".(şšÚåùÿÿÿÿ
-9squid:S2386"Make this member "protected".(éï½›ıÿÿÿÿ
-qsquid:S3008!"URename this field "MAIN_STAGE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄëÎ›øÿÿÿÿ
-Tsquid:S1444"8Make this "public static observableListPoll" field final(şšÚåùÿÿÿÿ
-Lsquid:S1444!"0Make this "public static MAIN_STAGE" field final(ÄëÎ›øÿÿÿÿ
-9squid:S2386"Make this member "protected".(áÁ¼‰üÿÿÿÿ
-Csquid:S1905I"'Remove this unnecessary cast to "Pane".(¦­üúÿÿÿÿ
-4squid:S2386"Make this member "protected".(¦š’Ñ
-Xsquid:S1444"AMake this "public static observableListSubscriptions" field final(¦š’Ñ
-Msquid:S1444"6Make this "public static connectionParent" field final(ä‡Æ¢
-Gsquid:S1444"0Make this "public static connection" field final(×²ü¤
-Xsquid:S1444"<Make this "public static observableListPosition" field final(áÁ¼‰üÿÿÿÿ
-4squid:S2386"Make this member "protected".(•¨§ò
+Xsquid:S1444"<Make this "public static observableListPosition" field final(áÁ¼‰üÿÿÿÿ
+4squid:S2386"Make this member "protected".(¦š’Ñ
+9squid:S2386"Make this member "protected".(áÁ¼‰üÿÿÿÿ
+9squid:S2386"Make this member "protected".(şšÚåùÿÿÿÿ
+Xsquid:S1444"AMake this "public static observableListSubscriptions" field final(¦š’Ñ
+Tsquid:S1444"=Make this "public static observableListCustomers" field final(•¨§ò
+9squid:S2386"Make this member "protected".(éï½›ıÿÿÿÿ
+Ysquid:S1444"=Make this "public static observableListEmployees" field final(éï½›ıÿÿÿÿ
+4squid:S2386"Make this member "protected".(•¨§ò
+Lsquid:S1444"0Make this "public static MAIN_STAGE" field final(ÄëÎ›øÿÿÿÿ
+Tsquid:S1444"8Make this "public static observableListPoll" field final(şšÚåùÿÿÿÿ

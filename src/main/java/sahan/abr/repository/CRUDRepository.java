@@ -1,15 +1,17 @@
 package sahan.abr.repository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface CRUDRepository<T> {
-    boolean save(T data);
 
-    boolean update(T data);
+    T getById(int id) throws SQLException;
 
-    boolean delete(T data);
+    List<T> getAll() throws SQLException;
 
-    T findById(int id);
+    void save(T data) throws SQLException;
 
-    List<T> findAll();
+    void update(T data) throws SQLException;
+
+    void deleteById(int id) throws SQLException;
 }

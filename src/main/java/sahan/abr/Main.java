@@ -7,12 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import sahan.abr.controllers.MainController;
-import sahan.abr.controllers.Navigator;
+import sahan.abr.fx.controllers.MainController;
+import sahan.abr.fx.controllers.Navigator;
 import sahan.abr.entities.*;
-import sahan.abr.local.WriteLocalData;
-import sahan.abr.network.ClientConnection;
-import sahan.abr.network.ParentConnection;
 
 import java.io.IOException;
 
@@ -25,10 +22,10 @@ public class Main extends Application {
     public static ObservableList<Subscription> observableListSubscriptions = FXCollections.observableArrayList();
     public static ObservableList<Customer> observableListCustomers = FXCollections.observableArrayList();
 
-    public static ClientConnection connection = new ClientConnection();
-    public static ParentConnection connectionParent = new ParentConnection();
-
-    public static WriteLocalData writeLocalData = new WriteLocalData();
+//    public static ClientConnection connection = new ClientConnection();
+//    public static ParentConnection connectionParent = new ParentConnection();
+//
+//    public static WriteLocalData writeLocalData = new WriteLocalData();
     public static final String urlAddress = "http://localhost:8080";
     public static Stage MAIN_STAGE;
 
