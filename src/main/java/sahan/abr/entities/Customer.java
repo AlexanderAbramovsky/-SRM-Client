@@ -4,11 +4,11 @@ import sahan.abr.lib.LibSRM;
 
 public class Customer {
     private Parent parent;
-    private Child child;
+    private Child2 child;
 
     private String fio;
     private String phoneNumber;
-    private String shortNameChild = "Не зарегестрирован";
+    private String shortNameChild = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 
     public Customer() {
     }
@@ -20,7 +20,7 @@ public class Customer {
         phoneNumber = parent.getPhoneNumber();
     }
 
-    public Customer(Parent parent, Child child) {
+    public Customer(Parent parent, Child2 child) {
         this.parent = parent;
         this.child = child;
 
@@ -40,11 +40,11 @@ public class Customer {
         this.parent = parent;
     }
 
-    public Child getChildren() {
+    public Child2 getChildren() {
         return child;
     }
 
-    public void setChildren(Child child) {
+    public void setChildren(Child2 child) {
         this.child = child;
     }
 

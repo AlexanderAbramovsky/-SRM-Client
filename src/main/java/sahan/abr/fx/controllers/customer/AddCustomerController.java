@@ -181,14 +181,14 @@ public class AddCustomerController {
             checkBoxNotEmail.setSelected(parent.isNotEmail());
             checkBoxNotVK.setSelected(parent.isNotVK());
 
-            Child child = customer.getChildren();
+            Child2 child = customer.getChildren();
 
             textFieldSurnameChild.setText(child.getSurname());
             textFieldNameChild.setText(child.getName());
             textFieldShortNameChild.setText(child.getShortName());
             textFieldMiddleNameChild.setText(child.getMiddleName());
 
-            if (child.getGender().equals("Мальчик")) {
+            if (child.getGender().equals("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")) {
                 radioButtonBoy.setSelected(true);
             } else {
                 radioButtonGirl.setSelected(true);
@@ -206,10 +206,10 @@ public class AddCustomerController {
            // String[] str1 = child.getSubscriptionValidity()[0].split(".");
            // LocalDate localDate1 = LocalDate.of(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]));
            // datePickerSubscriptionStart.setValue(localDate1);
-            labelSubscriptionEndDate.setText("по " + child.getSubscriptionValidity()[1]);
-            labelNumberClasses.setText("Кол-во занятий - " + child.getNumberOfLessonsRemaining());
+            labelSubscriptionEndDate.setText("пїЅпїЅ " + child.getSubscriptionValidity()[1]);
+            labelNumberClasses.setText("пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - " + child.getNumberOfLessonsRemaining());
 
-            labelOperation.setText("Обновление Клиента");
+            labelOperation.setText("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
         }
     }
 
@@ -240,10 +240,10 @@ public class AddCustomerController {
             customer.setFio(LibSRM.getFIO(customer.getParent()));
             customer.setPhoneNumber(customer.getParent().getPhoneNumber());
 
-            Child child = customer.getChildren();
+            Child2 child = customer.getChildren();
         } else {
 
-            Child child = new Child(0, textFieldSurnameChild.getText(), textFieldNameChild.getText(), textFieldShortNameChild.getText(),
+            Child2 child = new Child2(0, textFieldSurnameChild.getText(), textFieldNameChild.getText(), textFieldShortNameChild.getText(),
                     textFieldMiddleNameChild.getText(), genderStr, dateOfBirthStr, new String[]{certificateValidityDateStart.getText(), certificateValidityDateEnd.getText()},
                     textAreaNote.getText(), subscription, subscription.getNumberClasses(), new String[]{dateStartSubscriptionStr, dateEndSubscriptionStr},
                     true, null, null);
@@ -270,15 +270,15 @@ public class AddCustomerController {
     @FXML
     void setSubscription(ActionEvent event) {
         subscription = comboBoxTypeSubscription.getValue();
-        labelNumberClasses.setText("Кол-во занятий - " + subscription.getNumberClasses());
+        labelNumberClasses.setText("пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - " + subscription.getNumberClasses());
     }
 
     @FXML
     void setGender(ActionEvent event) {
         if (radioButtonBoy.isSelected()) {
-            genderStr = "Мальчик";
+            genderStr = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
         } else {
-            genderStr = "Девочка";
+            genderStr = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
         }
     }
 
@@ -287,7 +287,7 @@ public class AddCustomerController {
         public void changed(ObservableValue<? extends Boolean> ov, Boolean oldb, Boolean newb) {
             dateOfBirth = datePickerDateOfBirth.getValue();
             LocalDate localDate = LocalDate.now();
-            labelYears.setText("Полных лет - " + (localDate.getYear() - dateOfBirth.getYear()));
+            labelYears.setText("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ - " + (localDate.getYear() - dateOfBirth.getYear()));
             dateOfBirthStr = dateOfBirth.getDayOfMonth() + "." +
                     dateOfBirth.getMonthValue() + "." + dateOfBirth.getYear();
         }
@@ -305,7 +305,7 @@ public class AddCustomerController {
             dateStartSubscriptionStr = dateStartSubscription.getDayOfMonth() + "." +
                     dateStartSubscription.getMonthValue() + "." + dateStartSubscription.getYear();
             dateEndSubscriptionStr = date.getDate() + "." + date.getMonth() + "." + date.getYear();
-            labelSubscriptionEndDate.setText("по " + date.getDate() + "." + date.getMonth() + "." + date.getYear());
+            labelSubscriptionEndDate.setText("пїЅпїЅ " + date.getDate() + "." + date.getMonth() + "." + date.getYear());
         }
     }
 }

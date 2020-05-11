@@ -9,7 +9,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import sahan.abr.entities.Subscription;
 
+import java.sql.SQLException;
+
 import static sahan.abr.Main.observableListSubscriptions;
+import static sahan.abr.Main.subscriptionRepository;
 
 public class ModalAddSubscriptionController {
 
@@ -67,14 +70,20 @@ public class ModalAddSubscriptionController {
     }
 
     @FXML
-    void saveSubscription(ActionEvent event) {
-
-        observableListSubscriptions.add(new Subscription(0, textFieldTitleSubscription.getText(),
-                Double.parseDouble(textFieldPriceSubscription.getText()),
-                Integer.parseInt(textFieldValidity.getText()), Integer.parseInt(textFieldNumberClasses.getText())));
-
+    void saveSubscription(ActionEvent event) throws SQLException {
         // get a handle to the stage
         Stage stage = (Stage) saveButton.getScene().getWindow();
+
+        Subscription subscription = new Subscription(
+                textFieldTitleSubscription.getText(),
+                Double.parseDouble(textFieldPriceSubscription.getText()),
+                Integer.parseInt(textFieldValidity.getText()),
+                Integer.parseInt(textFieldNumberClasses.getText())
+        );
+
+        subscriptionRepository.save(subscription);
+        observableListSubscriptions.add(subscription);
+
         // do what you have to do
         stage.close();
     }

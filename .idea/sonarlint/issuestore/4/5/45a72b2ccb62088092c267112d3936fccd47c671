@@ -1,12 +1,14 @@
 
-Xsquid:S1444"<Make this "public static observableListPosition" field final(áÁ¼‰üÿÿÿÿ
-4squid:S2386"Make this member "protected".(¦š’Ñ
-9squid:S2386"Make this member "protected".(áÁ¼‰üÿÿÿÿ
-9squid:S2386"Make this member "protected".(şšÚåùÿÿÿÿ
-Xsquid:S1444"AMake this "public static observableListSubscriptions" field final(¦š’Ñ
-Tsquid:S1444"=Make this "public static observableListCustomers" field final(•¨§ò
-9squid:S2386"Make this member "protected".(éï½›ıÿÿÿÿ
-Ysquid:S1444"=Make this "public static observableListEmployees" field final(éï½›ıÿÿÿÿ
-4squid:S2386"Make this member "protected".(•¨§ò
-Lsquid:S1444"0Make this "public static MAIN_STAGE" field final(ÄëÎ›øÿÿÿÿ
-Tsquid:S1444"8Make this "public static observableListPoll" field final(şšÚåùÿÿÿÿ
+@squid:S2386"Make this member "protected".(şšÚåùÿÿÿÿ8¥óñ‹.
+_squid:S1444"<Make this "public static observableListPosition" field final(áÁ¼‰üÿÿÿÿ8¥óñ‹.
+[squid:S1444"8Make this "public static observableListPoll" field final(şšÚåùÿÿÿÿ8¥óñ‹.
+Jsquid:S1905?"'Remove this unnecessary cast to "Pane".(¦­üúÿÿÿÿ8ÈÀàú.
+@squid:S2386"Make this member "protected".(éï½›ıÿÿÿÿ8¥óñ‹.
+Ssquid:S1444"0Make this "public static MAIN_STAGE" field final(ÄëÎ›øÿÿÿÿ8¥óñ‹.
+`squid:S1444"=Make this "public static observableListEmployees" field final(éï½›ıÿÿÿÿ8¥óñ‹.
+Zsquid:S1444"<Make this "public static subscriptionRepository" field final(ı´ªÊ8Œ¤çŸ.
+_squid:S1444"AMake this "public static observableListSubscriptions" field final(¦š’Ñ8ÈÈìŸ.
+[squid:S1444"=Make this "public static observableListCustomers" field final(•¨§ò8¥óñ‹.
+;squid:S2386"Make this member "protected".(¦š’Ñ8ÈÈìŸ.
+@squid:S2386"Make this member "protected".(áÁ¼‰üÿÿÿÿ8¥óñ‹.
+;squid:S2386"Make this member "protected".(•¨§ò8¥óñ‹.

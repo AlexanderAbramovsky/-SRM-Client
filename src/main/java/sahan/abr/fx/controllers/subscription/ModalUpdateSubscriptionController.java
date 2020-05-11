@@ -6,6 +6,10 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sahan.abr.entities.Subscription;
 
+import java.sql.SQLException;
+
+import static sahan.abr.Main.subscriptionRepository;
+
 public class ModalUpdateSubscriptionController {
 
     @FXML
@@ -98,7 +102,7 @@ public class ModalUpdateSubscriptionController {
     }
 
     @FXML
-    void updateSubscription(ActionEvent event) {
+    void updateSubscription(ActionEvent event) throws SQLException {
 
         subscription.setTitleSubscription(textFieldTitleSubscription.getText());
         subscription.setPriceSubscription(Double.parseDouble(textFieldPriceSubscription.getText()));
@@ -110,6 +114,8 @@ public class ModalUpdateSubscriptionController {
         // get a handle to the stage
         Stage stage = (Stage) updateButton.getScene().getWindow();
         // do what you have to do
+
+        subscriptionRepository.update(subscription);
         stage.close();
 
     }

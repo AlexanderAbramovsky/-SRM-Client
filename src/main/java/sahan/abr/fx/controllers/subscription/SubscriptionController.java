@@ -12,7 +12,10 @@ import javafx.util.Callback;
 import sahan.abr.fx.controllers.Navigator;
 import sahan.abr.entities.Subscription;
 
+import java.sql.SQLException;
+
 import static sahan.abr.Main.observableListSubscriptions;
+import static sahan.abr.Main.subscriptionRepository;
 
 public class SubscriptionController {
 
@@ -37,8 +40,10 @@ public class SubscriptionController {
     private SubscriptionController subscriptionController = this;
 
     @FXML
-    private void initialize() {
-
+    private void initialize() throws SQLException {
+        observableListSubscriptions = FXCollections.observableArrayList();
+        observableListSubscriptions.addAll(subscriptionRepository.getAll());
+        tableViewSubscriptions.refresh();
         tableViewSubscriptions.setItems(observableListSubscriptions);
 
         tableColumnTitleSubscription.setCellValueFactory(new PropertyValueFactory<Subscription, String>("titleSubscription"));
@@ -108,7 +113,12 @@ public class SubscriptionController {
 
                         buttonDelete.setOnAction((ActionEvent event) -> {
                             Subscription data = getTableView().getItems().get(getIndex());
-                            observableListSubscriptions.remove(data);
+                            try {
+                                subscriptionRepository.deleteById(data.getId());
+                                observableListSubscriptions.remove(data);
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
                         });
 
                         Button buttonUpdate = new Button("Обновить");

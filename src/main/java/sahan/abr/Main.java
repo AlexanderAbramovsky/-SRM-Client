@@ -10,10 +10,14 @@ import javafx.stage.Stage;
 import sahan.abr.fx.controllers.MainController;
 import sahan.abr.fx.controllers.Navigator;
 import sahan.abr.entities.*;
+import sahan.abr.repository.SubscriptionRepository;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Main extends Application {
+
+    public static SubscriptionRepository subscriptionRepository;
 
     public static ObservableList<String> observableListPosition = FXCollections.observableArrayList();
     public static ObservableList<String> observableListPoll = FXCollections.observableArrayList();
@@ -22,38 +26,27 @@ public class Main extends Application {
     public static ObservableList<Subscription> observableListSubscriptions = FXCollections.observableArrayList();
     public static ObservableList<Customer> observableListCustomers = FXCollections.observableArrayList();
 
-//    public static ClientConnection connection = new ClientConnection();
-//    public static ParentConnection connectionParent = new ParentConnection();
-//
-//    public static WriteLocalData writeLocalData = new WriteLocalData();
     public static final String urlAddress = "http://localhost:8080";
     public static Stage MAIN_STAGE;
 
     @Override
     public void start(Stage stage) throws Exception{
 
-        observableListPoll.add("Большой");
-        observableListPoll.add("Средний");
-        observableListPoll.add("Маленький");
-        //observableListPoll.add("Маленький");
-        //observableListPoll.add("Маленький");
+        observableListPoll.add("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+        observableListPoll.add("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+        observableListPoll.add("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
-        // Добавляем для теста
-        observableListPosition.add("Тренер");
-        Employee employee = new Employee(0, "Абрамовский", "Александр",
-                "Владимирович", "Тренер", "89237795552");
+        observableListPosition.add("пїЅпїЅпїЅпїЅпїЅпїЅ");
+        Employee employee = new Employee(0, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+                "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "89237795552");
         DateJobEmployee dateJobEmployee = new DateJobEmployee("11:00",
-                "19:00", "10.10.19", "Большой");
+                "19:00", "10.10.19", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
         employee.getTimetable().put(4, dateJobEmployee);
         observableListEmployees.add(employee);
 
-        Subscription subscription = new Subscription(0, "Премиум", 1000,
-                30, 12);
-        observableListSubscriptions.add(subscription);
-
-        Parent parent = new Parent(0, "Абрамовский", "Александр",
-                "Владимирович", "НЕТ", "123123", "22.10.19", "89237795552", "89237795552",
-                "sahan.abr@yandex.ru", "НЕТ", true, true, true, "0");
+        Parent parent = new Parent(0, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+                "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅ", "123123", "22.10.19", "89237795552", "89237795552",
+                "sahan.abr@yandex.ru", "пїЅпїЅпїЅ", true, true, true, "0");
 
         Customer customer = new Customer(parent);
         observableListCustomers.add(customer);
@@ -87,7 +80,10 @@ public class Main extends Application {
         return scene;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+
+        subscriptionRepository = new SubscriptionRepository();
+
         launch(args);
     }
 }

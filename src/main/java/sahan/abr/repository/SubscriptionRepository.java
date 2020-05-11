@@ -4,18 +4,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import sahan.abr.service.Subscription;
+import sahan.abr.entities.Subscription;
 
 public class SubscriptionRepository implements CRUDRepository<Subscription> {
 
-    private static String FOR_NAME = "org.sqlite.JDBC";
-    private static String URL = "jdbc:sqlite:testDB.s3db";
+    private final static String FOR_NAME = "org.sqlite.JDBC";
+    private final static String URL = "jdbc:sqlite:testDB.s3db";
 
-    private static String INSERT = "INSERT INTO SUBSCRIPTION ('NAME') VALUES (?);";
-    private static String UPDATE = "UPDATE  SUBSCRIPTION SET NAME = ? WHERE ID = ?;";
-    private static String DELETE = "DELETE FROM SUBSCRIPTION WHERE ID = ?";
-    private static String SELECT_ALL = "SELECT * FROM SUBSCRIPTION";
-    private static String SELECT_BY_ID = "SELECT * FROM SUBSCRIPTION WHERE ID = ?";
+    private final static String INSERT = "INSERT INTO SUBSCRIPTION (TITLE_SUBSCRIPTION, PRICE_SUBSCRIPTION, VALIDITY, NUMBER_CLASSES) VALUES (?, ?, ?, ?)";
+    private final static String UPDATE = "UPDATE  SUBSCRIPTION SET TITLE_SUBSCRIPTION = ?, PRICE_SUBSCRIPTION = ?, VALIDITY = ?, NUMBER_CLASSES = ? WHERE ID = ?";
+    private final static String DELETE = "DELETE FROM SUBSCRIPTION WHERE ID = ?";
+    private final static String SELECT_ALL = "SELECT * FROM SUBSCRIPTION";
+    private final static String SELECT_BY_ID = "SELECT * FROM SUBSCRIPTION WHERE ID = ?";
 
     public static Connection connection;
 
@@ -32,10 +32,14 @@ public class SubscriptionRepository implements CRUDRepository<Subscription> {
         statement.setInt(1, id);
         ResultSet result = statement.executeQuery();
 
+        result.next();
         if (result.isFirst()) {
             int idSubscription = result.getInt("ID");
-            String nameSubscription = result.getString("NAME");
-            return new Subscription(idSubscription, nameSubscription);
+            String titleSubscription = result.getString("TITLE_SUBSCRIPTION");
+            double priceSubscription = result.getDouble("PRICE_SUBSCRIPTION");
+            int validity = result.getInt("VALIDITY");
+            int numberClasses = result.getInt("NUMBER_CLASSES");
+            return new Subscription(idSubscription, titleSubscription, priceSubscription, validity, numberClasses);
         }
 
         return null;
@@ -50,33 +54,42 @@ public class SubscriptionRepository implements CRUDRepository<Subscription> {
         List<Subscription> subscriptions = new ArrayList<>();
 
         while (result.next()) {
-            int id = result.getInt("ID");
-            String name = result.getString("NAME");
-            subscriptions.add(new Subscription(id, name));
+            int idSubscription = result.getInt("ID");
+            String titleSubscription = result.getString("TITLE_SUBSCRIPTION");
+            double priceSubscription = result.getDouble("PRICE_SUBSCRIPTION");
+            int validity = result.getInt("VALIDITY");
+            int numberClasses = result.getInt("NUMBER_CLASSES");
+            subscriptions.add(new Subscription(idSubscription, titleSubscription, priceSubscription, validity, numberClasses));
         }
 
         return subscriptions;
     }
 
     @Override
-    public void save(Subscription data) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(INSERT);
-        statement.setString(1, data.getFirstName());
-        statement.execute();
+    public int save(Subscription data) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+        statement.setString(1, data.getTitleSubscription());
+        statement.setDouble(    2, data.getPriceSubscription());
+        statement.setInt(3, data.getValidity());
+        statement.setInt(4, data.getNumberClasses());
+        return executeId(statement);
     }
 
     @Override
-    public void update(Subscription data) throws SQLException {
+    public boolean update(Subscription data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(UPDATE);
-        statement.setString(1, data.getFirstName());
-        statement.setInt(2, data.getId());
-        statement.execute();
+        statement.setString(1, data.getTitleSubscription());
+        statement.setDouble(    2, data.getPriceSubscription());
+        statement.setInt(3, data.getValidity());
+        statement.setInt(4, data.getNumberClasses());
+        statement.setInt(5, data.getId());
+        return executeDML(statement);
     }
 
     @Override
-    public void deleteById(int id) throws SQLException {
+    public boolean deleteById(int id) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(DELETE);
         statement.setInt(1, id);
-        statement.execute();
+        return executeDML(statement);
     }
 }
