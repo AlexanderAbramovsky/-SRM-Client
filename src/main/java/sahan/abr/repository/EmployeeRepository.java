@@ -8,9 +8,6 @@ import java.util.List;
 
 public class EmployeeRepository implements CRUDRepository<Employee> {
 
-    private final static String FOR_NAME = "org.sqlite.JDBC";
-    private final static String URL = "jdbc:sqlite:testDB.s3db";
-
     private final static String INSERT = "INSERT INTO EMPLOYEE (SURNAME, NAME, MIDDLE_NAME, POSITION, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?)";
     private final static String UPDATE = "UPDATE EMPLOYEE SET SURNAME = ?, NAME = ?, MIDDLE_NAME = ?, POSITION = ?, PHONE_NUMBER = ? WHERE ID = ?";
     private final static String DELETE = "DELETE FROM EMPLOYEE WHERE ID = ?";
@@ -19,9 +16,8 @@ public class EmployeeRepository implements CRUDRepository<Employee> {
 
     public static Connection connection;
 
-    public EmployeeRepository() throws ClassNotFoundException, SQLException {
-        Class.forName(FOR_NAME);
-        connection = DriverManager.getConnection(URL);
+    public EmployeeRepository(Connection connection) {
+        this.connection = connection;
         System.out.println("Есть подключение!");
     }
 

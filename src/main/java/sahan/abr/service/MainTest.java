@@ -12,7 +12,7 @@ import java.sql.*;
 public class MainTest {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        schedule();
+        employee();
     }
 
     public static void employee() throws ClassNotFoundException, SQLException {

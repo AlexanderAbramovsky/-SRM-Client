@@ -8,9 +8,6 @@ import sahan.abr.entities.Subscription;
 
 public class SubscriptionRepository implements CRUDRepository<Subscription> {
 
-    private final static String FOR_NAME = "org.sqlite.JDBC";
-    private final static String URL = "jdbc:sqlite:testDB.s3db";
-
     private final static String INSERT = "INSERT INTO SUBSCRIPTION (TITLE_SUBSCRIPTION, PRICE_SUBSCRIPTION, VALIDITY, NUMBER_CLASSES) VALUES (?, ?, ?, ?)";
     private final static String UPDATE = "UPDATE  SUBSCRIPTION SET TITLE_SUBSCRIPTION = ?, PRICE_SUBSCRIPTION = ?, VALIDITY = ?, NUMBER_CLASSES = ? WHERE ID = ?";
     private final static String DELETE = "DELETE FROM SUBSCRIPTION WHERE ID = ?";
@@ -19,9 +16,8 @@ public class SubscriptionRepository implements CRUDRepository<Subscription> {
 
     public static Connection connection;
 
-    public SubscriptionRepository() throws ClassNotFoundException, SQLException {
-        Class.forName(FOR_NAME);
-        connection = DriverManager.getConnection(URL);
+    public SubscriptionRepository(Connection connection) {
+        this.connection = connection;
         System.out.println("База Подключена!");
     }
 

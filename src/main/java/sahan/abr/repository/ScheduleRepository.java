@@ -9,20 +9,18 @@ import java.util.List;
 
 public class ScheduleRepository implements CRUDRepository<Schedule> {
 
-    private final static String FOR_NAME = "org.sqlite.JDBC";
-    private final static String URL = "jdbc:sqlite:testDB.s3db";
-
     private final static String INSERT = "INSERT INTO SCHEDULE (ROLE, ID_ROLE, DATE, S_TIME, E_TIME) VALUES (?, ?, ?, ?, ?)";
     private final static String UPDATE = "UPDATE SCHEDULE SET ROLE = ?, ID_ROLE = ?, DATE = ?, S_TIME = ?, E_TIME = ? WHERE ID = ?";
     private final static String DELETE = "DELETE FROM SCHEDULE WHERE ID = ?";
     private final static String SELECT_ALL = "SELECT * FROM SCHEDULE";
     private final static String SELECT_BY_ID = "SELECT * FROM SCHEDULE WHERE ID = ?";
 
+    private final static String SELECT_BY_ID_ROLE_AND_DATE = "SELECT * FROM SCHEDULE WHERE ID_ROLE = ? AND DATE = ?";
+
     public static Connection connection;
 
-    public ScheduleRepository() throws ClassNotFoundException, SQLException {
-        Class.forName(FOR_NAME);
-        connection = DriverManager.getConnection(URL);
+    public ScheduleRepository(Connection connection) {
+        this.connection = connection;
         System.out.println("База Подключена!");
     }
 
@@ -41,6 +39,27 @@ public class ScheduleRepository implements CRUDRepository<Schedule> {
             String eTime = result.getString("E_TIME");
             return new Schedule(idSchedule, ScheduleRole.valueOf(role), idRole, date, sTime, eTime);
         }
+        return null;
+    }
+
+    public Schedule getByIdRoleAndDate(int idRole, String date) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID_ROLE_AND_DATE);
+        statement.setInt(1, idRole);
+        statement.setString(2, date);
+
+        ResultSet result = statement.executeQuery();
+        result.next();
+
+        while (result.isFirst()) {
+            int idSchedule = result.getInt("ID");
+            String role = result.getString("ROLE");
+            int idRoleSchedule = result.getInt("ID_ROLE");
+            String dateSchedule = result.getString("DATE");
+            String sTimeSchedule = result.getString("S_TIME");
+            String eTimeSchedule = result.getString("E_TIME");
+            return new Schedule(idSchedule, ScheduleRole.valueOf(role), idRoleSchedule, dateSchedule, sTimeSchedule, eTimeSchedule);
+        }
+
         return null;
     }
 

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChildRep implements CRUDRepository<Child> {
-    private final static String FOR_NAME = "org.sqlite.JDBC";
-    private final static String URL = "jdbc:sqlite:testDB.s3db";
 
     private final static String INSERT = "INSERT INTO CHILD (ID_CLIENT, ID_REFERENCE, SURNAME, NAME, MIDDLE_NAME, GENDER, DATE_OF_BIRTH, NOTE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final static String UPDATE = "UPDATE CHILD SET ID_CLIENT = ?, ID_REFERENCE = ?, SURNAME = ?, NAME = ?, MIDDLE_NAME = ?, GENDER = ?, DATE_OF_BIRTH = ?, NOTE = ? WHERE ID = ?";
@@ -19,9 +17,8 @@ public class ChildRep implements CRUDRepository<Child> {
 
     public static Connection connection;
 
-    public ChildRep() throws ClassNotFoundException, SQLException {
-        Class.forName(FOR_NAME);
-        connection = DriverManager.getConnection(URL);
+    public ChildRep(Connection connection) {
+        this.connection = connection;
         System.out.println("Есть подключение!");
     }
 

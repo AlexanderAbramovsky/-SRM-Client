@@ -98,13 +98,13 @@ public class TimeTable {
         String[] masYear = year.split("");
         year = masYear[masYear.length - 2] + masYear[masYear.length - 1];
 
-        if (date.getDay() == 1) dayOfWeek = "Понедельник";
-        if (date.getDay() == 2) dayOfWeek = "Вторник";
-        if (date.getDay() == 3) dayOfWeek = "Среда";
-        if (date.getDay() == 4) dayOfWeek = "Четверг";
-        if (date.getDay() == 5) dayOfWeek = "Пятница";
-        if (date.getDay() == 6) dayOfWeek = "Суббота";
-        if (date.getDay() == 0) dayOfWeek = "Воскресенье";
+        if (date.getDay() == 1) dayOfWeek = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+        if (date.getDay() == 2) dayOfWeek = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+        if (date.getDay() == 3) dayOfWeek = "пїЅпїЅпїЅпїЅпїЅ";
+        if (date.getDay() == 4) dayOfWeek = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+        if (date.getDay() == 5) dayOfWeek = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+        if (date.getDay() == 6) dayOfWeek = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+        if (date.getDay() == 0) dayOfWeek = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 
         labelDayOfWeek.setText(dayOfWeek + " " + LibSRM.getDateStringFormat(calendar));
     }
@@ -178,11 +178,11 @@ public class TimeTable {
 
                     DateJobEmployee dateJobEmployee = null;
 
-                    if (date.getDay() != 0) {
-                         dateJobEmployee = employee.getTimetable().get(date.getDay());
-                    } else {
-                         dateJobEmployee = employee.getTimetable().get(7);
-                    }
+//                    if (date.getDay() != 0) {
+//                         dateJobEmployee = employee.getTimetable().get(date.getDay());
+//                    } else {
+//                         dateJobEmployee = employee.getTimetable().get(7);
+//                    }
 
 
                     if (dateJobEmployee == null) continue;

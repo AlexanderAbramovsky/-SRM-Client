@@ -1,5 +1,7 @@
 package sahan.abr.fx.controllers.employees;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,20 +15,20 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import sahan.abr.entities.*;
 import sahan.abr.fx.controllers.Navigator;
-import sahan.abr.entities.DateJobEmployee;
-import sahan.abr.entities.Employee;
 import sahan.abr.lib.LibSRM;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
+import static sahan.abr.Main.employeeRepository;
+import static sahan.abr.Main.scheduleRepository;
 import static sahan.abr.Main.observableListEmployees;
 import static sahan.abr.Main.observableListPosition;
 
 public class EmployeesTimeTableController {
-
-    String[] strWeek = new String[8];
 
     @FXML
     private Label labelWeek;
@@ -66,11 +68,12 @@ public class EmployeesTimeTableController {
 
     private Calendar calendar;
     private Date date;
+    private String[] strWeek = new String[8];
 
     @FXML
-    private void initialize() {
+    private void initialize() throws SQLException {
         thisWeek();
-        dateOutput();
+//        dateOutput();
         comboBoxPosition.setItems(observableListPosition);
 
         for (int i = 0; i < observableListEmployees.size(); i++) {
@@ -78,14 +81,27 @@ public class EmployeesTimeTableController {
         }
     }
 
-    private void addEntry(Employee employee, int countRow) {
+    private void addEntry(Employee employee, int countRow) throws SQLException {
         gridPaneEmployeesTimeTable.add(getVBoxEmployee(employee, countRow), 0, countRow);
 
+        Schedule schedule = null;
+
+//        for (int i = 1; i <= 7; i++) {
+//            if (employee.getTimetable().get(i) == null) {
+//                //если нет расписания на день недели
+//                gridPaneEmployeesTimeTable.add(getVBoxAddEntryEmployee(employee, countRow, i, strWeek[i]), i, countRow);
+//            } else {
+//                //если есть расписание на день недели
+//                gridPaneEmployeesTimeTable.add(getVBoxEntryEmployee(employee, countRow, i, strWeek[i]), i, countRow);
+//            }
+//        }
         for (int i = 1; i <= 7; i++) {
-            if (employee.getTimetable().get(i) == null) {
+            if ((schedule = scheduleRepository.getByIdRoleAndDate(employee.getId(), strWeek[i])) == null) {
+                //если нет расписания на день недели
                 gridPaneEmployeesTimeTable.add(getVBoxAddEntryEmployee(employee, countRow, i, strWeek[i]), i, countRow);
             } else {
-                gridPaneEmployeesTimeTable.add(getVBoxEntryEmployee(employee, countRow, i, strWeek[i]), i, countRow);
+                //если есть расписание на день недели
+                gridPaneEmployeesTimeTable.add(getVBoxEntryEmployee(employee, schedule, countRow, i, strWeek[i]), i, countRow);
             }
         }
     }
@@ -149,7 +165,7 @@ public class EmployeesTimeTableController {
         Button button = new Button("");
         button.getStyleClass().add("toggle-button-add-round");
         button.setOnAction(event -> {
-            ModalAddEntryEmployeeTimeTable controller = new ModalAddEntryEmployeeTimeTable(vBox, employee, countRow, dayOfWeek, dateJob);
+            ModalAddEntryEmployeeTimeTable controller = new ModalAddEntryEmployeeTimeTable(vBox, employee, null, countRow, dayOfWeek, dateJob);
             Navigator.getModalWindow("SRM", Navigator.MODAL_ADD_ENTRY_EMPLOYEE, controller);
         });
 
@@ -158,19 +174,19 @@ public class EmployeesTimeTableController {
         return vBox;
     }
 
-    public static void setVBoxAddEntryEmployee(Employee employee, int countRow, int dayOfWeek, VBox vBox, String dateJob) {
+    public static void setVBoxAddEntryEmployee(Employee employee, Schedule schedule, int countRow, int dayOfWeek, VBox vBox, String dateJob) {
 
         Button button = new Button("");
         button.getStyleClass().add("toggle-button-add-round");
         button.setOnAction(event -> {
-            ModalAddEntryEmployeeTimeTable controller = new ModalAddEntryEmployeeTimeTable(vBox, employee, countRow, dayOfWeek, dateJob);
+            ModalAddEntryEmployeeTimeTable controller = new ModalAddEntryEmployeeTimeTable(vBox, employee, schedule, countRow, dayOfWeek, dateJob);
             Navigator.getModalWindow("SRM", Navigator.MODAL_ADD_ENTRY_EMPLOYEE, controller);
         });
 
         vBox.getChildren().add(button);
     }
 
-    public static VBox getVBoxEntryEmployee(Employee employee, int countRow, int dayOfWeek, String dateJob) {
+    public static VBox getVBoxEntryEmployee(Employee employee, Schedule schedule, int countRow, int dayOfWeek, String dateJob) {
 
         VBox vBoxEmployee = new VBox();
         vBoxEmployee.setAlignment(Pos.CENTER);
@@ -183,14 +199,14 @@ public class EmployeesTimeTableController {
             vBoxEmployee.setStyle("-fx-background-color :  #9cd3ff");
         }
 
-        DateJobEmployee dateJobEmployee = employee.getTimetable().get(dayOfWeek);
+//        DateJobEmployee dateJobEmployee = employee.getTimetable().get(dayOfWeek);
 
-        Label labelTime = new Label("C " + dateJobEmployee.getStartTime() + " �� "
-                + dateJobEmployee.getEndTime());
+        Label labelTime = new Label("C " + schedule.getSTime() + " по "
+                + schedule.getETime());
         labelTime.getStyleClass().add("labelEmployee");
 
-        Label labelPool = new Label("������� - " + dateJobEmployee.getPool());
-        labelPool.getStyleClass().add("labelEmployee");
+//        Label labelPool = new Label("Бассейн - " + dateJobEmployee.getPool());
+//        labelPool.getStyleClass().add("labelEmployee");
 
         HBox hBoxButtons = new HBox();
         hBoxButtons.setAlignment(Pos.CENTER);
@@ -202,36 +218,40 @@ public class EmployeesTimeTableController {
 
             vBoxEmployee.getChildren().removeAll(vBoxEmployee.getChildren());
 
-            setVBoxAddEntryEmployee(employee, countRow, dayOfWeek, vBoxEmployee, dateJob);
+            setVBoxAddEntryEmployee(employee, schedule, countRow, dayOfWeek, vBoxEmployee, dateJob);
 
-            employee.getTimetable().put(dayOfWeek, null);
+            try {
+                scheduleRepository.deleteById(schedule.getId());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
 
         Button buttonUpdate = new Button("");
         buttonUpdate.getStyleClass().add("toggle-button-pencil");
         buttonUpdate.setOnAction(event -> {
             ModalAddEntryEmployeeTimeTable controller =
-                    new ModalAddEntryEmployeeTimeTable(vBoxEmployee, employee, dayOfWeek, countRow, true);
+                    new ModalAddEntryEmployeeTimeTable(vBoxEmployee, employee, schedule, dayOfWeek, countRow, true);
             Navigator.getModalWindow("SRM", Navigator.MODAL_ADD_ENTRY_EMPLOYEE, controller);
         });
 
         hBoxButtons.getChildren().addAll(buttonUpdate, buttonDelete);
 
-        vBoxEmployee.getChildren().addAll(labelTime, labelPool, hBoxButtons);
+        vBoxEmployee.getChildren().addAll(labelTime, hBoxButtons);
 
         return vBoxEmployee;
     }
 
-    public static void setVBoxEntryEmployee(Employee employee, int countRow, int dayOfWeek, VBox vBoxEmployee, String dateJob) {
+    public static void setVBoxEntryEmployee(Employee employee, Schedule schedule, int countRow, int dayOfWeek, VBox vBoxEmployee, String dateJob) {
 
-        DateJobEmployee dateJobEmployee = employee.getTimetable().get(dayOfWeek);
+//        DateJobEmployee dateJobEmployee = employee.getTimetable().get(dayOfWeek);
 
-        Label labelTime = new Label("C " + dateJobEmployee.getStartTime() + " �� "
-                + dateJobEmployee.getEndTime());
+        Label labelTime = new Label("C " + schedule.getSTime() + " по "
+                + schedule.getETime());
         labelTime.getStyleClass().add("labelEmployee");
 
-        Label labelPool = new Label("������� - " + dateJobEmployee.getPool());
-        labelPool.getStyleClass().add("labelEmployee");
+//        Label labelPool = new Label("������� - " + dateJobEmployee.getPool());
+//        labelPool.getStyleClass().add("labelEmployee");
 
         HBox hBoxButtons = new HBox();
         hBoxButtons.setAlignment(Pos.CENTER);
@@ -243,22 +263,26 @@ public class EmployeesTimeTableController {
 
             vBoxEmployee.getChildren().removeAll(vBoxEmployee.getChildren());
 
-            setVBoxAddEntryEmployee(employee, countRow, dayOfWeek, vBoxEmployee, dateJob);
+            setVBoxAddEntryEmployee(employee, schedule, countRow, dayOfWeek, vBoxEmployee, dateJob);
 
-            employee.getTimetable().put(dayOfWeek, null);
+            try {
+                scheduleRepository.deleteById(schedule.getId());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
 
         Button buttonUpdate = new Button("");
         buttonUpdate.getStyleClass().add("toggle-button-pencil");
         buttonUpdate.setOnAction(event -> {
             ModalAddEntryEmployeeTimeTable controller =
-                    new ModalAddEntryEmployeeTimeTable(vBoxEmployee, employee, dayOfWeek, countRow, true);
+                    new ModalAddEntryEmployeeTimeTable(vBoxEmployee, employee, schedule, dayOfWeek, countRow, true);
             Navigator.getModalWindow("SRM", Navigator.MODAL_ADD_ENTRY_EMPLOYEE, controller);
         });
 
         hBoxButtons.getChildren().addAll(buttonUpdate, buttonDelete);
 
-        vBoxEmployee.getChildren().addAll(labelTime, labelPool, hBoxButtons);
+        vBoxEmployee.getChildren().addAll(labelTime, hBoxButtons);
 
         vBoxEmployee.setPadding(new Insets(0,0, 5,0));
     }
@@ -313,17 +337,23 @@ public class EmployeesTimeTableController {
 
         date.setDate(date.getDate() - date.getDay() + 1);
         calendar.setTime(date);
+
+        dateOutput();
     }
 
     public void nextWeek() {
         date.setDate(date.getDate() - date.getDay() + 1);
         calendar.setTime(date);
+
+        dateOutput();
     }
 
     public void lastWeek() {
        // System.out.println(date.getDay() + "  " + date.getDate());
         date.setDate(date.getDate() - 13);
         calendar.setTime(date);
+
+        dateOutput();
     }
 
     @FXML

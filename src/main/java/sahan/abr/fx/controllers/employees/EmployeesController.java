@@ -13,7 +13,9 @@ import javafx.util.Callback;
 import sahan.abr.fx.controllers.Navigator;
 import sahan.abr.entities.Employee;
 
-import static sahan.abr.Main.observableListEmployees;
+import java.sql.SQLException;
+
+import static sahan.abr.Main.*;
 
 public class EmployeesController {
 
@@ -44,7 +46,10 @@ public class EmployeesController {
     private EmployeesController employeesController = this;
 
     @FXML
-    private void initialize() {
+    private void initialize() throws SQLException {
+
+        observableListEmployees = FXCollections.observableArrayList();
+        observableListEmployees.addAll(employeeRepository.getAll());
 
         tableViewEmployees.setItems(observableListEmployees);
 
@@ -99,7 +104,7 @@ public class EmployeesController {
     }
 
     private void addButtonsToTableEmployees() {
-        TableColumn colBtn = new TableColumn("Действия");
+        TableColumn colBtn = new TableColumn("Р”РµР№СЃС‚РІРёСЏ");
 
         Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>> cellFactory =
                 new Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>>() {
@@ -112,7 +117,7 @@ public class EmployeesController {
                                 hBox.setSpacing(10);
                                 hBox.setAlignment(Pos.CENTER);
 
-                                Button buttonDelete = new Button("Удалить");
+                                Button buttonDelete = new Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
                                 buttonDelete.setPrefWidth(93);
                                 buttonDelete.setAlignment(Pos.CENTER_RIGHT);
                                 buttonDelete.getStyleClass().add("toggle-button-delete-left");
@@ -120,9 +125,14 @@ public class EmployeesController {
                                 buttonDelete.setOnAction((ActionEvent event) -> {
                                     Employee data = getTableView().getItems().get(getIndex());
                                     observableListEmployees.remove(data);
+                                    try {
+                                        employeeRepository.deleteById(data.getId());
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
                                 });
 
-                                Button buttonUpdate = new Button("Обновить");
+                                Button buttonUpdate = new Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
                                 buttonUpdate.setPrefWidth(103);
                                 buttonUpdate.setAlignment(Pos.CENTER_RIGHT);
                                 buttonUpdate.getStyleClass().add("toggle-button-update-left");

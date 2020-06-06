@@ -8,6 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sahan.abr.entities.Employee;
 
+import java.sql.SQLException;
+
+import static sahan.abr.Main.employeeRepository;
+
 import static sahan.abr.Main.observableListEmployees;
 import static sahan.abr.Main.observableListPosition;
 
@@ -37,10 +41,12 @@ public class ModalAddEmployeeController {
     }
 
     @FXML
-    void saveEmployee(ActionEvent event) {
+    void saveEmployee(ActionEvent event) throws SQLException {
 
-        observableListEmployees.add(new Employee(0, textFieldSurname.getText(), textFieldName.getText(), textFieldMiddleName.getText(),
-                comboBoxPosition.getValue(), textFieldPhoneNumber.getText()));
+        Employee employee = new Employee(0, textFieldSurname.getText(), textFieldName.getText(), textFieldMiddleName.getText(),
+                comboBoxPosition.getValue(), textFieldPhoneNumber.getText());
+        observableListEmployees.add(employee);
+        employeeRepository.save(employee);
 
         // get a handle to the stage
         Stage stage = (Stage) saveButton.getScene().getWindow();

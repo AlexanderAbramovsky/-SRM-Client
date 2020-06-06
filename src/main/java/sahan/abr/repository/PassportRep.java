@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PassportRep implements CRUDRepository<Passport> {
-    private final static String FOR_NAME = "org.sqlite.JDBC";
-    private final static String URL = "jdbc:sqlite:testDB.s3db";
 
     private final static String INSERT = "INSERT INTO PASSPORT (ID_CLIENT, SERIES, NUMBER, DATE, ISSUED_BY, ADDRESS) VALUES (?, ?, ?, ?, ?, ?)";
     private final static String UPDATE = "UPDATE PASSPORT SET ID_CLIENT = ?, SERIES = ?, NUMBER = ?, DATE = ?, ISSUED_BY = ?, ADDRESS = ? WHERE ID = ?";
@@ -18,9 +16,8 @@ public class PassportRep implements CRUDRepository<Passport> {
 
     public static Connection connection;
 
-    public PassportRep() throws ClassNotFoundException, SQLException {
-        Class.forName(FOR_NAME);
-        connection = DriverManager.getConnection(URL);
+    public PassportRep(Connection connection) {
+        this.connection = connection;
         System.out.println("Есть подключение!");
     }
 

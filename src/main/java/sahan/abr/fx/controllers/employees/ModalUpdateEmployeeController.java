@@ -8,6 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sahan.abr.entities.Employee;
 
+import java.sql.SQLException;
+
+import static sahan.abr.Main.*;
+
 public class ModalUpdateEmployeeController {
 
     @FXML
@@ -55,12 +59,12 @@ public class ModalUpdateEmployeeController {
 
         if (information) {
             updateButton.setVisible(false);
-            labelEmployee.setText("Информация о сотруднике");
+            labelEmployee.setText("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
         }
     }
 
     @FXML
-    void updateEmployee(ActionEvent event) {
+    void updateEmployee(ActionEvent event) throws SQLException {
 
         employee.setSurname(textFieldSurname.getText());
         employee.setName(textFieldName.getText());
@@ -69,6 +73,8 @@ public class ModalUpdateEmployeeController {
         employee.setPhoneNumber(textFieldPhoneNumber.getText());
 
         employeesController.getTableViewEmployees().refresh();
+
+        employeeRepository.update(employee);
 
         // get a handle to the stage
         Stage stage = (Stage) updateButton.getScene().getWindow();

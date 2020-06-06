@@ -8,7 +8,7 @@ public class Customer {
 
     private String fio;
     private String phoneNumber;
-    private String shortNameChild = "�� ���������������";
+    private String shortNameChild = "?? ???????????????";
 
     public Customer() {
     }

@@ -8,9 +8,6 @@ import java.util.List;
 
 public class ContractRepository implements CRUDRepository<Contract> {
 
-    private final static String FOR_NAME = "org.sqlite.JDBC";
-    private final static String URL = "jdbc:sqlite:testDB.s3db";
-
     private final static String INSERT = "INSERT INTO CONTRACT (ID_CLIENT, NUMBER, DATE) VALUES (?, ?, ?)";
     private final static String UPDATE = "UPDATE CONTRACT SET ID_CLIENT = ?, NUMBER = ?, DATE = ?, WHERE ID = ?";
     private final static String DELETE = "DELETE FROM CONTRACT WHERE ID = ?";
@@ -19,9 +16,8 @@ public class ContractRepository implements CRUDRepository<Contract> {
 
     public static Connection connection;
 
-    public ContractRepository() throws ClassNotFoundException, SQLException {
-        Class.forName(FOR_NAME);
-        connection = DriverManager.getConnection(URL);
+    public ContractRepository(Connection connection) {
+        this.connection = connection;
         System.out.println("Есть подключение!");
     }
 

@@ -10,14 +10,23 @@ import javafx.stage.Stage;
 import sahan.abr.fx.controllers.MainController;
 import sahan.abr.fx.controllers.Navigator;
 import sahan.abr.entities.*;
+import sahan.abr.repository.EmployeeRepository;
+import sahan.abr.repository.ScheduleRepository;
 import sahan.abr.repository.SubscriptionRepository;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Main extends Application {
 
+    private final static String FOR_NAME = "org.sqlite.JDBC";
+    private final static String URL = "jdbc:sqlite:testDB.s3db";
+
     public static SubscriptionRepository subscriptionRepository;
+    public static EmployeeRepository employeeRepository;
+    public static ScheduleRepository scheduleRepository;
 
     public static ObservableList<String> observableListPosition = FXCollections.observableArrayList();
     public static ObservableList<String> observableListPoll = FXCollections.observableArrayList();
@@ -32,21 +41,15 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
 
-        observableListPoll.add("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
-        observableListPoll.add("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
-        observableListPoll.add("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+        observableListPoll.add("Большой");
+        observableListPoll.add("Средний");
+        observableListPoll.add("Маленький");
 
-        observableListPosition.add("пїЅпїЅпїЅпїЅпїЅпїЅ");
-        Employee employee = new Employee(0, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
-                "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "89237795552");
-        DateJobEmployee dateJobEmployee = new DateJobEmployee("11:00",
-                "19:00", "10.10.19", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
-        employee.getTimetable().put(4, dateJobEmployee);
-        observableListEmployees.add(employee);
+        observableListPosition.add("Тренер");
 
-        Parent parent = new Parent(0, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
-                "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅ", "123123", "22.10.19", "89237795552", "89237795552",
-                "sahan.abr@yandex.ru", "пїЅпїЅпїЅ", true, true, true, "0");
+        Parent parent = new Parent(0, "???????????", "?????????",
+                "????????????", "???", "123123", "22.10.19", "89237795552", "89237795552",
+                "sahan.abr@yandex.ru", "???", true, true, true, "0");
 
         Customer customer = new Customer(parent);
         observableListCustomers.add(customer);
@@ -60,7 +63,7 @@ public class Main extends Application {
     private Pane loadMainPane() throws IOException {
         FXMLLoader loader = new FXMLLoader();
 
-        Pane mainPane = (Pane) loader.load(
+        Pane mainPane = loader.load(
                 getClass().getResourceAsStream(Navigator.MAIN)
         );
 
@@ -82,7 +85,12 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
+        Class.forName(FOR_NAME);
+        Connection connection = DriverManager.getConnection(URL);
+
         subscriptionRepository = new SubscriptionRepository();
+        employeeRepository = new EmployeeRepository();
+        scheduleRepository = new ScheduleRepository();
 
         launch(args);
     }
