@@ -1,7 +1,5 @@
 package sahan.abr.fx.controllers.employees;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,7 +13,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import sahan.abr.entities.*;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sahan.abr.entities.Employee;
+import sahan.abr.entities.Schedule;
 import sahan.abr.fx.controllers.Navigator;
 import sahan.abr.lib.LibSRM;
 
@@ -23,11 +25,9 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
-import static sahan.abr.Main.employeeRepository;
-import static sahan.abr.Main.scheduleRepository;
-import static sahan.abr.Main.observableListEmployees;
-import static sahan.abr.Main.observableListPosition;
+import static sahan.abr.Main.*;
 
+@Slf4j
 public class EmployeesTimeTableController {
 
     @FXML
@@ -73,12 +73,7 @@ public class EmployeesTimeTableController {
     @FXML
     private void initialize() throws SQLException {
         thisWeek();
-//        dateOutput();
         comboBoxPosition.setItems(observableListPosition);
-
-        for (int i = 0; i < observableListEmployees.size(); i++) {
-            addEntry(observableListEmployees.get(i), i);
-        }
     }
 
     private void addEntry(Employee employee, int countRow) throws SQLException {
@@ -86,21 +81,12 @@ public class EmployeesTimeTableController {
 
         Schedule schedule = null;
 
-//        for (int i = 1; i <= 7; i++) {
-//            if (employee.getTimetable().get(i) == null) {
-//                //ÐµÑÐ»Ð¸ Ð½ÐµÑ‚ Ñ€Ð°ÑÐ¿Ð¸ÑÐ°Ð½Ð¸Ñ Ð½Ð° Ð´ÐµÐ½ÑŒ Ð½ÐµÐ´ÐµÐ»Ð¸
-//                gridPaneEmployeesTimeTable.add(getVBoxAddEntryEmployee(employee, countRow, i, strWeek[i]), i, countRow);
-//            } else {
-//                //ÐµÑÐ»Ð¸ ÐµÑÑ‚ÑŒ Ñ€Ð°ÑÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð½Ð° Ð´ÐµÐ½ÑŒ Ð½ÐµÐ´ÐµÐ»Ð¸
-//                gridPaneEmployeesTimeTable.add(getVBoxEntryEmployee(employee, countRow, i, strWeek[i]), i, countRow);
-//            }
-//        }
         for (int i = 1; i <= 7; i++) {
             if ((schedule = scheduleRepository.getByIdRoleAndDate(employee.getId(), strWeek[i])) == null) {
-                //ÐµÑÐ»Ð¸ Ð½ÐµÑ‚ Ñ€Ð°ÑÐ¿Ð¸ÑÐ°Ð½Ð¸Ñ Ð½Ð° Ð´ÐµÐ½ÑŒ Ð½ÐµÐ´ÐµÐ»Ð¸
+                //åñëè íåò ðàñïèñàíèÿ íà äåíü íåäåëè
                 gridPaneEmployeesTimeTable.add(getVBoxAddEntryEmployee(employee, countRow, i, strWeek[i]), i, countRow);
             } else {
-                //ÐµÑÐ»Ð¸ ÐµÑÑ‚ÑŒ Ñ€Ð°ÑÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð½Ð° Ð´ÐµÐ½ÑŒ Ð½ÐµÐ´ÐµÐ»Ð¸
+                //åñëè åñòü ðàñïèñàíèå íà äåíü íåäåëè
                 gridPaneEmployeesTimeTable.add(getVBoxEntryEmployee(employee, schedule, countRow, i, strWeek[i]), i, countRow);
             }
         }
@@ -165,7 +151,7 @@ public class EmployeesTimeTableController {
         Button button = new Button("");
         button.getStyleClass().add("toggle-button-add-round");
         button.setOnAction(event -> {
-            ModalAddEntryEmployeeTimeTable controller = new ModalAddEntryEmployeeTimeTable(vBox, employee, null, countRow, dayOfWeek, dateJob);
+            ModalAddEntryEmployeeTimeTable controller = new ModalAddEntryEmployeeTimeTable(vBox, employee, null, countRow, dateJob);
             Navigator.getModalWindow("SRM", Navigator.MODAL_ADD_ENTRY_EMPLOYEE, controller);
         });
 
@@ -174,12 +160,12 @@ public class EmployeesTimeTableController {
         return vBox;
     }
 
-    public static void setVBoxAddEntryEmployee(Employee employee, Schedule schedule, int countRow, int dayOfWeek, VBox vBox, String dateJob) {
+    public static void setVBoxAddEntryEmployee(Employee employee, Schedule schedule, int countRow, VBox vBox, String dateJob) {
 
         Button button = new Button("");
         button.getStyleClass().add("toggle-button-add-round");
         button.setOnAction(event -> {
-            ModalAddEntryEmployeeTimeTable controller = new ModalAddEntryEmployeeTimeTable(vBox, employee, schedule, countRow, dayOfWeek, dateJob);
+            ModalAddEntryEmployeeTimeTable controller = new ModalAddEntryEmployeeTimeTable(vBox, employee, schedule, countRow, dateJob);
             Navigator.getModalWindow("SRM", Navigator.MODAL_ADD_ENTRY_EMPLOYEE, controller);
         });
 
@@ -199,14 +185,12 @@ public class EmployeesTimeTableController {
             vBoxEmployee.setStyle("-fx-background-color :  #9cd3ff");
         }
 
-//        DateJobEmployee dateJobEmployee = employee.getTimetable().get(dayOfWeek);
-
-        Label labelTime = new Label("C " + schedule.getSTime() + " Ð¿Ð¾ "
+        Label labelTime = new Label("C " + schedule.getSTime() + " ïî "
                 + schedule.getETime());
         labelTime.getStyleClass().add("labelEmployee");
 
-//        Label labelPool = new Label("Ð‘Ð°ÑÑÐµÐ¹Ð½ - " + dateJobEmployee.getPool());
-//        labelPool.getStyleClass().add("labelEmployee");
+        Label labelPool = new Label("Áàññåéí - " + schedule.getPoll());
+        labelPool.getStyleClass().add("labelEmployee");
 
         HBox hBoxButtons = new HBox();
         hBoxButtons.setAlignment(Pos.CENTER);
@@ -218,7 +202,7 @@ public class EmployeesTimeTableController {
 
             vBoxEmployee.getChildren().removeAll(vBoxEmployee.getChildren());
 
-            setVBoxAddEntryEmployee(employee, schedule, countRow, dayOfWeek, vBoxEmployee, dateJob);
+            setVBoxAddEntryEmployee(employee, schedule, countRow, vBoxEmployee, dateJob);
 
             try {
                 scheduleRepository.deleteById(schedule.getId());
@@ -231,27 +215,24 @@ public class EmployeesTimeTableController {
         buttonUpdate.getStyleClass().add("toggle-button-pencil");
         buttonUpdate.setOnAction(event -> {
             ModalAddEntryEmployeeTimeTable controller =
-                    new ModalAddEntryEmployeeTimeTable(vBoxEmployee, employee, schedule, dayOfWeek, countRow, true);
+                    new ModalAddEntryEmployeeTimeTable(vBoxEmployee, employee, schedule, countRow, dateJob,true);
             Navigator.getModalWindow("SRM", Navigator.MODAL_ADD_ENTRY_EMPLOYEE, controller);
         });
 
         hBoxButtons.getChildren().addAll(buttonUpdate, buttonDelete);
 
-        vBoxEmployee.getChildren().addAll(labelTime, hBoxButtons);
+        vBoxEmployee.getChildren().addAll(labelTime, labelPool, hBoxButtons);
 
         return vBoxEmployee;
     }
 
-    public static void setVBoxEntryEmployee(Employee employee, Schedule schedule, int countRow, int dayOfWeek, VBox vBoxEmployee, String dateJob) {
-
-//        DateJobEmployee dateJobEmployee = employee.getTimetable().get(dayOfWeek);
-
-        Label labelTime = new Label("C " + schedule.getSTime() + " Ð¿Ð¾ "
+    public static void setVBoxEntryEmployee(Employee employee, Schedule schedule, int countRow, VBox vBoxEmployee, String dateJob) {
+        Label labelTime = new Label("C " + schedule.getSTime() + " ïî "
                 + schedule.getETime());
         labelTime.getStyleClass().add("labelEmployee");
 
-//        Label labelPool = new Label("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - " + dateJobEmployee.getPool());
-//        labelPool.getStyleClass().add("labelEmployee");
+        Label labelPool = new Label("Áàññåéí - " + schedule.getPoll());
+        labelPool.getStyleClass().add("labelEmployee");
 
         HBox hBoxButtons = new HBox();
         hBoxButtons.setAlignment(Pos.CENTER);
@@ -263,11 +244,12 @@ public class EmployeesTimeTableController {
 
             vBoxEmployee.getChildren().removeAll(vBoxEmployee.getChildren());
 
-            setVBoxAddEntryEmployee(employee, schedule, countRow, dayOfWeek, vBoxEmployee, dateJob);
+            setVBoxAddEntryEmployee(employee, schedule, countRow, vBoxEmployee, dateJob);
 
             try {
                 scheduleRepository.deleteById(schedule.getId());
             } catch (SQLException e) {
+                log.error("ß ñëîìàëñÿ (óäàëåíèå ðàñïèñàíèÿ ñîòðóäíèêà) Ñîòðóäíèê [{}]", schedule);
                 e.printStackTrace();
             }
         });
@@ -276,13 +258,13 @@ public class EmployeesTimeTableController {
         buttonUpdate.getStyleClass().add("toggle-button-pencil");
         buttonUpdate.setOnAction(event -> {
             ModalAddEntryEmployeeTimeTable controller =
-                    new ModalAddEntryEmployeeTimeTable(vBoxEmployee, employee, schedule, dayOfWeek, countRow, true);
+                    new ModalAddEntryEmployeeTimeTable(vBoxEmployee, employee, schedule, countRow, dateJob, true);
             Navigator.getModalWindow("SRM", Navigator.MODAL_ADD_ENTRY_EMPLOYEE, controller);
         });
 
         hBoxButtons.getChildren().addAll(buttonUpdate, buttonDelete);
 
-        vBoxEmployee.getChildren().addAll(labelTime, hBoxButtons);
+        vBoxEmployee.getChildren().addAll(labelTime, labelPool, hBoxButtons);
 
         vBoxEmployee.setPadding(new Insets(0,0, 5,0));
     }
@@ -330,7 +312,7 @@ public class EmployeesTimeTableController {
         strWeek[6] = labelSaturday.getText();
     }
 
-    public void thisWeek() {
+    public void thisWeek() throws SQLException {
         calendar = Calendar.getInstance();
 
         date = calendar.getTime();
@@ -339,38 +321,46 @@ public class EmployeesTimeTableController {
         calendar.setTime(date);
 
         dateOutput();
+        screenUpdate();
     }
 
-    public void nextWeek() {
+    public void nextWeek() throws SQLException {
         date.setDate(date.getDate() - date.getDay() + 1);
         calendar.setTime(date);
 
         dateOutput();
+        screenUpdate();
     }
 
-    public void lastWeek() {
-       // System.out.println(date.getDay() + "  " + date.getDate());
+    public void lastWeek() throws SQLException {
         date.setDate(date.getDate() - 13);
         calendar.setTime(date);
 
         dateOutput();
+        screenUpdate();
+    }
+
+    private void screenUpdate() throws SQLException {
+        observableListEmployees.removeAll();
+        observableListEmployees.setAll(employeeRepository.getAll());
+
+        for (int i = 0; i < observableListEmployees.size(); i++) {
+            addEntry(observableListEmployees.get(i), i);
+        }
     }
 
     @FXML
-    void actionLastWeek(ActionEvent event) {
+    void actionLastWeek(ActionEvent event) throws SQLException {
         lastWeek();
-        dateOutput();
     }
 
     @FXML
-    void actionNextWeek(ActionEvent event) {
+    void actionNextWeek(ActionEvent event) throws SQLException {
         nextWeek();
-        dateOutput();
     }
 
     @FXML
-    void actionThisWeek(ActionEvent event) {
+    void actionThisWeek(ActionEvent event) throws SQLException {
         thisWeek();
-        dateOutput();
     }
 }

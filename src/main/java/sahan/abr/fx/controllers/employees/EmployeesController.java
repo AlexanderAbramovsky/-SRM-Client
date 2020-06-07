@@ -104,7 +104,7 @@ public class EmployeesController {
     }
 
     private void addButtonsToTableEmployees() {
-        TableColumn colBtn = new TableColumn("Р”РµР№СЃС‚РІРёСЏ");
+        TableColumn colBtn = new TableColumn("Действия");
 
         Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>> cellFactory =
                 new Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>>() {
@@ -117,7 +117,7 @@ public class EmployeesController {
                                 hBox.setSpacing(10);
                                 hBox.setAlignment(Pos.CENTER);
 
-                                Button buttonDelete = new Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+                                Button buttonDelete = new Button("Удалить");
                                 buttonDelete.setPrefWidth(93);
                                 buttonDelete.setAlignment(Pos.CENTER_RIGHT);
                                 buttonDelete.getStyleClass().add("toggle-button-delete-left");
@@ -132,7 +132,7 @@ public class EmployeesController {
                                     }
                                 });
 
-                                Button buttonUpdate = new Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+                                Button buttonUpdate = new Button("Обновить");
                                 buttonUpdate.setPrefWidth(103);
                                 buttonUpdate.setAlignment(Pos.CENTER_RIGHT);
                                 buttonUpdate.getStyleClass().add("toggle-button-update-left");

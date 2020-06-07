@@ -66,7 +66,7 @@ public class PassportRep implements CRUDRepository<Passport> {
     @Override
     public int save(Passport data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, data.getIdClient());
+        statement.setObject(1, data.getIdClient());
         statement.setInt(2, data.getSeries());
         statement.setInt(3, data.getNumber());
         statement.setString(4, data.getDate());

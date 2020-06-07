@@ -1,5 +1,6 @@
 package sahan.abr.fx.controllers.customer;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -10,55 +11,64 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
+import sahan.abr.entities.Client;
 import sahan.abr.fx.controllers.Navigator;
-import sahan.abr.entities.Customer;
 
-import static sahan.abr.Main.observableListCustomers;
+import java.sql.SQLException;
+
+import static sahan.abr.Main.*;
+import static sahan.abr.Main.observableListEmployees;
 
 public class CustomerController {
 
     @FXML
-    private TableView<Customer> tableViewCustomers;
+    private TableView<Client> tableViewClient;
 
     @FXML
-    private TableColumn<Customer, String> tableColumnFIO;
+    private TableColumn<Client, String> tableColumnMiddleName;
 
     @FXML
-    private TableColumn<Customer, String> tableColumnPhoneNumber;
+    private TableColumn<Client, String> tableColumnName;
 
     @FXML
-    private TableColumn<Customer, String> tableColumnChild;
-
-    //public static ArrayList<Customer> observableListCustomer = new ArrayList<>();
+    private TableColumn<Client, String> tableColumnSurname;
 
     @FXML
-    private void initialize() {
+    private TableColumn<Client, String> tableColumnPhoneNumber;
 
-        tableViewCustomers.setItems(observableListCustomers);
+    @FXML
+    private void initialize() throws SQLException {
+        clientObservableList = FXCollections.observableArrayList();
+        clientObservableList.addAll(clientRepository.getAll());
 
-        tableColumnFIO.setCellValueFactory(new PropertyValueFactory<Customer, String>("fio"));
-        tableColumnPhoneNumber.setCellValueFactory(new PropertyValueFactory<Customer, String>("phoneNumber"));
-        tableColumnChild.setCellValueFactory(new PropertyValueFactory<Customer, String>("shortNameChild"));
+        tableViewClient.setItems(clientObservableList);
+
+        tableColumnSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableColumnMiddleName.setCellValueFactory(new PropertyValueFactory<>("middleName"));
+        tableColumnPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
 
         addButtonsToTableCustomers();
     }
 
     @FXML
     void buttonAddCustomer(ActionEvent event) {
-        Navigator.loadVista(Navigator.ADD_CUSTOMERS, new AddCustomerController());
+        Navigator.loadVista(Navigator.ADD_CUSTOMERS, new AddClientController());
         //Navigator.getModalWindow("SRM",Navigator.MODAL_ADD_CUSTOMER);
     }
 
     private void addButtonsToTableCustomers() {
         TableColumn colBtn = new TableColumn("Действия");
 
-        Callback<TableColumn<Customer, Void>, TableCell<Customer, Void>> cellFactory =
-                new Callback<TableColumn<Customer, Void>, TableCell<Customer, Void>>() {
+        Callback<TableColumn<Client, Void>, TableCell<Client, Void>> cellFactory =
+                new Callback<>() {
                     @Override
-                    public TableCell<Customer, Void> call(final TableColumn<Customer, Void> param) {
-                        final TableCell<Customer, Void> cell = new TableCell<Customer, Void>() {
+                    public TableCell<Client, Void> call(final TableColumn<Client, Void> param) {
+                        final TableCell<Client, Void> cell = new TableCell<Client, Void>() {
 
                             private final HBox hBox = new HBox();
+
                             {
                                 hBox.setSpacing(10);
                                 hBox.setAlignment(Pos.CENTER);
@@ -69,8 +79,13 @@ public class CustomerController {
                                 buttonDelete.getStyleClass().add("toggle-button-delete-left");
 
                                 buttonDelete.setOnAction((ActionEvent event) -> {
-                                    Customer data = getTableView().getItems().get(getIndex());
-                                    observableListCustomers.remove(data);
+                                    Client data = getTableView().getItems().get(getIndex());
+                                    try {
+                                        clientRepository.deleteById(data.getId());
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                    clientObservableList.remove(data);
                                 });
 
                                 Button buttonUpdate = new Button("Обновить");
@@ -79,23 +94,23 @@ public class CustomerController {
                                 buttonUpdate.getStyleClass().add("toggle-button-update-left");
 
                                 buttonUpdate.setOnAction((ActionEvent event) -> {
-                                    Customer data = getTableView().getItems().get(getIndex());
-                                    AddCustomerController controller = new AddCustomerController(data);
+                                    Client data = getTableView().getItems().get(getIndex());
+                                    AddClientController controller = new AddClientController(data);
                                     Navigator.loadVista(Navigator.ADD_CUSTOMERS, controller);
                                 });
 
-                                Button buttonAdditionalInformation = new Button("Доп. инф.");
-                                buttonAdditionalInformation.setPrefWidth(110);
-                                buttonAdditionalInformation.setAlignment(Pos.CENTER_RIGHT);
-                                buttonAdditionalInformation.getStyleClass().add("toggle-button-information-left");
+                                Button buttonAddItionalInformation = new Button("Доп. инф.");
+                                buttonAddItionalInformation.setPrefWidth(110);
+                                buttonAddItionalInformation.setAlignment(Pos.CENTER_RIGHT);
+                                buttonAddItionalInformation.getStyleClass().add("toggle-button-information-left");
 
-                                buttonAdditionalInformation.setOnAction((ActionEvent event) -> {
-                                    Customer data = getTableView().getItems().get(getIndex());
+                                buttonAddItionalInformation.setOnAction((ActionEvent event) -> {
+                                    Client data = getTableView().getItems().get(getIndex());
                                     // ModalUpdateEmployeeController controller = new ModalUpdateEmployeeController(data, employeesController);
                                     // Navigator.getModalWindow("SRM", Navigator.MODAL_UPDATE_EMPLOYEE, controller);
                                 });
 
-                                hBox.getChildren().add(buttonAdditionalInformation);
+                                hBox.getChildren().add(buttonAddItionalInformation);
                                 hBox.getChildren().add(buttonUpdate);
                                 hBox.getChildren().add(buttonDelete);
                             }
@@ -116,7 +131,7 @@ public class CustomerController {
 
         colBtn.setCellFactory(cellFactory);
 
-        tableViewCustomers.getColumns().add(colBtn);
+        tableViewClient.getColumns().add(colBtn);
 
     }
 }

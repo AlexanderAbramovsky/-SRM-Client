@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Subscription {
 
-    private int id;
+    private Integer id;
     private String titleSubscription;
     private double priceSubscription;
     private int validity;

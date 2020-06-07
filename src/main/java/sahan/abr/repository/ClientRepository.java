@@ -61,7 +61,7 @@ public class ClientRepository implements CRUDRepository<Client> {
             String middleName = result.getString("MIDDLE_NAME");
             String phoneNumber = result.getString("PHONE_NUMBER");
             String contactPhoneNumber = result.getString("CONTACT_PHONE_NUMBER");
-            clients.add(new Client(idClient, idPassport, idChild, idContract, surname, name, middleName, phoneNumber, contactPhoneNumber));
+            clients.add(new Client(idClient, idChild, idPassport, idContract, surname, name, middleName, phoneNumber, contactPhoneNumber));
         }
 
         return clients;

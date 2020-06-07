@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Client {
-    private int id;
+    private Integer id;
 
-    private int idChild;
-    private int idPassport;
-    private int idContract;
+    private Integer idChild;
+    private Integer idPassport;
+    private Integer idContract;
 
     private String surname;
     private String name;
@@ -19,7 +19,7 @@ public class Client {
     private String phoneNumber;
     private String contactPhoneNumber;
 
-    public Client(int idChild, int idPassport, int idContract, String surname, String name, String middleName, String phoneNumber, String contactPhoneNumber) {
+    public Client(Integer idChild, Integer idPassport, Integer idContract, String surname, String name, String middleName, String phoneNumber, String contactPhoneNumber) {
         this.idChild = idChild;
         this.idPassport = idPassport;
         this.idContract = idContract;

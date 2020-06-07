@@ -18,7 +18,6 @@ public class Child2 {
     private String[] certificateValidityDate;
     private String note;
 
-    // ��� ��� ��������� � ����������
     private Subscription subscription;
     private int numberOfLessonsRemaining;
     private String[] subscriptionValidity;

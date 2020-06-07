@@ -4,18 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import sahan.abr.entities.DateJobEmployee;
 import sahan.abr.entities.Employee;
 import sahan.abr.entities.Schedule;
 import sahan.abr.entities.ScheduleRole;
 
 import java.sql.SQLException;
 
-import static sahan.abr.Main.observableListPoll;
-import static sahan.abr.Main.scheduleRepository;
+import static sahan.abr.Main.*;
 
 public class ModalAddEntryEmployeeTimeTable {
 
@@ -23,32 +20,36 @@ public class ModalAddEntryEmployeeTimeTable {
     private ComboBox<String> comboBoxPoll;
 
     @FXML
-    private TextField textFieldStart;
+    private ComboBox<String> comboBoxStart;
 
     @FXML
-    private TextField textFieldEnd;
+    private ComboBox<String> comboBoxEnd;
 
     @FXML
     private Button buttonSaveEntry;
+
+    private VBox vBox;
+    private Employee employee;
+    private Schedule schedule;
+    private String dateJob;
+    private int countRow;
+    private boolean update;
 
     @FXML
     void saveEntry(ActionEvent event) throws SQLException {
 
         if (update) {
-//            dateJobEmployee =  employee.getTimetable().get(dayOfWeek);
-//            dateJobEmployee.setStartTime(textFieldStart.getText());
-//            dateJobEmployee.setEndTime(textFieldEnd.getText());
-//            dateJobEmployee.setPool(comboBoxPoll.getValue());
+            System.out.println(schedule);
+            schedule = new Schedule(schedule.getId(), ScheduleRole.EMPLOYEE, employee.getId(), dateJob, comboBoxStart.getValue(), comboBoxEnd.getValue(), comboBoxPoll.getValue());
             scheduleRepository.update(schedule);
         } else {
-            scheduleRepository.save(new Schedule(ScheduleRole.EMPLOYEE, employee.getId(), dateJob, textFieldStart.getText(), textFieldEnd.getText()));
-//            dateJobEmployee = new DateJobEmployee(textFieldStart.getText(),
-//                    textFieldEnd.getText(), dateJob, comboBoxPoll.getValue());
-//            employee.getTimetable().put(dayOfWeek, dateJobEmployee);
+            schedule = new Schedule(ScheduleRole.EMPLOYEE, employee.getId(), dateJob, comboBoxStart.getValue(), comboBoxEnd.getValue(), comboBoxPoll.getValue());
+            scheduleRepository.save(schedule);
         }
 
         vBox.getChildren().removeAll(vBox.getChildren());
-        EmployeesTimeTableController.setVBoxEntryEmployee(employee, schedule, countRow ,dayOfWeek, vBox, dateJob);
+
+        EmployeesTimeTableController.setVBoxEntryEmployee(employee, schedule, countRow, vBox, dateJob);
 
         // get a handle to the stage
         Stage stage = (Stage) buttonSaveEntry.getScene().getWindow();
@@ -56,41 +57,35 @@ public class ModalAddEntryEmployeeTimeTable {
         stage.close();
     }
 
-    private VBox vBox;
-    private Employee employee;
-    private Schedule schedule;
-    private int dayOfWeek;
-    private String dateJob;
-    private int countRow;
-    private boolean update;
-
-    public ModalAddEntryEmployeeTimeTable(VBox vBox, Employee employee, Schedule schedule, int countRow, int dayOfWeek, String dateJob) {
+    public ModalAddEntryEmployeeTimeTable(VBox vBox, Employee employee, Schedule schedule, int countRow, String dateJob) {
         this.vBox = vBox;
         this.employee = employee;
         this.schedule = schedule;
-        this.dayOfWeek = dayOfWeek;
         this.countRow = countRow;
         this.dateJob = dateJob;
     }
 
-    public ModalAddEntryEmployeeTimeTable(VBox vBox, Employee employee, Schedule schedule, int dayOfWeek, int countRow, boolean update) {
+    public ModalAddEntryEmployeeTimeTable(VBox vBox, Employee employee, Schedule schedule, int countRow, String dateJob, boolean update) {
         this.vBox = vBox;
         this.employee = employee;
         this.schedule = schedule;
-        this.dayOfWeek = dayOfWeek;
         this.countRow = countRow;
+        this.dateJob = dateJob;
         this.update = update;
     }
 
     @FXML
     private void initialize() {
         comboBoxPoll.setItems(observableListPoll);
+        comboBoxStart.setItems(observableListTime);
+        comboBoxEnd.setItems(observableListTime);
 
         if (update) {
-//            DateJobEmployee dateJobEmployee = employee.getTimetable().get(dayOfWeek);
-            textFieldStart.setText(schedule.getSTime());
-            textFieldEnd.setText(schedule.getETime());
-//            comboBoxPoll.setValue(dateJobEmployee.getPool());
+            comboBoxStart.setValue(observableListTime.get(observableListTime.indexOf(schedule.getSTime())));
+            comboBoxEnd.setValue(observableListTime.get(observableListTime.indexOf(schedule.getETime())));
+            comboBoxPoll.setValue(schedule.getPoll());
+        } else {
+            comboBoxPoll.getSelectionModel().select(observableListPoll.size() - 1);
         }
     }
 }

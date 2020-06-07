@@ -93,7 +93,7 @@ public class SubscriptionController {
     }
 
     private void addButtonsToTableSubscriptions() {
-        TableColumn colBtn = new TableColumn("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+        TableColumn colBtn = new TableColumn("Действия");
 
         Callback<TableColumn<Subscription, Void>, TableCell<Subscription, Void>> cellFactory =
                 new Callback<TableColumn<Subscription, Void>, TableCell<Subscription, Void>>() {
@@ -106,7 +106,7 @@ public class SubscriptionController {
                         hBox.setSpacing(10);
                         hBox.setAlignment(Pos.CENTER);
 
-                        Button buttonDelete = new Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+                        Button buttonDelete = new Button("Удалить");
                         buttonDelete.setPrefWidth(93);
                         buttonDelete.setAlignment(Pos.CENTER_RIGHT);
                         buttonDelete.getStyleClass().add("toggle-button-delete-left");
@@ -121,7 +121,7 @@ public class SubscriptionController {
                             }
                         });
 
-                        Button buttonUpdate = new Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+                        Button buttonUpdate = new Button("Обновить");
                         buttonUpdate.setPrefWidth(103);
                         buttonUpdate.setAlignment(Pos.CENTER_RIGHT);
                         buttonUpdate.getStyleClass().add("toggle-button-update-left");

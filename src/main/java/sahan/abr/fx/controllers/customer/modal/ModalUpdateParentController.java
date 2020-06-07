@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sahan.abr.entities.Customer;
 
-import static sahan.abr.Main.observableListCustomers;
+import static sahan.abr.Main.clientObservableList;
 
 public class ModalUpdateParentController {
 
@@ -64,8 +64,8 @@ public class ModalUpdateParentController {
         customer.getParent().setContactPhoneNumber(textFieldContactPhoneNumber.getText());
         customer.getParent().setEmail(textFieldEmail.getText());
 
-        observableListCustomers.remove(customer);
-        observableListCustomers.add(customer);
+//        clientObservableList.remove(customer);
+//        clientObservableList.add(customer);
 
         // get a handle to the stage
         Stage stage = (Stage) updateButton.getScene().getWindow();

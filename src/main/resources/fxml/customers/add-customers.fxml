@@ -143,10 +143,75 @@
                                                 <Insets left="10.0" />
                                              </padding>
                                           </Label>
-                                          <TextArea fx:id="textFieldPassport" VBox.vgrow="ALWAYS" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="41.0" styleClass="border-top-bottom">
+                                             <children>
+                                                <Label prefHeight="30.0" prefWidth="101.0" text="Серия" textFill="#4682b2">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldPassportSeries" prefHeight="46.0" prefWidth="102.0" />
+                                                <Label prefHeight="30.0" prefWidth="101.0" text="Номер" textFill="#4682b2">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldPassportNumber" prefWidth="290.0" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="41.0" styleClass="border-top-bottom">
+                                             <children>
+                                                <Label prefHeight="30.0" prefWidth="175.0" text="Дата получения" textFill="#4682b2">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldPassportDate" prefHeight="46.0" prefWidth="94.0" />
+                                                <Label prefHeight="30.0" prefWidth="208.0" text="Номер учереждения" textFill="#4682b2">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldPassportIssuedBy" prefWidth="120.0" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" styleClass="border-top-bottom">
+                                             <children>
+                                                <Label prefWidth="200.0" text="Адрес проживания" textFill="#4682b2">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldPassportAddress" prefWidth="400.0" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
                                        </children>
                                        <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          <Insets bottom="5.0" top="5.0" />
                                        </padding>
                                     </VBox>
                                  </children>
@@ -335,7 +400,7 @@
                                        <children>
                                           <HBox spacing="20.0" styleClass="border-top-bottom" VBox.vgrow="ALWAYS">
                                              <children>
-                                                <Label text="Фамилия" textFill="#4682b2">
+                                                <Label prefWidth="100.0" text="Фамилия" textFill="#4682b2">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -343,7 +408,7 @@
                                                       <Insets left="10.0" />
                                                    </padding>
                                                 </Label>
-                                                <TextField fx:id="textFieldSurnameChild" prefHeight="46.0" prefWidth="100.0" />
+                                                <TextField fx:id="textFieldSurnameChild" prefHeight="46.0" prefWidth="145.0" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -354,7 +419,7 @@
                                           </HBox>
                                           <HBox spacing="20.0" styleClass="border-top-bottom" VBox.vgrow="ALWAYS">
                                              <children>
-                                                <Label text="Имя" textFill="#4682b2">
+                                                <Label prefHeight="30.0" prefWidth="100.0" text="Имя" textFill="#4682b2">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -362,16 +427,7 @@
                                                       <Insets left="10.0" />
                                                    </padding>
                                                 </Label>
-                                                <TextField fx:id="textFieldNameChild" prefHeight="46.0" prefWidth="100.0" />
-                                                <Label text="Добавочное Имя" textFill="#4682b2">
-                                                   <font>
-                                                      <Font size="20.0" />
-                                                   </font>
-                                                   <padding>
-                                                      <Insets left="10.0" />
-                                                   </padding>
-                                                </Label>
-                                                <TextField fx:id="textFieldShortNameChild" prefHeight="46.0" prefWidth="100.0" />
+                                                <TextField fx:id="textFieldNameChild" prefHeight="46.0" prefWidth="145.0" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -382,7 +438,7 @@
                                           </HBox>
                                           <HBox spacing="20.0" styleClass="border-top-bottom" VBox.vgrow="ALWAYS">
                                              <children>
-                                                <Label text="Отчество" textFill="#4682b2">
+                                                <Label prefWidth="100.0" text="Отчество" textFill="#4682b2">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -390,7 +446,7 @@
                                                       <Insets left="10.0" />
                                                    </padding>
                                                 </Label>
-                                                <TextField fx:id="textFieldMiddleNameChild" prefHeight="46.0" prefWidth="100.0" />
+                                                <TextField fx:id="textFieldMiddleNameChild" prefHeight="46.0" prefWidth="145.0" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -430,8 +486,8 @@
                                                       <Insets left="10.0" />
                                                    </padding>
                                                 </Label>
-                                                <DatePicker fx:id="datePickerDateOfBirth" prefWidth="100.0" />
-                                                <Label fx:id="labelYears" prefHeight="30.0" text="Лет (выберите дату)" textFill="#4682b2">
+                                                <TextField fx:id="textFieldDateOfBirth" prefHeight="46.0" prefWidth="125.0" />
+                                                <Label fx:id="labelYears" prefHeight="30.0" prefWidth="122.0" text="Кол-во лет" textFill="#4682b2">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -439,6 +495,7 @@
                                                       <Insets left="10.0" />
                                                    </padding>
                                                 </Label>
+                                                <TextField fx:id="textFieldMiddleNameChild2" prefHeight="46.0" prefWidth="125.0" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -507,7 +564,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="border-top-bottom">
                                  <children>
-                                    <Label text="Абонемент" textFill="#ffbc40">
+                                    <Label text="Абонемент (будет изменено)" textFill="#ffbc40">
                                        <font>
                                           <Font name="System Bold" size="30.0" />
                                        </font>

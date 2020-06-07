@@ -10,9 +10,7 @@ import javafx.stage.Stage;
 import sahan.abr.fx.controllers.MainController;
 import sahan.abr.fx.controllers.Navigator;
 import sahan.abr.entities.*;
-import sahan.abr.repository.EmployeeRepository;
-import sahan.abr.repository.ScheduleRepository;
-import sahan.abr.repository.SubscriptionRepository;
+import sahan.abr.repository.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -27,15 +25,20 @@ public class Main extends Application {
     public static SubscriptionRepository subscriptionRepository;
     public static EmployeeRepository employeeRepository;
     public static ScheduleRepository scheduleRepository;
+    public static PassportRep passportRep;
+    public static ContractRepository contractRepository;
+    public static ClientRepository clientRepository;
+    public static ChildRep childRep;
+
 
     public static ObservableList<String> observableListPosition = FXCollections.observableArrayList();
     public static ObservableList<String> observableListPoll = FXCollections.observableArrayList();
+    public static ObservableList<String> observableListTime = FXCollections.observableArrayList();
 
     public static ObservableList<Employee> observableListEmployees = FXCollections.observableArrayList();
     public static ObservableList<Subscription> observableListSubscriptions = FXCollections.observableArrayList();
-    public static ObservableList<Customer> observableListCustomers = FXCollections.observableArrayList();
+    public static ObservableList<Client> clientObservableList = FXCollections.observableArrayList();
 
-    public static final String urlAddress = "http://localhost:8080";
     public static Stage MAIN_STAGE;
 
     @Override
@@ -44,15 +47,16 @@ public class Main extends Application {
         observableListPoll.add("Большой");
         observableListPoll.add("Средний");
         observableListPoll.add("Маленький");
+        observableListPoll.add("Все");
+
+        observableListTime.addAll("06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00");
+        observableListTime.addAll("12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30");
+        observableListTime.addAll("19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "24:00");
 
         observableListPosition.add("Тренер");
+        observableListPosition.add("Администратор");
 
-        Parent parent = new Parent(0, "???????????", "?????????",
-                "????????????", "???", "123123", "22.10.19", "89237795552", "89237795552",
-                "sahan.abr@yandex.ru", "???", true, true, true, "0");
-
-        Customer customer = new Customer(parent);
-        observableListCustomers.add(customer);
+        //clientObservableList.add(customer);
 
         stage.setTitle("SRM");
         stage.setScene(createScene(loadMainPane()));
@@ -88,9 +92,13 @@ public class Main extends Application {
         Class.forName(FOR_NAME);
         Connection connection = DriverManager.getConnection(URL);
 
-        subscriptionRepository = new SubscriptionRepository();
-        employeeRepository = new EmployeeRepository();
-        scheduleRepository = new ScheduleRepository();
+        subscriptionRepository = new SubscriptionRepository(connection);
+        employeeRepository = new EmployeeRepository(connection);
+        scheduleRepository = new ScheduleRepository(connection);
+        passportRep = new PassportRep(connection);
+        contractRepository = new ContractRepository(connection);
+        clientRepository = new ClientRepository(connection);
+        childRep = new ChildRep(connection);
 
         launch(args);
     }

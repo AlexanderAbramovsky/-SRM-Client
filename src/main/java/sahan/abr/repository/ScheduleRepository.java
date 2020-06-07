@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ScheduleRepository implements CRUDRepository<Schedule> {
 
-    private final static String INSERT = "INSERT INTO SCHEDULE (ROLE, ID_ROLE, DATE, S_TIME, E_TIME) VALUES (?, ?, ?, ?, ?)";
-    private final static String UPDATE = "UPDATE SCHEDULE SET ROLE = ?, ID_ROLE = ?, DATE = ?, S_TIME = ?, E_TIME = ? WHERE ID = ?";
+    private final static String INSERT = "INSERT INTO SCHEDULE (ROLE, ID_ROLE, DATE, S_TIME, E_TIME, POLL) VALUES (?, ?, ?, ?, ?, ?)";
+    private final static String UPDATE = "UPDATE SCHEDULE SET ROLE = ?, ID_ROLE = ?, DATE = ?, S_TIME = ?, E_TIME = ?, POLL = ? WHERE ID = ?";
     private final static String DELETE = "DELETE FROM SCHEDULE WHERE ID = ?";
     private final static String SELECT_ALL = "SELECT * FROM SCHEDULE";
     private final static String SELECT_BY_ID = "SELECT * FROM SCHEDULE WHERE ID = ?";
@@ -37,7 +37,8 @@ public class ScheduleRepository implements CRUDRepository<Schedule> {
             String date = result.getString("DATE");
             String sTime = result.getString("S_TIME");
             String eTime = result.getString("E_TIME");
-            return new Schedule(idSchedule, ScheduleRole.valueOf(role), idRole, date, sTime, eTime);
+            String poll = result.getString("POLL");
+            return new Schedule(idSchedule, ScheduleRole.valueOf(role), idRole, date, sTime, eTime, poll);
         }
         return null;
     }
@@ -57,7 +58,8 @@ public class ScheduleRepository implements CRUDRepository<Schedule> {
             String dateSchedule = result.getString("DATE");
             String sTimeSchedule = result.getString("S_TIME");
             String eTimeSchedule = result.getString("E_TIME");
-            return new Schedule(idSchedule, ScheduleRole.valueOf(role), idRoleSchedule, dateSchedule, sTimeSchedule, eTimeSchedule);
+            String poll = result.getString("POLL");
+            return new Schedule(idSchedule, ScheduleRole.valueOf(role), idRoleSchedule, dateSchedule, sTimeSchedule, eTimeSchedule, poll);
         }
 
         return null;
@@ -77,7 +79,8 @@ public class ScheduleRepository implements CRUDRepository<Schedule> {
             String date = result.getString("DATE");
             String sTime = result.getString("S_TIME");
             String eTime = result.getString("E_TIME");
-            schedules.add(new Schedule(idSchedule, ScheduleRole.valueOf(role), idRole, date, sTime, eTime));
+            String poll = result.getString("POLL");
+            schedules.add(new Schedule(idSchedule, ScheduleRole.valueOf(role), idRole, date, sTime, eTime, poll));
         }
 
         return schedules;
@@ -87,10 +90,11 @@ public class ScheduleRepository implements CRUDRepository<Schedule> {
     public int save(Schedule data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, data.getRole().name());
-        statement.setInt(    2, data.getIdRole());
+        statement.setInt(2, data.getIdRole());
         statement.setString(3, data.getDate());
         statement.setString(4, data.getSTime());
         statement.setString(5, data.getETime());
+        statement.setString(6, data.getPoll());
 
         return executeId(statement);
     }
@@ -99,11 +103,12 @@ public class ScheduleRepository implements CRUDRepository<Schedule> {
     public boolean update(Schedule data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(UPDATE);
         statement.setString(1, data.getRole().name());
-        statement.setInt(    2, data.getIdRole());
+        statement.setInt(2, data.getIdRole());
         statement.setString(3, data.getDate());
         statement.setString(4, data.getSTime());
         statement.setString(5, data.getETime());
-        statement.setInt(6, data.getId());
+        statement.setString(6, data.getPoll());
+        statement.setInt(7, data.getId());
         return executeDML(statement);
     }
 

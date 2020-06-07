@@ -1,4 +1,6 @@
 
-nsquid:UselessImportCheck">Remove this unused import 'javafx.collections.ObservableList'.(ÄÜ€éüÿÿÿÿ8î¾ìÏ¦.
-hsquid:UselessImportCheck"=Remove this unused import 'javafx.collections.FXCollections'.(´¶²Æ8 ›ìÏ¦.
-qsquid:S3776¢"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¡üÓ²8 ©Ô…§.
+Wsquid:UselessImportCheck"-Remove this unused import 'org.slf4j.Logger'.(íØ®68´¹ºÃ¨.
+_squid:UselessImportCheck"4Remove this unused import 'org.slf4j.LoggerFactory'.(–ÿÚŞ8´¹ºÃ¨.
+Tsquid:S1172¯"0Remove this unused method parameter "dayOfWeek".(Ä©ê–ûÿÿÿÿ8™åµÃ¨.
+Tsquid:S1172Š"0Remove this unused method parameter "dayOfWeek".(««§ïúÿÿÿÿ8™åµÃ¨.
+qsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¡üÓ²8™åµÃ¨.

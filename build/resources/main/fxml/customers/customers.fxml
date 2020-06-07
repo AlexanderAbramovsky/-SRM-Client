@@ -120,11 +120,12 @@
                   </Label>
                </children>
             </HBox>
-            <TableView fx:id="tableViewCustomers" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tableViewClient" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="tableColumnFIO" prefWidth="75.0" text="ФИО" />
+                <TableColumn fx:id="tableColumnSurname" prefWidth="75.0" text="Фамилия" />
+                  <TableColumn fx:id="tableColumnName" prefWidth="75.0" text="Имя" />
+                  <TableColumn fx:id="tableColumnMiddleName" prefWidth="75.0" text="Отчество" />
                 <TableColumn fx:id="tableColumnPhoneNumber" prefWidth="75.0" text="Номер телефона" />
-                  <TableColumn fx:id="tableColumnChild" prefWidth="75.0" text="Ребенок" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

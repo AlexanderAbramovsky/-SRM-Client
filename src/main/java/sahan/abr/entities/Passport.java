@@ -6,15 +6,15 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Passport {
-    private int id;
-    private int idClient;
+    private Integer id;
+    private Integer idClient;
     private int series;
     private int number;
     private String date;
     private String issuedBy;
     private String address;
 
-    public Passport(int idClient, int series, int number, String date, String issuedBy, String address) {
+    public Passport(Integer idClient, int series, int number, String date, String issuedBy, String address) {
         this.idClient = idClient;
         this.series = series;
         this.number = number;

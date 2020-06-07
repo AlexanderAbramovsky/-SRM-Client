@@ -71,8 +71,8 @@ public class ChildRep implements CRUDRepository<Child> {
     @Override
     public int save(Child data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, data.getIdClient());
-        statement.setInt(2, data.getIdReference());
+        statement.setObject(1, data.getIdClient());
+        statement.setObject(2, data.getIdReference());
         statement.setString(3, data.getSurname());
         statement.setString(4, data.getName());
         statement.setString(5, data.getMiddleName());
@@ -85,7 +85,7 @@ public class ChildRep implements CRUDRepository<Child> {
     public boolean update(Child data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(UPDATE);
         statement.setInt(1, data.getIdClient());
-        statement.setInt(2, data.getIdReference());
+        statement.setObject(2, data.getIdReference());
         statement.setString(3, data.getSurname());
         statement.setString(4, data.getName());
         statement.setString(5, data.getMiddleName());

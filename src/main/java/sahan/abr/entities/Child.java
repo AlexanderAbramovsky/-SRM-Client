@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Child {
-    private int id;
-    private int idClient;
-    private int idReference;
+    private Integer id;
+    private Integer idClient;
+    private Integer idReference;
     private String surname;
     private String name;
     private String middleName;
@@ -16,7 +16,7 @@ public class Child {
     private String dateOfBirth;
     private String note;
 
-    public Child(int idClient, int idReference, String surname, String name, String middleName, Gender gender, String dateOfBirth, String note) {
+    public Child(Integer idClient, Integer idReference, String surname, String name, String middleName, Gender gender, String dateOfBirth, String note) {
         this.idClient = idClient;
         this.idReference = idReference;
         this.surname = surname;
