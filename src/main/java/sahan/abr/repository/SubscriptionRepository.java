@@ -9,6 +9,10 @@ import sahan.abr.entities.Subscription;
 public class SubscriptionRepository implements CRUDRepository<Subscription> {
 
     private final static String INSERT = "INSERT INTO SUBSCRIPTION (TITLE_SUBSCRIPTION, PRICE_SUBSCRIPTION, VALIDITY, NUMBER_CLASSES) VALUES (?, ?, ?, ?)";
+
+
+
+
     private final static String UPDATE = "UPDATE  SUBSCRIPTION SET TITLE_SUBSCRIPTION = ?, PRICE_SUBSCRIPTION = ?, VALIDITY = ?, NUMBER_CLASSES = ? WHERE ID = ?";
     private final static String DELETE = "DELETE FROM SUBSCRIPTION WHERE ID = ?";
     private final static String SELECT_ALL = "SELECT * FROM SUBSCRIPTION";

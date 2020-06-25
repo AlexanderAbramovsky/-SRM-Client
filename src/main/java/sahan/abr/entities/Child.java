@@ -16,7 +16,10 @@ public class Child {
     private String dateOfBirth;
     private String note;
 
-    public Child(Integer idClient, Integer idReference, String surname, String name, String middleName, Gender gender, String dateOfBirth, String note) {
+    private String referenceSTime;
+    private String referenceETime;
+
+    public Child(Integer idClient, Integer idReference, String surname, String name, String middleName, Gender gender, String dateOfBirth, String note, String referenceSTime, String referenceETime) {
         this.idClient = idClient;
         this.idReference = idReference;
         this.surname = surname;
@@ -25,5 +28,7 @@ public class Child {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.note = note;
+        this.referenceSTime = referenceSTime;
+        this.referenceETime = referenceETime;
     }
 }

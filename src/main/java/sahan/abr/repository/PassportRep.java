@@ -18,7 +18,7 @@ public class PassportRep implements CRUDRepository<Passport> {
 
     public PassportRep(Connection connection) {
         this.connection = connection;
-        System.out.println("Р•СЃС‚СЊ РїРѕРґРєР»СЋС‡РµРЅРёРµ!");
+        System.out.println("Есть подключение!");
     }
 
     @Override

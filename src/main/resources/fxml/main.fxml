@@ -62,6 +62,14 @@
                   <String fx:value="middle" />
                </styleClass>
             </TitledPane>
+            <Button fx:id="buttonSubscription1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionSubscription" text="Отчеты">
+               <styleClass>
+                  <String fx:value="lg" />
+                  <String fx:value="primary" />
+                  <String fx:value="toggle-button-menu-reports-right" />
+                  <String fx:value="middle" />
+               </styleClass>
+            </Button>
          </children>
          <HBox.margin>
             <Insets />

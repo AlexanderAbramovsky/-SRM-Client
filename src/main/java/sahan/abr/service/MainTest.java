@@ -34,7 +34,7 @@ public class MainTest {
 
         //System.out.println(employeeRepository.getAll());
 
-        employeeRepository.update(new Employee(3, "5", "5", "5", "5", "6"));
+       // employeeRepository.update(new Employee(3, "5", "5", "5", "5", "6"));
 
         System.out.println(employeeRepository.getAll());
     }

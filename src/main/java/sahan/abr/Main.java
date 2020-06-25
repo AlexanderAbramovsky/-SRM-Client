@@ -15,7 +15,7 @@ import sahan.abr.repository.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.SQLException;   
 
 public class Main extends Application {
 
@@ -61,6 +61,9 @@ public class Main extends Application {
         stage.setTitle("SRM");
         stage.setScene(createScene(loadMainPane()));
         MAIN_STAGE = stage;
+
+        stage.setMaximized(true);
+
         stage.show();
     }
 
@@ -74,7 +77,7 @@ public class Main extends Application {
         MainController mainController = loader.getController();
 
         Navigator.setMainController(mainController);
-        Navigator.loadVista(Navigator.SUBSCRIPTION);
+        Navigator.loadVista(Navigator.TIMETABLE);
 
         return mainPane;
     }

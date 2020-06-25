@@ -2,6 +2,7 @@ package sahan.abr.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import sahan.abr.lib.LibSRM;
 
 @Data
 @AllArgsConstructor
@@ -28,6 +29,25 @@ public class Client {
         this.middleName = middleName;
         this.phoneNumber = phoneNumber;
         this.contactPhoneNumber = contactPhoneNumber;
+    }
+
+    public String getInform(){
+        return "Client{" +
+                "id=" + id +
+                ", idChild=" + idChild +
+                ", idPassport=" + idPassport +
+                ", idContract=" + idContract +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", contactPhoneNumber='" + contactPhoneNumber + '\'' +
+                '}';
+    }
+
+    @Override
+    public String toString() {
+        return LibSRM.getFIO(this) + " " + phoneNumber;
     }
 
     //TODO подумать на счет mail, vk и т.п.

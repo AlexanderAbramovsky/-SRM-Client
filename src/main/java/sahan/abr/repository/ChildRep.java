@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ChildRep implements CRUDRepository<Child> {
 
-    private final static String INSERT = "INSERT INTO CHILD (ID_CLIENT, ID_REFERENCE, SURNAME, NAME, MIDDLE_NAME, GENDER, DATE_OF_BIRTH, NOTE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    private final static String UPDATE = "UPDATE CHILD SET ID_CLIENT = ?, ID_REFERENCE = ?, SURNAME = ?, NAME = ?, MIDDLE_NAME = ?, GENDER = ?, DATE_OF_BIRTH = ?, NOTE = ? WHERE ID = ?";
+    private final static String INSERT = "INSERT INTO CHILD (ID_CLIENT, ID_REFERENCE, SURNAME, NAME, MIDDLE_NAME, GENDER, DATE_OF_BIRTH, NOTE, REFERENCE_S_TIME, REFERENCE_E_TIME) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final static String UPDATE = "UPDATE CHILD SET ID_CLIENT = ?, ID_REFERENCE = ?, SURNAME = ?, NAME = ?, MIDDLE_NAME = ?, GENDER = ?, DATE_OF_BIRTH = ?, NOTE = ?, REFERENCE_S_TIME = ?, REFERENCE_E_TIME = ? WHERE ID = ?";
     private final static String DELETE = "DELETE FROM CHILD WHERE ID = ?";
     private final static String SELECT_ALL = "SELECT * FROM CHILD";
     private final static String SELECT_BY_ID = "SELECT * FROM CHILD WHERE ID = ?";
@@ -39,7 +39,9 @@ public class ChildRep implements CRUDRepository<Child> {
             String gender = result.getString("GENDER");
             String dateOfBirth = result.getString("DATE_OF_BIRTH");
             String note = result.getString("NOTE");
-            return new Child(idChild, idClient, idReference, surname, name, middleName, Gender.valueOf(gender), dateOfBirth, note);
+            String referenceSTime = result.getString("REFERENCE_S_TIME");
+            String referenceETime = result.getString("REFERENCE_E_TIME");
+            return new Child(idChild, idClient, idReference, surname, name, middleName, Gender.valueOf(gender), dateOfBirth, note, referenceSTime, referenceETime);
         }
 
         return null;
@@ -62,7 +64,9 @@ public class ChildRep implements CRUDRepository<Child> {
             String gender = result.getString("GENDER");
             String dateOfBirth = result.getString("DATE_OF_BIRTH");
             String note = result.getString("NOTE");
-            children.add(new Child(idChild, idClient, idReference, surname, name, middleName, Gender.valueOf(gender), dateOfBirth, note));
+            String referenceSTime = result.getString("REFERENCE_S_TIME");
+            String referenceETime = result.getString("REFERENCE_E_TIME");
+            children.add(new Child(idChild, idClient, idReference, surname, name, middleName, Gender.valueOf(gender), dateOfBirth, note, referenceSTime, referenceETime));
         }
 
         return children;
@@ -79,6 +83,8 @@ public class ChildRep implements CRUDRepository<Child> {
         statement.setString(6, data.getGender().name());
         statement.setString(7, data.getDateOfBirth());
         statement.setString(8, data.getNote());
+        statement.setString(9, data.getReferenceSTime());
+        statement.setString(10, data.getReferenceETime());
         return executeId(statement);    }
 
     @Override
@@ -92,7 +98,9 @@ public class ChildRep implements CRUDRepository<Child> {
         statement.setString(6, data.getGender().name());
         statement.setString(7, data.getDateOfBirth());
         statement.setString(8, data.getNote());
-        statement.setInt(9, data.getId());
+        statement.setString(9, data.getReferenceSTime());
+        statement.setString(10, data.getReferenceETime());
+        statement.setInt(11, data.getId());
         return executeDML(statement);
     }
 

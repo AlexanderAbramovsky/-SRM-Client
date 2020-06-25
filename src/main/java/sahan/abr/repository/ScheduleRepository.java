@@ -16,6 +16,7 @@ public class ScheduleRepository implements CRUDRepository<Schedule> {
     private final static String SELECT_BY_ID = "SELECT * FROM SCHEDULE WHERE ID = ?";
 
     private final static String SELECT_BY_ID_ROLE_AND_DATE = "SELECT * FROM SCHEDULE WHERE ID_ROLE = ? AND DATE = ?";
+    private final static String SELECT_ALL_BY_DATE_AND_ROLE_AND_POOL = "SELECT * FROM SCHEDULE WHERE DATE = ? AND ROLE = ? AND POLL = ?";
 
     public static Connection connection;
 
@@ -63,6 +64,29 @@ public class ScheduleRepository implements CRUDRepository<Schedule> {
         }
 
         return null;
+    }
+
+    public List<Schedule> getAllByDateAndRoleAndPoll(String date, ScheduleRole role, String poll) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(SELECT_ALL_BY_DATE_AND_ROLE_AND_POOL);
+        statement.setString(1, date);
+        statement.setString(2, role.name());
+        statement.setString(3, poll);
+        ResultSet result = statement.executeQuery();
+
+        List<Schedule> schedules = new ArrayList<>();
+
+        while (result.next()) {
+            int idSchedule = result.getInt("ID");
+            String roleSchedule = result.getString("ROLE");
+            int idRole = result.getInt("ID_ROLE");
+            String dateNew = result.getString("DATE");
+            String sTime = result.getString("S_TIME");
+            String eTime = result.getString("E_TIME");
+            String pollSchedule = result.getString("POLL");
+            schedules.add(new Schedule(idSchedule, ScheduleRole.valueOf(roleSchedule), idRole, dateNew, sTime, eTime, pollSchedule));
+        }
+
+        return schedules;
     }
 
     @Override

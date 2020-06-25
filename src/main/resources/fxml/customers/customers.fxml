@@ -4,7 +4,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -16,7 +15,7 @@
 
 <StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sahan.abr.fx.controllers.customer.CustomerController">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox>
          <children>
             <HBox>
                <children>
@@ -68,12 +67,6 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label text="Филиал" textFill="#4682b2">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <ComboBox prefWidth="150.0" promptText="-Все филиалы-" style="-fx-background-color: white;" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
@@ -120,7 +113,7 @@
                   </Label>
                </children>
             </HBox>
-            <TableView fx:id="tableViewClient" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tableViewClient" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="tableColumnSurname" prefWidth="75.0" text="Фамилия" />
                   <TableColumn fx:id="tableColumnName" prefWidth="75.0" text="Имя" />

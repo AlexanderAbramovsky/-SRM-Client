@@ -5,9 +5,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import sahan.abr.fx.controllers.Navigator;
 import sahan.abr.entities.*;
-import sahan.abr.lib.LibSRM;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -16,6 +16,12 @@ import java.util.Date;
 import static sahan.abr.Main.*;
 
 public class AddClientController {
+
+    @FXML
+    private Button save1;
+
+    @FXML
+    private Button save2;
 
     @FXML
     private Label labelOperation;
@@ -95,8 +101,6 @@ public class AddClientController {
     @FXML
     private Label labelYears;
 
-    @FXML
-    private ComboBox<Employee> comboBoxEmployees;
 
     @FXML
     private TextArea textAreaNote;
@@ -143,6 +147,12 @@ public class AddClientController {
     @FXML
     private TextField certificateValidityDateEnd;
 
+    @FXML
+    private HBox test1;
+
+    @FXML
+    private HBox test2;
+
     private LocalDate dateOfBirth;
     private LocalDate dateStartSubscription;
     private String dateEndSubscriptionStr;
@@ -155,6 +165,9 @@ public class AddClientController {
 
     private Client client;
 
+    private boolean informTimeTable;
+    private boolean informClient;
+
     public AddClientController() {
     }
 
@@ -162,13 +175,25 @@ public class AddClientController {
         this.client = client;
     }
 
+    public AddClientController(Client client, boolean informTimeTable) {
+        this.client = client;
+        this.informTimeTable = informTimeTable;
+    }
+
+    public AddClientController(Client client, boolean informTimeTable, boolean informClient) {
+        this.client = client;
+        this.informTimeTable = informTimeTable;
+        this.informClient = informClient;
+    }
+
     @FXML
     private void initialize() throws SQLException {
 
-//        datePickerSubscriptionStart.focusedProperty().addListener(new DeterminingDateEndSubscription());
-
-        comboBoxEmployees.setItems(observableListEmployees);
+        datePickerSubscriptionStart.focusedProperty().addListener(new DeterminingDateEndSubscription());
         comboBoxTypeSubscription.setItems(observableListSubscriptions);
+
+        test1.setVisible(false);
+        test2.setVisible(false);
 
         if (client != null) {
 
@@ -181,7 +206,7 @@ public class AddClientController {
             System.out.println("passport" + passport);
             System.out.println("child" + child);
             System.out.println("contract" + contract);
-            System.out.println("client" + client);
+            System.out.println("client" + client.getInform());
 
 
             textFieldSurnameParent.setText(client.getSurname());
@@ -200,6 +225,11 @@ public class AddClientController {
             textFieldPhoneNumber.setText(client.getPhoneNumber());
             textFieldContactPhoneNumber.setText(client.getContactPhoneNumber());
 
+            certificateValidityDateStart.setText(child.getReferenceSTime());
+            certificateValidityDateEnd.setText(child.getReferenceETime());
+
+            textAreaNote.setText(child.getNote());
+            textFieldDateOfBirth.setText(child.getDateOfBirth());
 //            textFieldEmail.setText(parent.getEmail());
 //            textFieldVK.setText(parent.getVk());
 //            checkBoxNotCall.setSelected(parent.isNotCall());
@@ -234,15 +264,32 @@ public class AddClientController {
 
             labelOperation.setText("Обновление клиента");
         }
+
+        if (informTimeTable) {
+            labelOperation.setText("Информация о клиенте");
+
+            save1.setVisible(false);
+            save2.setVisible(false);
+        }
     }
 
     @FXML
     void back(ActionEvent event) {
-        Navigator.loadVista(Navigator.CUSTOMERS);
+        if (informTimeTable && !informClient) {
+            Navigator.loadVista(Navigator.TIMETABLE);
+        } else {
+            Navigator.loadVista(Navigator.CUSTOMERS);
+        }
     }
 
     @FXML
     void saveCustomer(ActionEvent event) throws SQLException {
+
+        if (radioButtonBoy.isSelected()) {
+            genderStr = Gender.Boy.name();
+        } else {
+            genderStr = Gender.Girl.name();
+        }
 
         Passport passport = new Passport(
                 null,
@@ -265,8 +312,10 @@ public class AddClientController {
                 textFieldNameChild.getText(),
                 textFieldMiddleNameChild.getText(),
                 Gender.valueOf(genderStr),
-                dateOfBirthStr,
-                textAreaNote.getText()
+                textFieldDateOfBirth.getText(),
+                textAreaNote.getText(),
+                certificateValidityDateStart.getText(),
+                certificateValidityDateEnd.getText()
         );
 
         Client newClient = new Client(
@@ -285,8 +334,17 @@ public class AddClientController {
             clientObservableList.remove(client);
 
             newClient.setId(client.getId());
+            newClient.setIdPassport(client.getIdPassport());
+            newClient.setIdContract(client.getIdContract());
+            newClient.setIdChild(client.getIdChild());
+
+            passport.setId(client.getIdPassport());
             passport.setIdClient(client.getId());
+
+            contract.setId(client.getIdContract());
             contract.setIdClient(client.getId());
+
+            child.setId(client.getIdChild());
             child.setIdClient(client.getId());
 
             passportRep.update(passport);
@@ -317,26 +375,15 @@ public class AddClientController {
             contractRepository.update(contract);
             childRep.update(child);
 
-            System.out.println("_____________");
-            System.out.println("passport" + passport);
-            System.out.println("child" + child);
-            System.out.println("contract" + contract);
-            System.out.println("client" + newClient);
-
             clientObservableList.add(newClient);
         }
         Navigator.loadVista(Navigator.CUSTOMERS);
     }
 
     @FXML
-    void setEmployee(ActionEvent event) {
-        employee = comboBoxEmployees.getValue();
-    }
-
-    @FXML
     void setSubscription(ActionEvent event) {
         subscription = comboBoxTypeSubscription.getValue();
-        labelNumberClasses.setText("???-?? ??????? - " + subscription.getNumberClasses());
+        labelNumberClasses.setText("Кол-во занятий - " + subscription.getNumberClasses());
     }
 
     @FXML
@@ -359,19 +406,19 @@ public class AddClientController {
 //        }
 //    }
 
-//    private class DeterminingDateEndSubscription implements ChangeListener<Boolean> {
-//        @Override
-//        public void changed(ObservableValue<? extends Boolean> ov, Boolean oldb, Boolean newb) {
-//            dateStartSubscription = datePickerSubscriptionStart.getValue();
-//            Date date = new Date();
-//            date.setDate(dateStartSubscription.getDayOfMonth());
-//            date.setMonth(dateStartSubscription.getMonthValue());
-//            date.setYear(dateStartSubscription.getYear());
-//            date.setDate(date.getDate() + subscription.getValidity());
-//            dateStartSubscriptionStr = dateStartSubscription.getDayOfMonth() + "." +
-//                    dateStartSubscription.getMonthValue() + "." + dateStartSubscription.getYear();
-//            dateEndSubscriptionStr = date.getDate() + "." + date.getMonth() + "." + date.getYear();
-//            labelSubscriptionEndDate.setText("?? " + date.getDate() + "." + date.getMonth() + "." + date.getYear());
-//        }
-//    }
+    private class DeterminingDateEndSubscription implements ChangeListener<Boolean> {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> ov, Boolean oldb, Boolean newb) {
+            dateStartSubscription = datePickerSubscriptionStart.getValue();
+            Date date = new Date();
+            date.setDate(dateStartSubscription.getDayOfMonth());
+            date.setMonth(dateStartSubscription.getMonthValue());
+            date.setYear(dateStartSubscription.getYear());
+            date.setDate(date.getDate() + subscription.getValidity());
+            dateStartSubscriptionStr = dateStartSubscription.getDayOfMonth() + "." +
+                    dateStartSubscription.getMonthValue() + "." + dateStartSubscription.getYear();
+            dateEndSubscriptionStr = date.getDate() + "." + date.getMonth() + "." + date.getYear();
+            labelSubscriptionEndDate.setText("по " + date.getDate() + "." + date.getMonth() + "." + date.getYear());
+        }
+    }
 }

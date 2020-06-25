@@ -20,9 +20,6 @@ import static sahan.abr.Main.*;
 public class EmployeesController {
 
     @FXML
-    private StackPane employees;
-
-    @FXML
     private TextField textFieldSearchSurname;
 
     @FXML

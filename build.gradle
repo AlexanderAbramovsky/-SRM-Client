@@ -11,6 +11,8 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.12
 mainClassName = 'Main'
 
+//[compileJava, compileTestJava]*.options*.encoding = 'windows-1251'
+
 repositories {
     mavenCentral()
     jcenter()
@@ -22,8 +24,7 @@ javafx {
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+//    compile 'org.projectlombok:lombok:1.18.12'
 
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.30.1'
 

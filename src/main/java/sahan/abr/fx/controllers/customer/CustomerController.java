@@ -106,8 +106,8 @@ public class CustomerController {
 
                                 buttonAddItionalInformation.setOnAction((ActionEvent event) -> {
                                     Client data = getTableView().getItems().get(getIndex());
-                                    // ModalUpdateEmployeeController controller = new ModalUpdateEmployeeController(data, employeesController);
-                                    // Navigator.getModalWindow("SRM", Navigator.MODAL_UPDATE_EMPLOYEE, controller);
+                                    AddClientController controller = new AddClientController(data, true, true);
+                                    Navigator.loadVista(Navigator.ADD_CUSTOMERS, controller);
                                 });
 
                                 hBox.getChildren().add(buttonAddItionalInformation);

@@ -47,7 +47,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="46.0" prefWidth="142.0" text="Сохранить">
+                                    <Button fx:id="save1" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="46.0" prefWidth="142.0" text="Сохранить">
                                        <styleClass>
                                           <String fx:value="lg" />
                                           <String fx:value="toggle-button-save-left" />
@@ -296,56 +296,6 @@
                                     <Insets bottom="5.0" top="5.0" />
                                  </padding>
                               </HBox>
-                              <HBox prefWidth="555.0" spacing="20.0" styleClass="border-top-bottom">
-                                 <children>
-                                    <Label text="E-mail" textFill="#4682b2">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <TextField fx:id="textFieldEmail" prefHeight="46.0" prefWidth="100.0" />
-                                    <Label text="Vk" textFill="#4682b2">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <TextField fx:id="textFieldVK" prefHeight="46.0" prefWidth="100.0" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="border-top-bottom">
-                                 <children>
-                                    <CheckBox fx:id="checkBoxNotCall" mnemonicParsing="false" styleClass="lg" text="Не звонить" textFill="#4682b2">
-                                       <font>
-                                          <Font size="36.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </CheckBox>
-                                    <CheckBox fx:id="checkBoxNotEmail" mnemonicParsing="false" styleClass="lg" text="Не отправлять почту" textFill="#4682b2">
-                                       <font>
-                                          <Font size="36.0" />
-                                       </font>
-                                    </CheckBox>
-                                    <CheckBox fx:id="checkBoxNotVK" mnemonicParsing="false" styleClass="lg" text="Не отправлять сообщения в Vk" textFill="#4682b2">
-                                       <font>
-                                          <Font size="36.0" />
-                                       </font>
-                                    </CheckBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </padding>
-                              </HBox>
                            </children>
                         </VBox>
                      </children>
@@ -371,7 +321,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="46.0" prefWidth="142.0" text="Сохранить">
+                                    <Button fx:id="save2" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="46.0" prefWidth="142.0" text="Сохранить">
                                        <styleClass>
                                           <String fx:value="lg" />
                                           <String fx:value="toggle-button-save-left" />
@@ -487,31 +437,6 @@
                                                    </padding>
                                                 </Label>
                                                 <TextField fx:id="textFieldDateOfBirth" prefHeight="46.0" prefWidth="125.0" />
-                                                <Label fx:id="labelYears" prefHeight="30.0" prefWidth="122.0" text="Кол-во лет" textFill="#4682b2">
-                                                   <font>
-                                                      <Font size="20.0" />
-                                                   </font>
-                                                   <padding>
-                                                      <Insets left="10.0" />
-                                                   </padding>
-                                                </Label>
-                                                <TextField fx:id="textFieldMiddleNameChild2" prefHeight="46.0" prefWidth="125.0" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="5.0" right="5.0" top="5.0" />
-                                             </padding>
-                                          </HBox>
-                                          <HBox spacing="20.0" styleClass="border-top-bottom">
-                                             <children>
-                                                <Label text="Тренер" textFill="#4682b2">
-                                                   <font>
-                                                      <Font size="20.0" />
-                                                   </font>
-                                                   <padding>
-                                                      <Insets left="10.0" />
-                                                   </padding>
-                                                </Label>
-                                                <ComboBox fx:id="comboBoxEmployees" onAction="#setEmployee" prefWidth="180.0" style="-fx-background-color: white;" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" right="5.0" top="5.0" />
@@ -555,6 +480,16 @@
                                              </padding>
                                           </Label>
                                           <TextArea fx:id="textAreaNote" VBox.vgrow="ALWAYS" />
+                                          <CheckBox fx:id="checkBoxFreeEntrance1" mnemonicParsing="false" styleClass="lg" text="Напоминать в заметках" textFill="#4682b2">
+                                             <font>
+                                                <Font size="36.0" />
+                                             </font>
+                                          </CheckBox>
+                                          <CheckBox fx:id="checkBoxFreeEntrance2" mnemonicParsing="false" styleClass="lg" text="Согласие на парные занятия" textFill="#4682b2">
+                                             <font>
+                                                <Font size="36.0" />
+                                             </font>
+                                          </CheckBox>
                                        </children>
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -626,7 +561,7 @@
                                     <Insets bottom="20.0" right="5.0" top="20.0" />
                                  </padding>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="border-top-bottom">
+                              <HBox fx:id="test1" alignment="CENTER_LEFT" spacing="20.0" styleClass="border-top-bottom">
                                  <children>
                                     <Label text="Расписание посещений" textFill="#ffbc40">
                                        <font>
@@ -646,7 +581,7 @@
                                     <Insets bottom="5.0" top="5.0" />
                                  </padding>
                               </HBox>
-                              <HBox spacing="10.0" styleClass="border-top-bottom">
+                              <HBox fx:id="test2" spacing="10.0" style="-fx-background-color: yellow;" styleClass="border-top-bottom">
                                  <children>
                                     <VBox alignment="CENTER" fillWidth="false" maxWidth="115.0" minWidth="115.0" prefWidth="115.0" styleClass="border-test-2" stylesheets="@../../css/border.css">
                                        <children>

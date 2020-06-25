@@ -36,6 +36,8 @@ public class Navigator {
     public static final String EMPLOYEE_TIME_TABLE = "/fxml/employee/employee-time-table.fxml";
     public static final String MODAL_ADD_EMPLOYEE = "/fxml/employee/add-employee.fxml";
     public static final String MODAL_ADD_ENTRY_EMPLOYEE = "/fxml/employee/add-entry-employee-time-table.fxml";
+    public static final String MODAL_ADD_SCHEDULE = "/fxml/schedule/add-schedule.fxml";
+    public static final String MODAL_DELETE_SCHEDULE = "/fxml/schedule/delete-schedule.fxml";
     public static final String MODAL_UPDATE_EMPLOYEE = "/fxml/employee/update-employee.fxml";
 
     private static MainController mainController;

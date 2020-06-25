@@ -19,4 +19,9 @@ public class Subscription {
         this.validity = validity;
         this.numberClasses = numberClasses;
     }
+
+    @Override
+    public String toString() {
+        return titleSubscription;
+    }
 }
