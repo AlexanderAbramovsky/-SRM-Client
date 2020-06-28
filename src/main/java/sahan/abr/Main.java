@@ -29,6 +29,7 @@ public class Main extends Application {
     public static ContractRepository contractRepository;
     public static ClientRepository clientRepository;
     public static ChildRep childRep;
+    public static ActiveSubscriptionRep activeSubscriptionRep;
 
 
     public static ObservableList<String> observableListPosition = FXCollections.observableArrayList();
@@ -38,6 +39,7 @@ public class Main extends Application {
     public static ObservableList<Employee> observableListEmployees = FXCollections.observableArrayList();
     public static ObservableList<Subscription> observableListSubscriptions = FXCollections.observableArrayList();
     public static ObservableList<Client> clientObservableList = FXCollections.observableArrayList();
+    public static ObservableList<ActiveSubscription> observableListActiveSubscriptions = FXCollections.observableArrayList();
 
     public static Stage MAIN_STAGE;
 
@@ -102,6 +104,7 @@ public class Main extends Application {
         contractRepository = new ContractRepository(connection);
         clientRepository = new ClientRepository(connection);
         childRep = new ChildRep(connection);
+        activeSubscriptionRep = new ActiveSubscriptionRep(connection);
 
         launch(args);
     }

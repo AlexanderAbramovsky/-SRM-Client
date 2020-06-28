@@ -3,6 +3,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.8'
     id 'io.franzbecker.gradle-lombok' version '1.14'
     id 'java'
+    id 'org.beryx.jlink' version '2.12.0'
 }
 
 group 'sahan.abr'
@@ -19,12 +20,33 @@ repositories {
 }
 
 javafx {
-    version = "12.0.2"
+    version = "14"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
+sourceCompatibility = 1.12
+targetCompatibility = 1.12
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': 'Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+//
+//jlink {
+//    launcher {
+//        name = 'hellofx'
+//    }
+//}
+
 dependencies {
-//    compile 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.30.1'
 

@@ -21,6 +21,7 @@ public class Navigator {
 
     public static final String CUSTOMERS = "/fxml/customers/customers.fxml";
     public static final String ADD_CUSTOMERS = "/fxml/customers/add-customers.fxml";
+    public static final String ADD_ACTIVE_SUBSCRIPTION = "/fxml/active_subscription/add-active-sub.fxml";
     public static final String MODAL_ADDITIONAL_INFORMATION_PARENT_CUSTOMER = "/fxml/customers/additional-information-customer-parent.fxml";
     public static final String MODAL_ADD_CUSTOMER = "/fxml/customers/add-customers-parent.fxml";
     public static final String MODAL_ADD_CHILD = "/fxml/customers/add-customers-child.fxml";

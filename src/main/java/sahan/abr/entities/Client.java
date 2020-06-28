@@ -12,6 +12,7 @@ public class Client {
     private Integer idChild;
     private Integer idPassport;
     private Integer idContract;
+    private Integer idActiveSubscription;
 
     private String surname;
     private String name;
@@ -20,10 +21,11 @@ public class Client {
     private String phoneNumber;
     private String contactPhoneNumber;
 
-    public Client(Integer idChild, Integer idPassport, Integer idContract, String surname, String name, String middleName, String phoneNumber, String contactPhoneNumber) {
+    public Client(Integer idChild, Integer idPassport, Integer idContract, Integer idActiveSubscription, String surname, String name, String middleName, String phoneNumber, String contactPhoneNumber) {
         this.idChild = idChild;
         this.idPassport = idPassport;
         this.idContract = idContract;
+        this.idActiveSubscription = idActiveSubscription;
         this.surname = surname;
         this.name = name;
         this.middleName = middleName;

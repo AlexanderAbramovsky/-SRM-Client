@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import sahan.abr.fx.controllers.Navigator;
 import sahan.abr.entities.*;
+import sahan.abr.fx.controllers.active_subscription.AddActiveSubscription;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -101,6 +102,14 @@ public class AddClientController {
     @FXML
     private Label labelYears;
 
+    @FXML
+    private Label labelSubscriptionName;
+
+    @FXML
+    private Label labelSubscriptionStartDate;
+
+    @FXML
+    private Label labelSubscriptionEndDate;
 
     @FXML
     private TextArea textAreaNote;
@@ -110,9 +119,6 @@ public class AddClientController {
 
     @FXML
     private DatePicker datePickerSubscriptionStart;
-
-    @FXML
-    private Label labelSubscriptionEndDate;
 
     @FXML
     private CheckBox checkBoxFreeEntrance;
@@ -189,9 +195,6 @@ public class AddClientController {
     @FXML
     private void initialize() throws SQLException {
 
-        datePickerSubscriptionStart.focusedProperty().addListener(new DeterminingDateEndSubscription());
-        comboBoxTypeSubscription.setItems(observableListSubscriptions);
-
         test1.setVisible(false);
         test2.setVisible(false);
 
@@ -200,14 +203,7 @@ public class AddClientController {
             Passport passport = passportRep.getById(client.getIdPassport());
             Contract contract = contractRepository.getById(client.getIdContract());
             Child child = childRep.getById(client.getIdChild());
-//            Parent parent = client.getParent();
-
-            System.out.println("_____________");
-            System.out.println("passport" + passport);
-            System.out.println("child" + child);
-            System.out.println("contract" + contract);
-            System.out.println("client" + client.getInform());
-
+            ActiveSubscription activeSubscription  = activeSubscriptionRep.getById(client.getIdActiveSubscription());
 
             textFieldSurnameParent.setText(client.getSurname());
             textFieldNameParent.setText(client.getName());
@@ -230,16 +226,15 @@ public class AddClientController {
 
             textAreaNote.setText(child.getNote());
             textFieldDateOfBirth.setText(child.getDateOfBirth());
-//            textFieldEmail.setText(parent.getEmail());
-//            textFieldVK.setText(parent.getVk());
-//            checkBoxNotCall.setSelected(parent.isNotCall());
-//            checkBoxNotEmail.setSelected(parent.isNotEmail());
-//            checkBoxNotVK.setSelected(parent.isNotVK());
-
 
             textFieldSurnameChild.setText(child.getSurname());
             textFieldNameChild.setText(child.getName());
             textFieldMiddleNameChild.setText(child.getMiddleName());
+
+            labelSubscriptionStartDate.setText("С " + activeSubscription.getSTimeSubscription());
+            labelSubscriptionEndDate.setText("По " + activeSubscription.getETimeSubscription());
+            labelSubscriptionName.setText("Тип " + activeSubscription.getTitleSubscription());
+            labelNumberClasses.setText("оставшее кол-во занятий " + activeSubscription.getClassesSubscription());
 
             if (child.getGender().equals(Gender.Boy)) {
                 radioButtonBoy.setSelected(true);
@@ -247,20 +242,7 @@ public class AddClientController {
                 radioButtonGirl.setSelected(true);
             }
 
-
             textFieldDateOfBirth.setText(child.getDateOfBirth());
-
-//            comboBoxEmployees.setValue(child());
-//            certificateValidityDateStart.setText(child.getCertificateValidityDate()[0]);
-//            certificateValidityDateEnd.setText(child.getCertificateValidityDate()[1]);
-
-//            comboBoxTypeSubscription.setValue(child.getSubscription());
-
-//            String[] str1 = child.getSubscriptionValidity()[0].split(".");
-//            LocalDate localDate1 = LocalDate.of(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]));
-//            datePickerSubscriptionStart.setValue(localDate1);
-//            labelSubscriptionEndDate.setText("?? " + child.getSubscriptionValidity()[1]);
-//            labelNumberClasses.setText("???-?? ??????? - " + child.getNumberOfLessonsRemaining());
 
             labelOperation.setText("Обновление клиента");
         }
@@ -319,6 +301,7 @@ public class AddClientController {
         );
 
         Client newClient = new Client(
+                null,
                 null,
                 null,
                 null,
@@ -395,16 +378,16 @@ public class AddClientController {
         }
     }
 
-//    private class DeterminingDateOfBirth implements ChangeListener<Boolean> {
-//        @Override
-//        public void changed(ObservableValue<? extends Boolean> ov, Boolean oldb, Boolean newb) {
-//            dateOfBirth = datePickerDateOfBirth.getValue();
-//            LocalDate localDate = LocalDate.now();
-//            labelYears.setText("?????? ??? - " + (localDate.getYear() - dateOfBirth.getYear()));
-//            dateOfBirthStr = dateOfBirth.getDayOfMonth() + "." +
-//                    dateOfBirth.getMonthValue() + "." + dateOfBirth.getYear();
-//        }
-//    }
+    @FXML
+    void extendSubscription(ActionEvent event) {
+        AddActiveSubscription controller = new AddActiveSubscription(client);
+        Navigator.getModalWindow("SRM", Navigator.ADD_ACTIVE_SUBSCRIPTION, controller);
+    }
+
+    @FXML
+    void freezeSubscription(ActionEvent event) {
+
+    }
 
     private class DeterminingDateEndSubscription implements ChangeListener<Boolean> {
         @Override
@@ -421,4 +404,15 @@ public class AddClientController {
             labelSubscriptionEndDate.setText("по " + date.getDate() + "." + date.getMonth() + "." + date.getYear());
         }
     }
+
+    //    private class DeterminingDateOfBirth implements ChangeListener<Boolean> {
+//        @Override
+//        public void changed(ObservableValue<? extends Boolean> ov, Boolean oldb, Boolean newb) {
+//            dateOfBirth = datePickerDateOfBirth.getValue();
+//            LocalDate localDate = LocalDate.now();
+//            labelYears.setText("?????? ??? - " + (localDate.getYear() - dateOfBirth.getYear()));
+//            dateOfBirthStr = dateOfBirth.getDayOfMonth() + "." +
+//                    dateOfBirth.getMonthValue() + "." + dateOfBirth.getYear();
+//        }
+//    }
 }
