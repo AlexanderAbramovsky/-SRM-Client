@@ -1,0 +1,6 @@
+
+Xsquid:UselessImportCheck"4Remove this unused import 'org.slf4j.LoggerFactory'.(–ÿÚŞ
+Msquid:S1172¯"0Remove this unused method parameter "dayOfWeek".(Ä©ê–ûÿÿÿÿ
+jsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¡üÓ²
+Msquid:S1172Š"0Remove this unused method parameter "dayOfWeek".(««§ïúÿÿÿÿ
+Psquid:UselessImportCheck"-Remove this unused import 'org.slf4j.Logger'.(íØ®6

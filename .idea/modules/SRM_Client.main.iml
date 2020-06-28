@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="sahan.abr" externalSystemModuleType="sourceSet" externalSystemModuleVersion="1.0-SNAPSHOT" linkedProjectId="SRM Client:main" linkedProjectPath="$MODULE_DIR$/../.." rootProjectPath="$MODULE_DIR$/../.." />
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_12">
+    <output url="file://$MODULE_DIR$/../../build/classes/java/main" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../src/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src/main/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.xerial:sqlite-jdbc:3.30.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-simple:1.6.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-fxml:win:14" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:win:14" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:14" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:win:14" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:14" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:win:14" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.projectlombok:lombok:1.18.12" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:14" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.6.1" level="project" />
+  </component>
+</module>

@@ -8,7 +8,7 @@
         <processorPath useClasspath="false">
           <entry name="C:/gradle-5.6.2/bin/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.20/ac76d9b956045631d1561a09289cbf472e077c01/lombok-1.16.20.jar" />
         </processorPath>
-        <module name="SRM_Client.test" />
+        <module name="sahan.abr.SRM_Client.test" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -18,5 +18,10 @@
         <module name="SRM_Client.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="sahan.abr.SRM_Client.test" target="12" />
+      <module name="SRM_Client.main" target="12" />
+      <module name="SRM_Client.test" target="12" />
+    </bytecodeTargetLevel>
   </component>
 </project>

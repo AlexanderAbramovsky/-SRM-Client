@@ -6,8 +6,10 @@ sahan/abr/fx/controllers/schedule/DeleteSchedule.java
  sahan.abr.fx.controllers.schedule.DeleteSchedule
 sahan/abr/repository/PassportRep.java
  sahan.abr.repository.PassportRep
-sahan/abr/repository/SubscriptionRepository.java
- sahan.abr.repository.SubscriptionRepository
+sahan/abr/fx/controllers/active_subscription/AddActiveSubscription.java
+ sahan.abr.fx.controllers.active_subscription.AddActiveSubscription
+ sahan.abr.fx.controllers.active_subscription.AddActiveSubscription$1
+ sahan.abr.fx.controllers.active_subscription.AddActiveSubscription$1$1
 sahan/abr/fx/controllers/customer/CustomerController.java
  sahan.abr.fx.controllers.customer.CustomerController
  sahan.abr.fx.controllers.customer.CustomerController$1
@@ -37,8 +39,9 @@ sahan/abr/entities/Employee.java
  sahan.abr.entities.Employee
 sahan/abr/repository/ActiveSubscriptionRep.java
  sahan.abr.repository.ActiveSubscriptionRep
-sahan/abr/fx/controllers/SRM.java
- sahan.abr.fx.controllers.SRM
+sahan/abr/fx/controllers/customer/AddClientController.java
+ sahan.abr.fx.controllers.customer.AddClientController
+ sahan.abr.fx.controllers.customer.AddClientController$DeterminingDateEndSubscription
 sahan/abr/lib/LibSRM.java
  sahan.abr.lib.LibSRM
 sahan/abr/fx/controllers/MainController.java
@@ -104,10 +107,7 @@ sahan/abr/entities/EmployeePosition.java
  sahan.abr.entities.EmployeePosition
 sahan/abr/repository/ChildRep.java
  sahan.abr.repository.ChildRep
-sahan/abr/fx/controllers/active_subscription/AddActiveSubscription.java
- sahan.abr.fx.controllers.active_subscription.AddActiveSubscription
- sahan.abr.fx.controllers.active_subscription.AddActiveSubscription$1
- sahan.abr.fx.controllers.active_subscription.AddActiveSubscription$1$1
-sahan/abr/fx/controllers/customer/AddClientController.java
- sahan.abr.fx.controllers.customer.AddClientController
- sahan.abr.fx.controllers.customer.AddClientController$DeterminingDateEndSubscription
+sahan/abr/fx/controllers/SRM.java
+ sahan.abr.fx.controllers.SRM
+sahan/abr/repository/SubscriptionRepository.java
+ sahan.abr.repository.SubscriptionRepository

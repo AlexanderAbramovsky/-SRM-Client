@@ -29,6 +29,9 @@ if "%DIRNAME%" == "" set DIRNAME=.
 set APP_BASE_NAME=%~n0
 set APP_HOME=%DIRNAME%..
 
+@rem Resolve any "." and ".." in APP_HOME to make it shorter.
+for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
+
 @rem Add default JVM options here. You can also use JAVA_OPTS and SRM_CLIENT_OPTS to pass JVM options to this script.
 set DEFAULT_JVM_OPTS=
 
@@ -79,10 +82,11 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\SRM Client-1.0-SNAPSHOT.jar;%APP_HOME%\lib\sqlite-jdbc-3.30.1.jar;%APP_HOME%\lib\h2-1.4.200.jar;%APP_HOME%\lib\slf4j-simple-1.6.1.jar;%APP_HOME%\lib\javafx-fxml-12.0.2-win.jar;%APP_HOME%\lib\javafx-controls-12.0.2-win.jar;%APP_HOME%\lib\javafx-controls-12.0.2.jar;%APP_HOME%\lib\javafx-graphics-12.0.2-win.jar;%APP_HOME%\lib\javafx-graphics-12.0.2.jar;%APP_HOME%\lib\javafx-base-12.0.2-win.jar;%APP_HOME%\lib\javafx-base-12.0.2.jar;%APP_HOME%\lib\slf4j-api-1.6.1.jar
+set CLASSPATH=%APP_HOME%\lib\SRM Client-1.0-SNAPSHOT.jar;%APP_HOME%\lib\sqlite-jdbc-3.30.1.jar;%APP_HOME%\lib\slf4j-simple-1.6.1.jar;%APP_HOME%\lib\javafx-fxml-14-win.jar;%APP_HOME%\lib\javafx-controls-14-win.jar;%APP_HOME%\lib\javafx-controls-14.jar;%APP_HOME%\lib\javafx-graphics-14-win.jar;%APP_HOME%\lib\javafx-graphics-14.jar;%APP_HOME%\lib\javafx-base-14-win.jar;%APP_HOME%\lib\javafx-base-14.jar;%APP_HOME%\lib\slf4j-api-1.6.1.jar
+
 
 @rem Execute SRM Client
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %SRM_CLIENT_OPTS%  -classpath "%CLASSPATH%" Main %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %SRM_CLIENT_OPTS%  -classpath "%CLASSPATH%" sahan.abr.Main %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell
